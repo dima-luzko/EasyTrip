@@ -2,4 +2,5 @@
     <string name="app_name">Tickets</string>
     <string name="nfc">NFC</string>
     <string name="choose_login_method">Выберите способ входа</string>
+    <string name="hint_card_number">Номер карты</string>
 </resources>
