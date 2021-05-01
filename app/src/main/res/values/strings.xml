@@ -1,6 +1,23 @@
 <resources>
-    <string name="app_name">Tickets</string>
+    <string name="app_name">Easy Trip</string>
     <string name="nfc">NFC</string>
     <string name="choose_login_method">Выберите способ входа</string>
     <string name="hint_card_number">Номер карты</string>
+    <string name="profile">Профиль</string>
+    <string name="price">Цены</string>
+    <string name="personal_profile">Личный кабинет</string>
+    <string name="number_badge">№</string>
+    <string name="bus">Автобус</string>
+    <string name="trolleybus">Троллейбус</string>
+    <string name="tram">Трамвай</string>
+    <string name="bus_express">Автобус "Экспресс"</string>
+    <string name="metro">Метро</string>
+    <string name="train_city_lines">Городские линии</string>
+    <string name="active">Активен</string>
+    <string name="not_active">Не активен</string>
+    <string name="ends">Заканчивается</string>
+    <string name="before">до:</string>
+    <string name="trip">поездок</string>
+    <string name="left">Осталось</string>
+    <string name="validity">Срок действия</string>
 </resources>
