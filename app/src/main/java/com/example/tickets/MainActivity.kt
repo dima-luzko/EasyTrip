@@ -1,17 +1,19 @@
 package com.example.tickets
 
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
+import android.view.Window
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.tickets.adapter.NumberOfDaysAdapter
-import com.example.tickets.adapter.NumberOfTripsAdapter
-import com.example.tickets.adapter.TransportInfoAdapter
-import com.example.tickets.data.NumberOfDays
-import com.example.tickets.data.NumberOfTrips
-import com.example.tickets.data.TransportInfo
+import com.example.tickets.adapter.*
+import com.example.tickets.data.*
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,9 +21,35 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.price_screen)
         hideSystemUI()
         //addToTransportInfoRecyclerView()
-        addToNumberOfDaysRecyclerView()
-        addToNumberOfTripsRecyclerView()
+        //addToNumberOfDaysRecyclerView()
+
+        val button: AppCompatButton = findViewById(R.id.unlimited_trips_button)
+        button.setOnClickListener {
+            showSharePopupDialog()
+        }
     }
+
+    private fun showSharePopupDialog() {
+        val dialog = Dialog(this)
+        with(dialog){
+            requestWindowFeature(Window.FEATURE_NO_TITLE)
+            setContentView(R.layout.unlimited_trips_popup_window)
+            window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        }
+        val recyclerView = dialog.findViewById<RecyclerView>(R.id.number_of_days_list)
+        with(recyclerView) {
+            layoutManager = GridLayoutManager(
+                this@MainActivity,
+                3,
+                LinearLayoutManager.VERTICAL,
+                false
+            )
+            adapter = NumberOfDaysAdapter(numberOfDaysList())
+            hasFixedSize()
+        }
+        dialog.show()
+    }
+
 
     private fun addToNumberOfDaysRecyclerView() {
         val recyclerView = findViewById<RecyclerView>(R.id.number_of_days_list)
@@ -37,49 +65,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun addToNumberOfTripsRecyclerView() {
-        val recyclerView = findViewById<RecyclerView>(R.id.number_of_trips_list)
-        with(recyclerView) {
-            layoutManager = GridLayoutManager(
-                this@MainActivity,
-                3,
-                LinearLayoutManager.VERTICAL,
-                false
-            )
-            adapter = NumberOfTripsAdapter(numberOfTripsList())
-            hasFixedSize()
-        }
-    }
-
-    private fun numberOfTripsList() = listOf(
-        NumberOfTrips(
-           numberOfTrips = "1"
-        ),
-        NumberOfTrips(
-            numberOfTrips = "10"
-        ),
-        NumberOfTrips(
-            numberOfTrips = "20"
-        ),
-        NumberOfTrips(
-            numberOfTrips = "25"
-        ),
-        NumberOfTrips(
-            numberOfTrips = "30"
-        ),
-        NumberOfTrips(
-            numberOfTrips = "40"
-        ),
-        NumberOfTrips(
-            numberOfTrips = "50"
-        ),
-        NumberOfTrips(
-            numberOfTrips = "60"
-        ),
-        NumberOfTrips(
-            numberOfTrips = "100"
-        )
-    )
 
     private fun numberOfDaysList() = listOf(
         NumberOfDays(
