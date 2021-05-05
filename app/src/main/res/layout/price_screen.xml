@@ -40,7 +40,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        android:background="@drawable/form_for_button_in_price_screen"
+        android:background="@drawable/universal_form"
         app:layout_constraintTop_toBottomOf="@+id/number_of_days_text" />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -52,7 +52,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        android:background="@drawable/form_for_button_in_price_screen"
+        android:background="@drawable/universal_form"
         app:layout_constraintTop_toBottomOf="@+id/unlimited_trips_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

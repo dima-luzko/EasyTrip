@@ -18,20 +18,20 @@ import com.example.tickets.data.*
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.price_screen)
+        setContentView(R.layout.limited_choose_screen)
         hideSystemUI()
         //addToTransportInfoRecyclerView()
         //addToNumberOfDaysRecyclerView()
-
-        val button: AppCompatButton = findViewById(R.id.unlimited_trips_button)
-        button.setOnClickListener {
-            showSharePopupDialog()
-        }
+        // addToUnlimitedTransportInfoRecyclerView()
+//        val button: AppCompatButton = findViewById(R.id.unlimited_trips_button)
+//        button.setOnClickListener {
+//            showSharePopupDialog()
+//        }
     }
 
     private fun showSharePopupDialog() {
         val dialog = Dialog(this)
-        with(dialog){
+        with(dialog) {
             requestWindowFeature(Window.FEATURE_NO_TITLE)
             setContentView(R.layout.unlimited_trips_popup_window)
             window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
@@ -50,6 +50,19 @@ class MainActivity : AppCompatActivity() {
         dialog.show()
     }
 
+    private fun addToUnlimitedTransportInfoRecyclerView() {
+        val recyclerView = findViewById<RecyclerView>(R.id.unlimited_transport_list)
+        with(recyclerView) {
+            layoutManager = GridLayoutManager(
+                this@MainActivity,
+                2,
+                LinearLayoutManager.VERTICAL,
+                false
+            )
+            adapter = UnlimitedTransportInfoAdapter(unlimitedTransportInfoList())
+            hasFixedSize()
+        }
+    }
 
     private fun addToNumberOfDaysRecyclerView() {
         val recyclerView = findViewById<RecyclerView>(R.id.number_of_days_list)
@@ -64,6 +77,33 @@ class MainActivity : AppCompatActivity() {
             hasFixedSize()
         }
     }
+
+    private fun unlimitedTransportInfoList() = listOf(
+        UnlimitedTransportInfo(
+            transportName = getString(R.string.bus),
+            icon = R.drawable.icon_bus,
+        ),
+        UnlimitedTransportInfo(
+            transportName = getString(R.string.trolleybus),
+            icon = R.drawable.icon_trolleybus,
+        ),
+        UnlimitedTransportInfo(
+            transportName = getString(R.string.tram),
+            icon = R.drawable.icon_tram,
+        ),
+        UnlimitedTransportInfo(
+            transportName = getString(R.string.bus_express),
+            icon = R.drawable.icon_express_bus,
+        ),
+        UnlimitedTransportInfo(
+            transportName = getString(R.string.metro),
+            icon = R.drawable.icon_metro,
+        ),
+        UnlimitedTransportInfo(
+            transportName = getString(R.string.train_city_lines),
+            icon = R.drawable.icon_train_city_lines,
+        )
+    )
 
 
     private fun numberOfDaysList() = listOf(

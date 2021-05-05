@@ -18,10 +18,18 @@
     <string name="ends">Заканчивается</string>
     <string name="before">до:</string>
     <string name="trip">поездок</string>
+    <string name="days">суток</string>
     <string name="left">Осталось</string>
     <string name="validity">Срок действия</string>
     <string name="number_of_days">выберите тип проездного</string>
     <string name="back">Назад</string>
     <string name="unlimited_trips">Безлимит поездок</string>
     <string name="number_of_trips">Количество поездок</string>
+    <string name="choose_your_transport">Выберите нужный транспорт</string>
+    <string name="final_price">Итоговая цена:</string>
+    <string name="zero">0</string>
+    <string name="double_zero">00</string>
+    <string name="rubles">руб.</string>
+    <string name="penny">коп.</string>
+    <string name="choose_transport_and_trips">Выберите транспорт и \nнужное количество поездок</string>
 </resources>
