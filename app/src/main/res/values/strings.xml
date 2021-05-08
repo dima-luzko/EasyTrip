@@ -10,7 +10,7 @@
     <string name="bus">Автобус</string>
     <string name="trolleybus">Троллейбус</string>
     <string name="tram">Трамвай</string>
-    <string name="bus_express">Автобус "Экспресс"</string>
+    <string name="bus_express">Автобус "Экс."</string>
     <string name="metro">Метро</string>
     <string name="train_city_lines">Городские линии</string>
     <string name="active">Активен</string>

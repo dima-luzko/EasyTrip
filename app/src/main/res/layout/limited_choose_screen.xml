@@ -64,7 +64,7 @@
         android:id="@+id/five_limited_item"
         android:layout_width="140dp"
         android:layout_height="100dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="44dp"
         android:background="@drawable/universal_form"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.52"
@@ -73,11 +73,12 @@
 
     <TextView
         android:id="@+id/firs_limited_name"
+        style="@style/TextUnlimitedAndLimitedItemNameStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/TextUnlimitedAndLimitedItemNameStyle"
         android:text="@string/bus"
         app:layout_constraintEnd_toEndOf="@+id/first_limited_item"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="@+id/first_limited_item"
         app:layout_constraintTop_toTopOf="@+id/first_limited_item" />
 
@@ -87,6 +88,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/trolleybus"
+        app:layout_constraintHorizontal_bias="0.3"
         app:layout_constraintEnd_toEndOf="@+id/second_limited_item"
         app:layout_constraintStart_toStartOf="@+id/second_limited_item"
         app:layout_constraintTop_toTopOf="@+id/second_limited_item" />
@@ -97,6 +99,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/tram"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintEnd_toEndOf="@+id/third_limited_item"
         app:layout_constraintStart_toStartOf="@+id/third_limited_item"
         app:layout_constraintTop_toTopOf="@+id/third_limited_item" />
@@ -107,6 +110,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/bus_express"
+        app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintEnd_toEndOf="@+id/four_limited_item"
         app:layout_constraintStart_toStartOf="@+id/four_limited_item"
         app:layout_constraintTop_toTopOf="@+id/four_limited_item" />
@@ -117,6 +121,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/metro"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintEnd_toEndOf="@+id/five_limited_item"
         app:layout_constraintStart_toStartOf="@+id/five_limited_item"
         app:layout_constraintTop_toTopOf="@+id/five_limited_item" />
@@ -161,6 +166,50 @@
         app:layout_constraintTop_toBottomOf="@+id/five_limited_name"
         tools:ignore="ContentDescription" />
 
+    <com.example.tickets.utils.Counter
+        android:id="@+id/firs_limited_counter"
+        android:layout_marginEnd="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/first_limited_item"
+        app:layout_constraintEnd_toEndOf="@+id/first_limited_item"
+        app:layout_constraintTop_toTopOf="@+id/first_limited_item" />
+
+    <com.example.tickets.utils.Counter
+        android:id="@+id/second_limited_counter"
+        android:layout_marginEnd="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/second_limited_item"
+        app:layout_constraintEnd_toEndOf="@+id/second_limited_item"
+        app:layout_constraintTop_toTopOf="@+id/second_limited_item" />
+
+    <com.example.tickets.utils.Counter
+        android:id="@+id/third_limited_counter"
+        android:layout_marginEnd="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/third_limited_item"
+        app:layout_constraintEnd_toEndOf="@+id/third_limited_item"
+        app:layout_constraintTop_toTopOf="@+id/third_limited_item" />
+
+    <com.example.tickets.utils.Counter
+        android:id="@+id/four_limited_counter"
+        android:layout_marginEnd="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/four_limited_item"
+        app:layout_constraintEnd_toEndOf="@+id/four_limited_item"
+        app:layout_constraintTop_toTopOf="@+id/four_limited_item" />
+
+    <com.example.tickets.utils.Counter
+        android:id="@+id/five_limited_counter"
+        android:layout_marginEnd="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/five_limited_item"
+        app:layout_constraintEnd_toEndOf="@+id/five_limited_item"
+        app:layout_constraintTop_toTopOf="@+id/five_limited_item" />
 
 
 
