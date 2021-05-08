@@ -79,7 +79,7 @@
         app:layout_constraintTop_toBottomOf="@+id/choose_your_transport" />
 
     <TextView
-        android:id="@+id/text_final_price"
+        android:id="@+id/unlimited_text_final_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
@@ -91,7 +91,7 @@
         app:layout_constraintTop_toBottomOf="@+id/unlimited_transport_list" />
 
     <TextView
-        android:id="@+id/count_of_rubles_unlimited_price"
+        android:id="@+id/unlimited_count_of_rubles_unlimited_price"
         style="@style/TextToUnlimitedOrLimitedPriceStyle"
         android:layout_width="40dp"
         android:layout_height="wrap_content"
@@ -99,39 +99,39 @@
         android:layout_marginTop="28dp"
         android:text="@string/zero"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_final_price" />
+        app:layout_constraintTop_toBottomOf="@+id/unlimited_text_final_price" />
 
     <TextView
-        android:id="@+id/text_rubles"
+        android:id="@+id/unlimited_text_rubles"
         style="@style/TextToUnlimitedOrLimitedPriceStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="28dp"
         android:text="@string/rubles"
-        app:layout_constraintStart_toEndOf="@+id/count_of_rubles_unlimited_price"
-        app:layout_constraintTop_toBottomOf="@+id/text_final_price" />
+        app:layout_constraintStart_toEndOf="@+id/unlimited_count_of_rubles_unlimited_price"
+        app:layout_constraintTop_toBottomOf="@+id/unlimited_text_final_price" />
 
     <TextView
-        android:id="@+id/count_of_penny_unlimited_price"
+        android:id="@+id/unlimited_count_of_penny_unlimited_price"
         style="@style/TextToUnlimitedOrLimitedPriceStyle"
         android:layout_width="30dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="28dp"
         android:text="@string/double_zero"
-        app:layout_constraintStart_toEndOf="@+id/text_rubles"
-        app:layout_constraintTop_toBottomOf="@+id/text_final_price" />
+        app:layout_constraintStart_toEndOf="@+id/unlimited_text_rubles"
+        app:layout_constraintTop_toBottomOf="@+id/unlimited_text_final_price" />
 
     <TextView
-        android:id="@+id/text_penny"
+        android:id="@+id/unlimited_text_penny"
         style="@style/TextToUnlimitedOrLimitedPriceStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="28dp"
         android:text="@string/penny"
-        app:layout_constraintStart_toEndOf="@+id/count_of_penny_unlimited_price"
-        app:layout_constraintTop_toBottomOf="@+id/text_final_price" />
+        app:layout_constraintStart_toEndOf="@+id/unlimited_count_of_penny_unlimited_price"
+        app:layout_constraintTop_toBottomOf="@+id/unlimited_text_final_price" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

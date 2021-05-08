@@ -48,5 +48,20 @@
         <item name="android:textAlignment">center</item>
     </style>
 
+    <style name="TextUnlimitedAndLimitedItemNameStyle">
+        <item name="android:fontFamily">@font/pixograd_medium</item>
+        <item name="android:textColor">@color/purple</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:layout_marginTop">15dp</item>
+    </style>
+
+    <style name="ImageLimitedItemStyle">
+        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_marginTop">13dp</item>
+        <item name="android:layout_marginStart">20dp</item>
+    </style>
 
 </resources>
+

@@ -24,12 +24,8 @@
                 android:id="@+id/unlimited_transport_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:fontFamily="@font/pixograd_medium"
+                style="@style/TextUnlimitedAndLimitedItemNameStyle"
                 android:text="@string/bus_express"
-                android:textAlignment="center"
-                android:textColor="@color/purple"
-                android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

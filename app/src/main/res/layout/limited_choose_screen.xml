@@ -8,13 +8,220 @@
     android:padding="20dp">
 
     <TextView
+        android:id="@+id/choose_transport_and_trip"
         style="@style/TextToUnlimitedOrLimitedPriceStyle"
-        android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
         android:text="@string/choose_transport_and_trips"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/first_limited_item"
+        android:layout_width="140dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="52dp"
+        android:background="@drawable/universal_form"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/choose_transport_and_trip" />
+
+    <View
+        android:id="@+id/second_limited_item"
+        android:layout_width="140dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="52dp"
+        android:background="@drawable/universal_form"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/first_limited_item"
+        app:layout_constraintTop_toBottomOf="@+id/choose_transport_and_trip" />
+
+    <View
+        android:id="@+id/third_limited_item"
+        android:layout_width="140dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginStart="28dp"
+        android:background="@drawable/universal_form"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/first_limited_item" />
+
+    <View
+        android:id="@+id/four_limited_item"
+        android:layout_width="140dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/universal_form"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/third_limited_item"
+        app:layout_constraintTop_toBottomOf="@+id/second_limited_item" />
+
+    <View
+        android:id="@+id/five_limited_item"
+        android:layout_width="140dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/universal_form"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.52"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/third_limited_item" />
+
+    <TextView
+        android:id="@+id/firs_limited_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/TextUnlimitedAndLimitedItemNameStyle"
+        android:text="@string/bus"
+        app:layout_constraintEnd_toEndOf="@+id/first_limited_item"
+        app:layout_constraintStart_toStartOf="@+id/first_limited_item"
+        app:layout_constraintTop_toTopOf="@+id/first_limited_item" />
+
+    <TextView
+        android:id="@+id/second_limited_name"
+        style="@style/TextUnlimitedAndLimitedItemNameStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/trolleybus"
+        app:layout_constraintEnd_toEndOf="@+id/second_limited_item"
+        app:layout_constraintStart_toStartOf="@+id/second_limited_item"
+        app:layout_constraintTop_toTopOf="@+id/second_limited_item" />
+
+    <TextView
+        android:id="@+id/third_limited_name"
+        style="@style/TextUnlimitedAndLimitedItemNameStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tram"
+        app:layout_constraintEnd_toEndOf="@+id/third_limited_item"
+        app:layout_constraintStart_toStartOf="@+id/third_limited_item"
+        app:layout_constraintTop_toTopOf="@+id/third_limited_item" />
+
+    <TextView
+        android:id="@+id/four_limited_name"
+        style="@style/TextUnlimitedAndLimitedItemNameStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bus_express"
+        app:layout_constraintEnd_toEndOf="@+id/four_limited_item"
+        app:layout_constraintStart_toStartOf="@+id/four_limited_item"
+        app:layout_constraintTop_toTopOf="@+id/four_limited_item" />
+
+    <TextView
+        android:id="@+id/five_limited_name"
+        style="@style/TextUnlimitedAndLimitedItemNameStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/metro"
+        app:layout_constraintEnd_toEndOf="@+id/five_limited_item"
+        app:layout_constraintStart_toStartOf="@+id/five_limited_item"
+        app:layout_constraintTop_toTopOf="@+id/five_limited_item" />
+
+    <ImageView
+        android:id="@+id/firs_limited_icon"
+        style="@style/ImageLimitedItemStyle"
+        android:src="@drawable/icon_bus"
+        app:layout_constraintStart_toStartOf="@+id/first_limited_item"
+        app:layout_constraintTop_toBottomOf="@+id/firs_limited_name"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:id="@+id/second_limited_icon"
+        style="@style/ImageLimitedItemStyle"
+        android:src="@drawable/icon_trolleybus"
+        app:layout_constraintStart_toStartOf="@+id/second_limited_item"
+        app:layout_constraintTop_toBottomOf="@+id/second_limited_name"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:id="@+id/third_limited_icon"
+        style="@style/ImageLimitedItemStyle"
+        android:src="@drawable/icon_tram"
+        app:layout_constraintStart_toStartOf="@+id/third_limited_item"
+        app:layout_constraintTop_toBottomOf="@+id/third_limited_name"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:id="@+id/four_limited_icon"
+        style="@style/ImageLimitedItemStyle"
+        android:src="@drawable/icon_express_bus"
+        app:layout_constraintStart_toStartOf="@+id/four_limited_item"
+        app:layout_constraintTop_toBottomOf="@+id/four_limited_name"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:id="@+id/five_limited_icon"
+        style="@style/ImageLimitedItemStyle"
+        android:src="@drawable/icon_metro"
+        app:layout_constraintStart_toStartOf="@+id/five_limited_item"
+        app:layout_constraintTop_toBottomOf="@+id/five_limited_name"
+        tools:ignore="ContentDescription" />
+
+
+
+
+    <TextView
+        android:id="@+id/limited_text_final_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:text="@string/final_price"
+        android:textColor="@color/grey"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.53"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/five_limited_item" />
+
+    <TextView
+        android:id="@+id/limited_count_of_rubles_unlimited_price"
+        style="@style/TextToUnlimitedOrLimitedPriceStyle"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="28dp"
+        android:text="@string/zero"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/limited_text_final_price" />
+
+    <TextView
+        android:id="@+id/limited_text_rubles"
+        style="@style/TextToUnlimitedOrLimitedPriceStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="28dp"
+        android:text="@string/rubles"
+        app:layout_constraintStart_toEndOf="@+id/limited_count_of_rubles_unlimited_price"
+        app:layout_constraintTop_toBottomOf="@+id/limited_text_final_price" />
+
+    <TextView
+        android:id="@+id/limited_count_of_penny_unlimited_price"
+        style="@style/TextToUnlimitedOrLimitedPriceStyle"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="28dp"
+        android:text="@string/double_zero"
+        app:layout_constraintStart_toEndOf="@+id/limited_text_rubles"
+        app:layout_constraintTop_toBottomOf="@+id/limited_text_final_price" />
+
+    <TextView
+        android:id="@+id/limited_text_penny"
+        style="@style/TextToUnlimitedOrLimitedPriceStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="28dp"
+        android:text="@string/penny"
+        app:layout_constraintStart_toEndOf="@+id/limited_count_of_penny_unlimited_price"
+        app:layout_constraintTop_toBottomOf="@+id/limited_text_final_price" />
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
