@@ -14,12 +14,20 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tickets.adapter.*
 import com.example.tickets.data.*
+import com.simform.custombottomnavigation.SSCustomBottomNavigation
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.limited_choose_screen)
+        setContentView(R.layout.activity_main)
         hideSystemUI()
+        val bottomNavigation: SSCustomBottomNavigation = findViewById(R.id.bottom_navigation)
+        with(bottomNavigation) {
+            add(SSCustomBottomNavigation.Model(1, R.drawable.profile_button,getString(R.string.profile)))
+            add(SSCustomBottomNavigation.Model(2, R.drawable.price_button,getString(R.string.price)))
+            show(1)
+        }
+
        //addToTransportInfoRecyclerView()
        //addToNumberOfDaysRecyclerView()
         //addToUnlimitedTransportInfoRecyclerView()

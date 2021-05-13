@@ -35,6 +35,8 @@ android {
 dependencies {
     //RoundedImageView
     implementation 'com.makeramen:roundedimageview:2.3.0'
+    //SSCustomBottomNavigation
+    implementation 'com.github.simformsolutions:SSCustomBottomNavigation:1.0'
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.3.2'

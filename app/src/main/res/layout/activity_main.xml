@@ -7,14 +7,23 @@
     android:background="@color/background"
     tools:context=".MainActivity">
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
+    <com.simform.custombottomnavigation.SSCustomBottomNavigation
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:ss_backgroundBottomColor="@color/white"
+        app:ss_circleColor="@color/orange"
+        app:ss_waveHeight="7"
+        app:ss_countBackgroundColor="@color/orange"
+        app:ss_countTextColor="@color/white"
+        app:ss_defaultIconColor="@color/purple"
+        app:ss_iconTextColor="@color/purple"
+        app:ss_iconTextSize="14sp"
+        app:ss_selectedIconColor="@color/orange"
+        app:ss_selectedIconTextColor="@color/orange"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/navigation" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
