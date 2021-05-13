@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="custom_component_attributes">
-        <attr name="custom_backgroundTint" format="color" />
-        <attr name="custom_iconTint" format="color" />
+    <declare-styleable name="Counter">
+        <attr name="limitedItemName" format="string" />
+        <attr name="limitedIcon" format="reference" />
     </declare-styleable>
 </resources>

@@ -18,199 +18,64 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <View
+
+    <com.example.tickets.utils.Counter
         android:id="@+id/first_limited_item"
         android:layout_width="140dp"
         android:layout_height="100dp"
         android:layout_marginStart="28dp"
         android:layout_marginTop="52dp"
-        android:background="@drawable/universal_form"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/choose_transport_and_trip" />
+        app:layout_constraintTop_toBottomOf="@+id/choose_transport_and_trip"
+        app:limitedIcon="@drawable/icon_bus"
+        app:limitedItemName="@string/bus" />
 
-    <View
+    <com.example.tickets.utils.Counter
         android:id="@+id/second_limited_item"
         android:layout_width="140dp"
         android:layout_height="100dp"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="28dp"
         android:layout_marginTop="52dp"
-        android:background="@drawable/universal_form"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/first_limited_item"
-        app:layout_constraintTop_toBottomOf="@+id/choose_transport_and_trip" />
+        app:layout_constraintTop_toBottomOf="@+id/choose_transport_and_trip"
+        app:limitedIcon="@drawable/icon_trolleybus"
+        app:limitedItemName="@string/trolleybus" />
 
-    <View
+    <com.example.tickets.utils.Counter
         android:id="@+id/third_limited_item"
         android:layout_width="140dp"
         android:layout_height="100dp"
-        android:layout_marginTop="25dp"
         android:layout_marginStart="28dp"
-        android:background="@drawable/universal_form"
+        android:layout_marginTop="25dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/first_limited_item" />
+        app:layout_constraintTop_toBottomOf="@+id/first_limited_item"
+        app:limitedIcon="@drawable/icon_tram"
+        app:limitedItemName="@string/tram" />
 
-    <View
+    <com.example.tickets.utils.Counter
         android:id="@+id/four_limited_item"
         android:layout_width="140dp"
         android:layout_height="100dp"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="28dp"
         android:layout_marginTop="25dp"
-        android:background="@drawable/universal_form"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/third_limited_item"
-        app:layout_constraintTop_toBottomOf="@+id/second_limited_item" />
+        app:layout_constraintTop_toBottomOf="@+id/second_limited_item"
+        app:limitedIcon="@drawable/icon_express_bus"
+        app:limitedItemName="@string/bus_express" />
 
-    <View
+    <com.example.tickets.utils.Counter
         android:id="@+id/five_limited_item"
         android:layout_width="140dp"
         android:layout_height="100dp"
         android:layout_marginTop="44dp"
-        android:background="@drawable/universal_form"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/third_limited_item" />
-
-    <TextView
-        android:id="@+id/firs_limited_name"
-        style="@style/TextUnlimitedAndLimitedItemNameStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/bus"
-        app:layout_constraintEnd_toEndOf="@+id/first_limited_item"
-        app:layout_constraintHorizontal_bias="0.4"
-        app:layout_constraintStart_toStartOf="@+id/first_limited_item"
-        app:layout_constraintTop_toTopOf="@+id/first_limited_item" />
-
-    <TextView
-        android:id="@+id/second_limited_name"
-        style="@style/TextUnlimitedAndLimitedItemNameStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/trolleybus"
-        app:layout_constraintHorizontal_bias="0.3"
-        app:layout_constraintEnd_toEndOf="@+id/second_limited_item"
-        app:layout_constraintStart_toStartOf="@+id/second_limited_item"
-        app:layout_constraintTop_toTopOf="@+id/second_limited_item" />
-
-    <TextView
-        android:id="@+id/third_limited_name"
-        style="@style/TextUnlimitedAndLimitedItemNameStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/tram"
-        app:layout_constraintHorizontal_bias="0.4"
-        app:layout_constraintEnd_toEndOf="@+id/third_limited_item"
-        app:layout_constraintStart_toStartOf="@+id/third_limited_item"
-        app:layout_constraintTop_toTopOf="@+id/third_limited_item" />
-
-    <TextView
-        android:id="@+id/four_limited_name"
-        style="@style/TextUnlimitedAndLimitedItemNameStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/bus_express"
-        app:layout_constraintHorizontal_bias="0.2"
-        app:layout_constraintEnd_toEndOf="@+id/four_limited_item"
-        app:layout_constraintStart_toStartOf="@+id/four_limited_item"
-        app:layout_constraintTop_toTopOf="@+id/four_limited_item" />
-
-    <TextView
-        android:id="@+id/five_limited_name"
-        style="@style/TextUnlimitedAndLimitedItemNameStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/metro"
-        app:layout_constraintHorizontal_bias="0.4"
-        app:layout_constraintEnd_toEndOf="@+id/five_limited_item"
-        app:layout_constraintStart_toStartOf="@+id/five_limited_item"
-        app:layout_constraintTop_toTopOf="@+id/five_limited_item" />
-
-    <ImageView
-        android:id="@+id/firs_limited_icon"
-        style="@style/ImageLimitedItemStyle"
-        android:src="@drawable/icon_bus"
-        app:layout_constraintStart_toStartOf="@+id/first_limited_item"
-        app:layout_constraintTop_toBottomOf="@+id/firs_limited_name"
-        tools:ignore="ContentDescription" />
-
-    <ImageView
-        android:id="@+id/second_limited_icon"
-        style="@style/ImageLimitedItemStyle"
-        android:src="@drawable/icon_trolleybus"
-        app:layout_constraintStart_toStartOf="@+id/second_limited_item"
-        app:layout_constraintTop_toBottomOf="@+id/second_limited_name"
-        tools:ignore="ContentDescription" />
-
-    <ImageView
-        android:id="@+id/third_limited_icon"
-        style="@style/ImageLimitedItemStyle"
-        android:src="@drawable/icon_tram"
-        app:layout_constraintStart_toStartOf="@+id/third_limited_item"
-        app:layout_constraintTop_toBottomOf="@+id/third_limited_name"
-        tools:ignore="ContentDescription" />
-
-    <ImageView
-        android:id="@+id/four_limited_icon"
-        style="@style/ImageLimitedItemStyle"
-        android:src="@drawable/icon_express_bus"
-        app:layout_constraintStart_toStartOf="@+id/four_limited_item"
-        app:layout_constraintTop_toBottomOf="@+id/four_limited_name"
-        tools:ignore="ContentDescription" />
-
-    <ImageView
-        android:id="@+id/five_limited_icon"
-        style="@style/ImageLimitedItemStyle"
-        android:src="@drawable/icon_metro"
-        app:layout_constraintStart_toStartOf="@+id/five_limited_item"
-        app:layout_constraintTop_toBottomOf="@+id/five_limited_name"
-        tools:ignore="ContentDescription" />
-
-    <com.example.tickets.utils.Counter
-        android:id="@+id/firs_limited_counter"
-        android:layout_marginEnd="8dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/first_limited_item"
-        app:layout_constraintEnd_toEndOf="@+id/first_limited_item"
-        app:layout_constraintTop_toTopOf="@+id/first_limited_item" />
-
-    <com.example.tickets.utils.Counter
-        android:id="@+id/second_limited_counter"
-        android:layout_marginEnd="8dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/second_limited_item"
-        app:layout_constraintEnd_toEndOf="@+id/second_limited_item"
-        app:layout_constraintTop_toTopOf="@+id/second_limited_item" />
-
-    <com.example.tickets.utils.Counter
-        android:id="@+id/third_limited_counter"
-        android:layout_marginEnd="8dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/third_limited_item"
-        app:layout_constraintEnd_toEndOf="@+id/third_limited_item"
-        app:layout_constraintTop_toTopOf="@+id/third_limited_item" />
-
-    <com.example.tickets.utils.Counter
-        android:id="@+id/four_limited_counter"
-        android:layout_marginEnd="8dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/four_limited_item"
-        app:layout_constraintEnd_toEndOf="@+id/four_limited_item"
-        app:layout_constraintTop_toTopOf="@+id/four_limited_item" />
-
-    <com.example.tickets.utils.Counter
-        android:id="@+id/five_limited_counter"
-        android:layout_marginEnd="8dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/five_limited_item"
-        app:layout_constraintEnd_toEndOf="@+id/five_limited_item"
-        app:layout_constraintTop_toTopOf="@+id/five_limited_item" />
-
+        app:layout_constraintTop_toBottomOf="@+id/third_limited_item"
+        app:limitedIcon="@drawable/icon_metro"
+        app:limitedItemName="@string/metro" />
 
 
     <TextView
@@ -269,8 +134,6 @@
         android:text="@string/penny"
         app:layout_constraintStart_toEndOf="@+id/limited_count_of_penny_unlimited_price"
         app:layout_constraintTop_toBottomOf="@+id/limited_text_final_price" />
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

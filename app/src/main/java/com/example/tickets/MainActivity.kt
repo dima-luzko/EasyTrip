@@ -20,9 +20,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.limited_choose_screen)
         hideSystemUI()
-        //addToTransportInfoRecyclerView()
-        //addToNumberOfDaysRecyclerView()
-        // addToUnlimitedTransportInfoRecyclerView()
+       //addToTransportInfoRecyclerView()
+       //addToNumberOfDaysRecyclerView()
+        //addToUnlimitedTransportInfoRecyclerView()
 //        val button: AppCompatButton = findViewById(R.id.unlimited_trips_button)
 //        button.setOnClickListener {
 //            showSharePopupDialog()
