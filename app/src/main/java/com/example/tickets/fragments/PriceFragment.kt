@@ -5,7 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.AppCompatButton
+import androidx.navigation.Navigation
 import com.example.tickets.R
+import com.example.tickets.utils.visibleBottomNavigation
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -28,14 +31,24 @@ class PriceFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+
+            activity?.let { visibleBottomNavigation(it) }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_price, container, false)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val limitedTripsButton = requireView().findViewById<AppCompatButton>(R.id.limited_trips_button)
+        limitedTripsButton.setOnClickListener (Navigation.createNavigateOnClickListener(R.id.action_priceFragment_to_limitedChooseFragment,null))
+//            (requireActivity() as FragmentInterface).limitedChoose()
+
+
     }
 
     companion object {

@@ -6,35 +6,81 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
 import android.view.Window
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.AppCompatButton
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tickets.adapter.*
 import com.example.tickets.data.*
+import com.example.tickets.fragments.*
 import com.simform.custombottomnavigation.SSCustomBottomNavigation
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var bottomNavigation: SSCustomBottomNavigation
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_limited_choose)
+        setContentView(R.layout.activity_main)
         hideSystemUI()
-//        val bottomNavigation: SSCustomBottomNavigation = findViewById(R.id.bottom_navigation)
-//        with(bottomNavigation) {
-//            add(SSCustomBottomNavigation.Model(1, R.drawable.profile_button,getString(R.string.profile)))
-//            add(SSCustomBottomNavigation.Model(2, R.drawable.price_button,getString(R.string.price)))
-//            show(1)
-//        }
-
-       //addToTransportInfoRecyclerView()
-       //addToNumberOfDaysRecyclerView()
+        initBottomNavigation()
+        //addToTransportInfoRecyclerView()
+        //addToNumberOfDaysRecyclerView()
         //addToUnlimitedTransportInfoRecyclerView()
 //        val button: AppCompatButton = findViewById(R.id.unlimited_trips_button)
 //        button.setOnClickListener {
 //            showSharePopupDialog()
 //        }
+    }
+
+    private fun replaceFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment)
+            .commit()
+    }
+
+
+    override fun onStart() {
+        super.onStart()
+        bottomNavigation = findViewById(R.id.bottom_navigation)
+        bottomNavigation.setOnClickMenuListener { menuItem ->
+            when (menuItem.id) {
+                1 -> {
+                    replaceFragment(ProfileFragment())
+                    return@setOnClickMenuListener
+                }
+                2 -> {
+                    replaceFragment(PriceFragment())
+                    return@setOnClickMenuListener
+                }
+            }
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        bottomNavigation.setOnClickListener(null)
+    }
+
+    private fun initBottomNavigation() {
+        bottomNavigation = findViewById(R.id.bottom_navigation)
+        with(bottomNavigation) {
+            add(
+                SSCustomBottomNavigation.Model(
+                    1,
+                    R.drawable.profile_button,
+                    getString(R.string.profile)
+                )
+            )
+            add(
+                SSCustomBottomNavigation.Model(
+                    2,
+                    R.drawable.price_button,
+                    getString(R.string.price)
+                )
+            )
+            show(1)
+        }
     }
 
     private fun showSharePopupDialog() {
@@ -144,58 +190,6 @@ class MainActivity : AppCompatActivity() {
         )
     )
 
-    private fun addToTransportInfoRecyclerView() {
-        val recyclerView = findViewById<RecyclerView>(R.id.type_of_transports_list)
-        with(recyclerView) {
-            layoutManager = GridLayoutManager(
-                this@MainActivity,
-                2,
-                LinearLayoutManager.VERTICAL,
-                false
-            )
-            adapter = TransportInfoAdapter(transportInfoList())
-            hasFixedSize()
-        }
-    }
-
-    private fun transportInfoList() = listOf(
-        TransportInfo(
-            transportName = getString(R.string.bus),
-            transportImg = R.drawable.icon_bus,
-            statusImg = R.drawable.icon_circle_orange,
-            statusText = getString(R.string.ends)
-        ),
-        TransportInfo(
-            transportName = getString(R.string.trolleybus),
-            transportImg = R.drawable.icon_trolleybus,
-            statusImg = R.drawable.icon_circle_green,
-            statusText = getString(R.string.active)
-        ),
-        TransportInfo(
-            transportName = getString(R.string.tram),
-            transportImg = R.drawable.icon_tram,
-            statusImg = R.drawable.icon_circle_red,
-            statusText = getString(R.string.not_active)
-        ),
-        TransportInfo(
-            transportName = getString(R.string.bus_express),
-            transportImg = R.drawable.icon_express_bus,
-            statusImg = R.drawable.icon_circle_green,
-            statusText = getString(R.string.active)
-        ),
-        TransportInfo(
-            transportName = getString(R.string.metro),
-            transportImg = R.drawable.icon_metro,
-            statusImg = R.drawable.icon_circle_orange,
-            statusText = getString(R.string.ends)
-        ),
-        TransportInfo(
-            transportName = getString(R.string.train_city_lines),
-            transportImg = R.drawable.icon_train_city_lines,
-            statusImg = R.drawable.icon_circle_red,
-            statusText = getString(R.string.not_active)
-        )
-    )
 
     @Suppress("DEPRECATION")
     private fun hideSystemUI() {
