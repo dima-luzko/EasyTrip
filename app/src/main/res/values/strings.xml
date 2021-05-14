@@ -32,4 +32,6 @@
     <string name="rubles">руб.</string>
     <string name="penny">коп.</string>
     <string name="choose_transport_and_trips">Выберите транспорт и \nнужное количество поездок</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

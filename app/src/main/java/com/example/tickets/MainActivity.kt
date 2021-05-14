@@ -19,14 +19,14 @@ import com.simform.custombottomnavigation.SSCustomBottomNavigation
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.fragment_limited_choose)
         hideSystemUI()
-        val bottomNavigation: SSCustomBottomNavigation = findViewById(R.id.bottom_navigation)
-        with(bottomNavigation) {
-            add(SSCustomBottomNavigation.Model(1, R.drawable.profile_button,getString(R.string.profile)))
-            add(SSCustomBottomNavigation.Model(2, R.drawable.price_button,getString(R.string.price)))
-            show(1)
-        }
+//        val bottomNavigation: SSCustomBottomNavigation = findViewById(R.id.bottom_navigation)
+//        with(bottomNavigation) {
+//            add(SSCustomBottomNavigation.Model(1, R.drawable.profile_button,getString(R.string.profile)))
+//            add(SSCustomBottomNavigation.Model(2, R.drawable.price_button,getString(R.string.price)))
+//            show(1)
+//        }
 
        //addToTransportInfoRecyclerView()
        //addToNumberOfDaysRecyclerView()
