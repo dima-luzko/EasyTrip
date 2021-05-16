@@ -37,4 +37,9 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="limited_tickets">Лимитированный проездной</string>
     <string name="choose_number_of_days">Выберите количество суток</string>
+    <string name="error">Ошибка</string>
+    <string name="button_ok">Ок</string>
+    <string name="button_try_again">Попробовать снова</string>
+    <string name="card_number_cannot_be_empty">Номер карты не может быть пустым!</string>
+    <string name="no_card_number">Карты с таким номером не существует!</string>
 </resources>

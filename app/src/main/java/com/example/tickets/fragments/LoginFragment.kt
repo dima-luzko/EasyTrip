@@ -1,20 +1,30 @@
 package com.example.tickets.fragments
 
 import android.app.AlertDialog
+import android.app.Dialog
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.os.Message
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.tickets.R
 import com.example.tickets.data.CardNumber
 import com.example.tickets.utils.goneBottomNavigation
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class LoginFragment : Fragment() {
 
@@ -43,9 +53,8 @@ class LoginFragment : Fragment() {
             when {
                 getInputCardNumber.isEmpty() -> {
                     showErrorDialog(
-                        context,
-                        "Номер не может быть пустым!",
-                        "Ок"
+                        getString(R.string.card_number_cannot_be_empty),
+                        getString(R.string.button_ok)
                     )
                 }
                 getInputCardNumber in cardList.map { it.cardNumber }.toString() -> {
@@ -58,30 +67,34 @@ class LoginFragment : Fragment() {
                 }
                 else -> {
                     showErrorDialog(
-                        context,
-                        "Карты с таким номером не существует!",
-                        "Попробовать снова"
+                        getString(R.string.no_card_number),
+                        getString(R.string.button_try_again)
                     )
                 }
             }
         }
     }
 
-    private fun showErrorDialog(
-        context: Context?,
-        message: String,
-        positiveButtonText: String
-    ) {
-        val builder = AlertDialog.Builder(context)
-        hideSystemUI()
-        with(builder) {
-            setTitle("Ошибка")
-            setMessage(message)
-            setPositiveButton(positiveButtonText) { dialog, _ -> dialog.cancel() }
-            setCancelable(false)
-            create()
-            show()
+    private fun showErrorDialog(errorMessage: String, buttonText: String) {
+        val dialog = context?.let { Dialog(it) }
+        with(dialog) {
+            this?.requestWindowFeature(Window.FEATURE_NO_TITLE)
+            this?.setContentView(R.layout.error_popup_window)
+            this?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         }
+        dialog?.findViewById<TextView>(R.id.error_message)?.text = errorMessage
+        val repeatButton = dialog?.findViewById<AppCompatButton>(R.id.button_try_again)
+        with(repeatButton) {
+            this?.text = buttonText
+            this?.setOnClickListener {
+                CoroutineScope(Dispatchers.Main).launch {
+                    delay(600)
+                    dialog?.dismiss()
+                }
+            }
+        }
+        dialog?.setCancelable(false)
+        dialog?.show()
     }
 
     private val cardList = listOf(
