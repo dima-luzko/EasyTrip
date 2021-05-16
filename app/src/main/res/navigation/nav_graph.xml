@@ -18,7 +18,11 @@
         android:id="@+id/profileFragment"
         android:name="com.example.tickets.fragments.ProfileFragment"
         android:label="ProfileFragment"
-        tools:layout="@layout/fragment_profile"/>
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_profileFragment_to_priceFragment"
+            app:destination="@id/priceFragment" />
+    </fragment>
     <fragment
         android:id="@+id/priceFragment"
         android:name="com.example.tickets.fragments.PriceFragment"
@@ -27,15 +31,29 @@
         <action
             android:id="@+id/action_priceFragment_to_limitedChooseFragment"
             app:destination="@id/limitedChooseFragment" />
+        <action
+            android:id="@+id/action_priceFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_priceFragment_to_unlimitedChooseFragment"
+            app:destination="@id/unlimitedChooseFragment" />
     </fragment>
     <fragment
         android:id="@+id/unlimitedChooseFragment"
         android:name="com.example.tickets.fragments.UnlimitedChooseFragment"
         android:label="UnlimitedChooseFragment"
-        tools:layout="@layout/fragment_unlimited_choose"/>
+        tools:layout="@layout/fragment_unlimited_choose">
+        <action
+            android:id="@+id/action_unlimitedChooseFragment_to_priceFragment"
+            app:destination="@id/priceFragment" />
+    </fragment>
     <fragment
         android:id="@+id/limitedChooseFragment"
         android:name="com.example.tickets.fragments.LimitedChooseFragment"
         android:label="LimitedChooseFragment"
-        tools:layout="@layout/fragment_limited_choose"/>
+        tools:layout="@layout/fragment_limited_choose">
+        <action
+            android:id="@+id/action_limitedChooseFragment_to_priceFragment"
+            app:destination="@id/priceFragment" />
+    </fragment>
 </navigation>

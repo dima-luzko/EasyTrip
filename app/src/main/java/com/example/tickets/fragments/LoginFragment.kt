@@ -27,7 +27,6 @@ class LoginFragment : Fragment() {
                     null
                 )
             )
-
     }
 
 }

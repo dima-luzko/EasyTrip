@@ -1,10 +1,11 @@
 package com.example.tickets.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -12,19 +13,39 @@ import com.example.tickets.R
 import com.example.tickets.adapter.TransportInfoAdapter
 import com.example.tickets.data.TransportInfo
 import com.example.tickets.utils.visibleBottomNavigation
+import com.simform.custombottomnavigation.SSCustomBottomNavigation
 
 
 class ProfileFragment : Fragment() {
+
+    private lateinit var bottomNavigation: SSCustomBottomNavigation
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activity?.let { visibleBottomNavigation(it) }
     }
 
+    override fun onStart() {
+        super.onStart()
+        bottomNavigation = requireActivity().findViewById(R.id.bottom_navigation)
+        bottomNavigation.setOnClickMenuListener { menuItem ->
+            if (menuItem.id == 2) {
+                findNavController().navigate(R.id.action_profileFragment_to_priceFragment)
+                return@setOnClickMenuListener
+            }
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        bottomNavigation.setOnClickListener(null)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        setHasOptionsMenu(true)
         return inflater.inflate(R.layout.fragment_profile, container, false)
     }
 
