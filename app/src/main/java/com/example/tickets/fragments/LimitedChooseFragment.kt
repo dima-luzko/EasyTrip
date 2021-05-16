@@ -12,8 +12,6 @@ import com.google.android.material.button.MaterialButton
 
 class LimitedChooseFragment : Fragment() {
 
-    private lateinit var backButton: MaterialButton
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activity?.let { goneBottomNavigation(it) }
@@ -26,19 +24,13 @@ class LimitedChooseFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_limited_choose, container, false)
     }
 
-    override fun onStart() {
-        super.onStart()
-        backButton = requireView().findViewById(R.id.back_button_in_limited_choose_screen)
-        backButton.setOnClickListener(
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+       requireView().findViewById<MaterialButton>(R.id.back_button_in_limited_choose_screen).setOnClickListener(
             Navigation.createNavigateOnClickListener(
                 R.id.action_limitedChooseFragment_to_priceFragment,
                 null
             )
         )
-    }
-
-    override fun onStop() {
-        super.onStop()
-        backButton.setOnClickListener(null)
     }
 }

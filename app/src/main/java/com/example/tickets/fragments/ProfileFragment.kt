@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -18,27 +20,11 @@ import com.simform.custombottomnavigation.SSCustomBottomNavigation
 
 class ProfileFragment : Fragment() {
 
-    private lateinit var bottomNavigation: SSCustomBottomNavigation
+    private lateinit var cardNumber: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activity?.let { visibleBottomNavigation(it) }
-    }
-
-    override fun onStart() {
-        super.onStart()
-        bottomNavigation = requireActivity().findViewById(R.id.bottom_navigation)
-        bottomNavigation.setOnClickMenuListener { menuItem ->
-            if (menuItem.id == 2) {
-                findNavController().navigate(R.id.action_profileFragment_to_priceFragment)
-                return@setOnClickMenuListener
-            }
-        }
-    }
-
-    override fun onStop() {
-        super.onStop()
-        bottomNavigation.setOnClickListener(null)
     }
 
     override fun onCreateView(
@@ -51,7 +37,21 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        cardNumber = view.findViewById(R.id.personal_card_number)
+        cardNumber.text = arguments?.getString("cardNumber")
+
         addToTransportInfoRecyclerView(view)
+        requireActivity().findViewById<SSCustomBottomNavigation>(R.id.bottom_navigation)
+            .setOnClickMenuListener { menuItem ->
+                if (menuItem.id == 2) {
+                    findNavController().navigate(R.id.action_profileFragment_to_priceFragment)
+                    return@setOnClickMenuListener
+                }
+            }
+
+        view.findViewById<ImageButton>(R.id.button_exit).setOnClickListener {
+            findNavController().navigate(R.id.action_profileFragment_to_loginFragment)
+        }
     }
 
     private fun addToTransportInfoRecyclerView(view: View) {

@@ -32,7 +32,7 @@ class NumberOfDaysAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val numberOfDays: NumberOfDays = numberOfDaysList[position]
         with(holder){
-            number.text = numberOfDays.numberOfDays
+            number.text = numberOfDays.numberOfDays.toString()
             number.setOnClickListener {
                 chooseNumber(numberOfDays)
             }

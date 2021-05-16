@@ -24,10 +24,6 @@ import com.simform.custombottomnavigation.SSCustomBottomNavigation
 
 class PriceFragment : Fragment() {
 
-    private lateinit var bottomNavigation: SSCustomBottomNavigation
-    private lateinit var limitedTripButton: AppCompatButton
-    private lateinit var unlimitedTripButton: AppCompatButton
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activity?.let { visibleBottomNavigation(it) }
@@ -41,38 +37,32 @@ class PriceFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_price, container, false)
     }
 
-    override fun onStart() {
-        super.onStart()
-        bottomNavigation = requireActivity().findViewById(R.id.bottom_navigation)
-        bottomNavigation.setOnClickMenuListener { menuItem ->
-            if (menuItem.id == 1) {
-                findNavController().navigate(R.id.action_priceFragment_to_profileFragment)
-                return@setOnClickMenuListener
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        requireActivity().findViewById<SSCustomBottomNavigation>(R.id.bottom_navigation)
+            .setOnClickMenuListener { menuItem ->
+                if (menuItem.id == 1) {
+                    findNavController().navigate(R.id.action_priceFragment_to_profileFragment)
+                    return@setOnClickMenuListener
+                }
             }
-        }
 
-        limitedTripButton = requireActivity().findViewById(R.id.limited_trips_button)
-        limitedTripButton.setOnClickListener(
-            Navigation.createNavigateOnClickListener(
-                R.id.action_priceFragment_to_limitedChooseFragment,
-                null
+        view.findViewById<AppCompatButton>(R.id.limited_trips_button)
+            .setOnClickListener(
+                Navigation.createNavigateOnClickListener(
+                    R.id.action_priceFragment_to_limitedChooseFragment,
+                    null
+                )
             )
-        )
 
-        unlimitedTripButton = requireActivity().findViewById(R.id.unlimited_trips_button)
-        unlimitedTripButton.setOnClickListener {
-            showPopupDialog()
-        }
-    }
-
-    override fun onStop() {
-        super.onStop()
-        bottomNavigation.setOnClickListener(null)
-        limitedTripButton.setOnClickListener(null)
-        unlimitedTripButton.setOnClickListener(null)
+        view.findViewById<AppCompatButton>(R.id.unlimited_trips_button)
+            .setOnClickListener {
+                showPopupDialog()
+            }
     }
 
     private fun showPopupDialog() {
+        val bundle = Bundle()
         val dialog = context?.let { Dialog(it) }
         with(dialog) {
             this?.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -89,7 +79,11 @@ class PriceFragment : Fragment() {
                 false
             )
             this?.adapter = NumberOfDaysAdapter(numberOfDaysList()) {
-                findNavController().navigate(R.id.action_priceFragment_to_unlimitedChooseFragment)
+                bundle.putString("numberOfDays", it.numberOfDays.toString())
+                findNavController().navigate(
+                    R.id.action_priceFragment_to_unlimitedChooseFragment,
+                    bundle
+                )
                 dialog?.dismiss()
             }
             this?.hasFixedSize()
@@ -99,31 +93,31 @@ class PriceFragment : Fragment() {
 
     private fun numberOfDaysList() = listOf(
         NumberOfDays(
-            numberOfDays = "1"
+            numberOfDays = 1
         ),
         NumberOfDays(
-            numberOfDays = "2"
+            numberOfDays = 2
         ),
         NumberOfDays(
-            numberOfDays = "3"
+            numberOfDays = 3
         ),
         NumberOfDays(
-            numberOfDays = "5"
+            numberOfDays = 5
         ),
         NumberOfDays(
-            numberOfDays = "10"
+            numberOfDays = 10
         ),
         NumberOfDays(
-            numberOfDays = "15"
+            numberOfDays = 15
         ),
         NumberOfDays(
-            numberOfDays = "20"
+            numberOfDays = 20
         ),
         NumberOfDays(
-            numberOfDays = "30"
+            numberOfDays = 30
         ),
         NumberOfDays(
-            numberOfDays = "90"
+            numberOfDays = 90
         )
     )
 

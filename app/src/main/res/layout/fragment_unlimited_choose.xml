@@ -38,7 +38,6 @@
         android:layout_width="30dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:text="30"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar"
         app:layout_constraintStart_toEndOf="@+id/back_button_in_unlimited_choose_screen"
         app:layout_constraintTop_toTopOf="@+id/toolbar"

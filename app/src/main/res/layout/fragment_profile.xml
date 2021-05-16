@@ -44,11 +44,11 @@
     <TextView
         android:id="@+id/personal_card_number"
         style="@style/ProfileStyle"
-        android:layout_width="200dp"
+        android:layout_width="190dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="8dp"
-        android:text="0000 1111 2222 3333"
+        android:text="0000111122223333"
         android:textAlignment="center"
         app:layout_constraintStart_toEndOf="@+id/number_badge"
         app:layout_constraintTop_toBottomOf="@+id/personal_profile" />
@@ -73,6 +73,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/horizontal_line"
         app:layout_constraintVertical_bias="1.0" />
+
+    <ImageButton
+        android:id="@+id/button_exit"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="12dp"
+        android:src="@drawable/icon_exit"
+        android:background="@color/background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/personal_profile"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

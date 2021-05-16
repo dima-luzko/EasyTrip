@@ -19,6 +19,7 @@
     <string name="before">до:</string>
     <string name="trip">поездок</string>
     <string name="days">суток</string>
+    <string name="day">сутки</string>
     <string name="left">Осталось</string>
     <string name="validity">Срок действия</string>
     <string name="number_of_days">выберите тип проездного</string>
@@ -32,6 +33,8 @@
     <string name="rubles">руб.</string>
     <string name="penny">коп.</string>
     <string name="choose_transport_and_trips">Выберите транспорт и \nнужное количество поездок</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="limited_tickets">Лимитированный проездной</string>
+    <string name="choose_number_of_days">Выберите количество суток</string>
 </resources>
