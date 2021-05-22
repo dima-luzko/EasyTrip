@@ -22,6 +22,7 @@ class LimitedChooseFragment : Fragment() {
         activity?.let { goneBottomNavigation(it) }
     }
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,7 +33,7 @@ class LimitedChooseFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        with(binding){
+        with(binding) {
             backButtonInLimitedChooseScreen.setOnClickListener {
                 findNavController().navigate(R.id.action_limitedChooseFragment_to_priceFragment)
             }
@@ -43,13 +44,13 @@ class LimitedChooseFragment : Fragment() {
                 decrementIndex()
             }
         }
-
     }
 
     private fun incrementIndex() {
         if (currentIndex < numberOfTripsList.size - 1) {
             currentIndex++
-            binding.textListInFirstLimitedItem.text = numberOfTripsList[currentIndex].number.toString()
+            binding.textListInFirstLimitedItem.text =
+                numberOfTripsList[currentIndex].number.toString()
             if (currentIndex == 1) {
                 binding.buttonDownInFirstLimitedItem.visibility = ConstraintLayout.VISIBLE
             } else if (currentIndex == numberOfTripsList.lastIndex) {
@@ -61,7 +62,8 @@ class LimitedChooseFragment : Fragment() {
     private fun decrementIndex() {
         if (currentIndex <= numberOfTripsList.size - 1) {
             currentIndex--
-            binding.textListInFirstLimitedItem.text = numberOfTripsList[currentIndex].number.toString()
+            binding.textListInFirstLimitedItem.text =
+                numberOfTripsList[currentIndex].number.toString()
             if (currentIndex == 0) {
                 binding.buttonDownInFirstLimitedItem.visibility = ConstraintLayout.INVISIBLE
             } else if (currentIndex == numberOfTripsList.lastIndex - 1) {

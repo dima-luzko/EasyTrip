@@ -154,8 +154,8 @@
         android:layout_marginTop="45dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/first_limited_item"
-        app:limitedIcon="@drawable/icon_express_bus"
-        app:limitedItemName="@string/bus_express" />
+        app:limitedIcon="@drawable/icon_metro"
+        app:limitedItemName="@string/metro" />
 
     <com.example.tickets.utils.Counter
         android:id="@+id/third_limited_item"
@@ -166,8 +166,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/second_limited_item"
         app:layout_constraintTop_toBottomOf="@+id/first_limited_item"
-        app:limitedIcon="@drawable/icon_metro"
-        app:limitedItemName="@string/metro" />
+        app:limitedIcon="@drawable/icon_express_bus"
+        app:limitedItemName="@string/bus_express" />
 
     <TextView
         android:id="@+id/limited_text_final_price"

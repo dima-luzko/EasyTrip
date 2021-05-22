@@ -3,9 +3,9 @@ package com.example.tickets.utils
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.tickets.R
+import com.example.tickets.data.NumberOfTrips
 import com.example.tickets.databinding.CounterViewBinding
 
 class Counter @JvmOverloads constructor(
@@ -33,35 +33,48 @@ class Counter @JvmOverloads constructor(
             limitedItemName.text =
                 attributes.getString(R.styleable.Counter_limitedItemName)
             limitedItemIcon.setImageDrawable(attributes.getDrawable(R.styleable.Counter_limitedIcon))
-            buttonUp.setOnClickListener {
-                incrementIndex()
-            }
-            buttonDown.setOnClickListener {
-               decrementIndex()
+            if (limitedItemName.text == "Метро") {
+                buttonUp.setOnClickListener {
+                    incrementIndex(newNumberOfTripsList)
+                }
+                buttonDown.setOnClickListener {
+                    decrementIndex(newNumberOfTripsList)
+                }
+            } else {
+                buttonUp.setOnClickListener {
+                    incrementIndex(numberOfTripsList)
+                }
+                buttonDown.setOnClickListener {
+                    decrementIndex(numberOfTripsList)
+                }
             }
         }
         attributes.recycle()
     }
 
-    private fun incrementIndex() {
-        if (currentIndex < numberOfTripsList.size - 1) {
+    private val newNumberOfTripsList = numberOfTripsList.filterIndexed { index, _ ->
+        index != 1 && index != 2 && index != 3 && index != 6 && index != 11
+    }
+
+    private fun incrementIndex(tripList: List<NumberOfTrips>) {
+        if (currentIndex < tripList.size - 1) {
             currentIndex++
-            counterBinding.textList.text = numberOfTripsList[currentIndex].number.toString()
+            counterBinding.textList.text = tripList[currentIndex].number.toString()
             if (currentIndex == 1) {
                 counterBinding.buttonDown.visibility = VISIBLE
-            } else if (currentIndex == numberOfTripsList.lastIndex) {
+            } else if (currentIndex == tripList.lastIndex) {
                 counterBinding.buttonUp.visibility = INVISIBLE
             }
         }
     }
 
-    private fun decrementIndex() {
-        if (currentIndex <= numberOfTripsList.size - 1) {
+    private fun decrementIndex(tripList: List<NumberOfTrips>) {
+        if (currentIndex <= tripList.size - 1) {
             currentIndex--
-            counterBinding.textList.text = numberOfTripsList[currentIndex].number.toString()
+            counterBinding.textList.text = tripList[currentIndex].number.toString()
             if (currentIndex == 0) {
                 counterBinding.buttonDown.visibility = INVISIBLE
-            } else if (currentIndex == numberOfTripsList.lastIndex - 1) {
+            } else if (currentIndex == tripList.lastIndex - 1) {
                 counterBinding.buttonUp.visibility = VISIBLE
             }
         }
