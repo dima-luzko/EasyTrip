@@ -1,25 +1,20 @@
 package com.example.tickets.fragments
 
-import android.app.AlertDialog
 import android.app.Dialog
-import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.os.Message
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
-import android.widget.EditText
-import android.widget.ImageButton
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.tickets.R
 import com.example.tickets.data.CardNumber
+import com.example.tickets.databinding.ErrorPopupWindowBinding
+import com.example.tickets.databinding.FragmentLoginBinding
 import com.example.tickets.utils.goneBottomNavigation
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -27,6 +22,9 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class LoginFragment : Fragment() {
+
+    private lateinit var binding: FragmentLoginBinding
+    private lateinit var errorDialogBinding: ErrorPopupWindowBinding
 
     override fun onStart() {
         super.onStart()
@@ -36,8 +34,9 @@ class LoginFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_login, container, false)
+    ): View {
+        binding = FragmentLoginBinding.inflate(inflater,container,false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -47,9 +46,8 @@ class LoginFragment : Fragment() {
 
     private fun equalsCardNumber(view: View) {
         val bundle = Bundle()
-        val inputCardNumber = view.findViewById<EditText>(R.id.input_card_number)
-        view.findViewById<ImageButton>(R.id.button_ok).setOnClickListener {
-            val getInputCardNumber = inputCardNumber?.text.toString()
+        binding.buttonOk.setOnClickListener {
+            val getInputCardNumber = binding.inputCardNumber.text.toString()
             when {
                 getInputCardNumber.isEmpty() -> {
                     showErrorDialog(
@@ -77,16 +75,16 @@ class LoginFragment : Fragment() {
 
     private fun showErrorDialog(errorMessage: String, buttonText: String) {
         val dialog = context?.let { Dialog(it) }
+        errorDialogBinding = ErrorPopupWindowBinding.inflate(layoutInflater)
         with(dialog) {
             this?.requestWindowFeature(Window.FEATURE_NO_TITLE)
-            this?.setContentView(R.layout.error_popup_window)
+            this?.setContentView(errorDialogBinding.root)
             this?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         }
-        dialog?.findViewById<TextView>(R.id.error_message)?.text = errorMessage
-        val repeatButton = dialog?.findViewById<AppCompatButton>(R.id.button_try_again)
-        with(repeatButton) {
-            this?.text = buttonText
-            this?.setOnClickListener {
+        errorDialogBinding.errorMessage.text = errorMessage
+        with(errorDialogBinding.buttonTryAgain) {
+            this.text = buttonText
+            this.setOnClickListener {
                 CoroutineScope(Dispatchers.Main).launch {
                     delay(600)
                     dialog?.dismiss()

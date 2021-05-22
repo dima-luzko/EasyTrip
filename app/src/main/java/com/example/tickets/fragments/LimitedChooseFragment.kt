@@ -5,12 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.example.tickets.R
+import com.example.tickets.databinding.FragmentLimitedChooseBinding
 import com.example.tickets.utils.goneBottomNavigation
-import com.google.android.material.button.MaterialButton
 
 class LimitedChooseFragment : Fragment() {
+
+    private lateinit var binding: FragmentLimitedChooseBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,17 +22,15 @@ class LimitedChooseFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_limited_choose, container, false)
+    ): View {
+        binding = FragmentLimitedChooseBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-       requireView().findViewById<MaterialButton>(R.id.back_button_in_limited_choose_screen).setOnClickListener(
-            Navigation.createNavigateOnClickListener(
-                R.id.action_limitedChooseFragment_to_priceFragment,
-                null
-            )
-        )
+        binding.backButtonInLimitedChooseScreen.setOnClickListener {
+            findNavController().navigate(R.id.action_limitedChooseFragment_to_priceFragment)
+        }
     }
 }

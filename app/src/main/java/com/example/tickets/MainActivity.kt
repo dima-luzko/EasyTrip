@@ -3,20 +3,23 @@ package com.example.tickets
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.example.tickets.databinding.ActivityMainBinding
 import com.simform.custombottomnavigation.SSCustomBottomNavigation
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         hideSystemUI()
         initBottomNavigation()
     }
 
     private fun initBottomNavigation() {
-        val bottomNavigation = findViewById<SSCustomBottomNavigation>(R.id.bottom_navigation)
-        with(bottomNavigation) {
+        with(binding.bottomNavigation) {
             add(
                 SSCustomBottomNavigation.Model(
                     1,

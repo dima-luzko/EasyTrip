@@ -4,23 +4,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.tickets.R
 import com.example.tickets.adapter.TransportInfoAdapter
 import com.example.tickets.data.TransportInfo
+import com.example.tickets.databinding.FragmentProfileBinding
 import com.example.tickets.utils.visibleBottomNavigation
 import com.simform.custombottomnavigation.SSCustomBottomNavigation
 
 
 class ProfileFragment : Fragment() {
 
-    private lateinit var cardNumber: TextView
+    private lateinit var binding: FragmentProfileBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,16 +28,15 @@ class ProfileFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         setHasOptionsMenu(true)
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+        binding = FragmentProfileBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        cardNumber = view.findViewById(R.id.personal_card_number)
-        cardNumber.text = arguments?.getString("cardNumber")
-
+        binding.personalCardNumber.text = arguments?.getString("cardNumber")
         addToTransportInfoRecyclerView(view)
         requireActivity().findViewById<SSCustomBottomNavigation>(R.id.bottom_navigation)
             .setOnClickMenuListener { menuItem ->
@@ -49,14 +46,13 @@ class ProfileFragment : Fragment() {
                 }
             }
 
-        view.findViewById<ImageButton>(R.id.button_exit).setOnClickListener {
+        binding.buttonExit.setOnClickListener {
             findNavController().navigate(R.id.action_profileFragment_to_loginFragment)
         }
     }
 
     private fun addToTransportInfoRecyclerView(view: View) {
-        val recyclerView = view.findViewById<RecyclerView>(R.id.type_of_transports_list)
-        with(recyclerView) {
+        with(binding.typeOfTransportsList) {
             layoutManager = GridLayoutManager(
                 context,
                 2,

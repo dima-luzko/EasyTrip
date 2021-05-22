@@ -8,21 +8,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
-import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.tickets.R
 import com.example.tickets.adapter.NumberOfDaysAdapter
 import com.example.tickets.data.NumberOfDays
+import com.example.tickets.databinding.ActivityMainBinding
+import com.example.tickets.databinding.FragmentPriceBinding
+import com.example.tickets.databinding.UnlimitedTripsPopupWindowBinding
 import com.example.tickets.utils.visibleBottomNavigation
 import com.simform.custombottomnavigation.SSCustomBottomNavigation
 
 
 class PriceFragment : Fragment() {
+
+    private lateinit var binding: FragmentPriceBinding
+    private lateinit var unlimitedTripsDialogBinding: UnlimitedTripsPopupWindowBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,9 +36,10 @@ class PriceFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         setHasOptionsMenu(true)
-        return inflater.inflate(R.layout.fragment_price, container, false)
+        binding = FragmentPriceBinding.inflate(inflater,container,false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -47,38 +52,37 @@ class PriceFragment : Fragment() {
                 }
             }
 
-        view.findViewById<AppCompatButton>(R.id.limited_trips_button)
-            .setOnClickListener(
-                Navigation.createNavigateOnClickListener(
-                    R.id.action_priceFragment_to_limitedChooseFragment,
-                    null
-                )
+        binding.limitedTripsButton.setOnClickListener(
+            Navigation.createNavigateOnClickListener(
+                R.id.action_priceFragment_to_limitedChooseFragment,
+                null
             )
+        )
 
-        view.findViewById<AppCompatButton>(R.id.unlimited_trips_button)
-            .setOnClickListener {
-                showPopupDialog()
-            }
+        binding.unlimitedTripsButton.setOnClickListener {
+            showPopupDialog()
+        }
     }
 
     private fun showPopupDialog() {
         val bundle = Bundle()
         val dialog = context?.let { Dialog(it) }
+        unlimitedTripsDialogBinding = UnlimitedTripsPopupWindowBinding.inflate(layoutInflater)
+
         with(dialog) {
             this?.requestWindowFeature(Window.FEATURE_NO_TITLE)
-            this?.setContentView(R.layout.unlimited_trips_popup_window)
+            this?.setContentView(unlimitedTripsDialogBinding.root)
             this?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         }
 
-        val recyclerView = dialog?.findViewById<RecyclerView>(R.id.number_of_days_list)
-        with(recyclerView) {
-            this?.layoutManager = GridLayoutManager(
+        with(unlimitedTripsDialogBinding.numberOfDaysList) {
+            this.layoutManager = GridLayoutManager(
                 context,
                 3,
                 LinearLayoutManager.VERTICAL,
                 false
             )
-            this?.adapter = NumberOfDaysAdapter(numberOfDaysList()) {
+            this.adapter = NumberOfDaysAdapter(numberOfDaysList()) {
                 bundle.putString("numberOfDays", it.numberOfDays.toString())
                 findNavController().navigate(
                     R.id.action_priceFragment_to_unlimitedChooseFragment,
@@ -86,7 +90,7 @@ class PriceFragment : Fragment() {
                 )
                 dialog?.dismiss()
             }
-            this?.hasFixedSize()
+            this.hasFixedSize()
         }
         dialog?.show()
     }
