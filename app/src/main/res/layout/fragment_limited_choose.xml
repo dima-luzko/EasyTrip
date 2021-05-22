@@ -57,64 +57,117 @@
         app:layout_constraintTop_toBottomOf="@+id/back_button_in_limited_choose_screen" />
 
 
-    <com.example.tickets.utils.Counter
+    <View
         android:id="@+id/first_limited_item"
-        android:layout_width="140dp"
+        android:layout_width="328dp"
         android:layout_height="100dp"
         android:layout_marginStart="28dp"
         android:layout_marginTop="52dp"
+        android:background="@drawable/universal_form"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/choose_transport_and_trip"
-        app:limitedIcon="@drawable/icon_bus"
-        app:limitedItemName="@string/bus" />
+        app:layout_constraintTop_toBottomOf="@+id/choose_transport_and_trip" />
+
+    <TextView
+        android:id="@+id/name_in_first_limited_item"
+        style="@style/TextUnlimitedAndLimitedItemNameStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/many_transport_types"
+        app:layout_constraintEnd_toEndOf="@+id/first_limited_item"
+        app:layout_constraintHorizontal_bias="0.365"
+        app:layout_constraintStart_toStartOf="@+id/first_limited_item"
+        app:layout_constraintTop_toTopOf="@+id/first_limited_item" />
+
+    <ImageView
+        android:id="@+id/first_icon"
+        style="@style/ImageLimitedItemStyle"
+        android:layout_marginStart="60dp"
+        android:src="@drawable/icon_bus"
+        app:layout_constraintStart_toStartOf="@+id/first_limited_item"
+        app:layout_constraintTop_toBottomOf="@+id/name_in_first_limited_item"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:id="@+id/second_icon"
+        style="@style/ImageLimitedItemStyle"
+        android:layout_marginStart="28dp"
+        android:src="@drawable/icon_tram"
+        app:layout_constraintStart_toEndOf="@+id/first_icon"
+        app:layout_constraintTop_toBottomOf="@+id/name_in_first_limited_item"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:id="@+id/third_icon"
+        style="@style/ImageLimitedItemStyle"
+        android:layout_marginStart="28dp"
+        android:src="@drawable/icon_trolleybus"
+        app:layout_constraintStart_toEndOf="@+id/second_icon"
+        app:layout_constraintTop_toBottomOf="@+id/name_in_first_limited_item"
+        tools:ignore="ContentDescription" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_up_in_first_limited_item"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/form_for_text_in_custom_view"
+        app:icon="@drawable/icon_arrow_up"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
+        app:layout_constraintEnd_toEndOf="@+id/first_limited_item"
+        app:layout_constraintTop_toTopOf="@+id/first_limited_item" />
+
+    <TextView
+        android:id="@+id/text_list_in_first_limited_item"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="38dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/form_for_text_in_custom_view"
+        android:gravity="center"
+        android:text="@string/zero"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/first_limited_item"
+        app:layout_constraintTop_toTopOf="@+id/first_limited_item" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_down_in_first_limited_item"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/form_for_text_in_custom_view"
+        android:visibility="invisible"
+        app:icon="@drawable/icon_arrow_down"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
+        app:layout_constraintEnd_toEndOf="@+id/first_limited_item"
+        app:layout_constraintTop_toBottomOf="@+id/text_list_in_first_limited_item" />
 
     <com.example.tickets.utils.Counter
         android:id="@+id/second_limited_item"
         android:layout_width="140dp"
         android:layout_height="100dp"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="52dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/first_limited_item"
-        app:layout_constraintTop_toBottomOf="@+id/choose_transport_and_trip"
-        app:limitedIcon="@drawable/icon_trolleybus"
-        app:limitedItemName="@string/trolleybus" />
+        android:layout_marginTop="45dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/first_limited_item"
+        app:limitedIcon="@drawable/icon_express_bus"
+        app:limitedItemName="@string/bus_express" />
 
     <com.example.tickets.utils.Counter
         android:id="@+id/third_limited_item"
         android:layout_width="140dp"
         android:layout_height="100dp"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="25dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="45dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/second_limited_item"
         app:layout_constraintTop_toBottomOf="@+id/first_limited_item"
-        app:limitedIcon="@drawable/icon_tram"
-        app:limitedItemName="@string/tram" />
-
-    <com.example.tickets.utils.Counter
-        android:id="@+id/four_limited_item"
-        android:layout_width="140dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="25dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/third_limited_item"
-        app:layout_constraintTop_toBottomOf="@+id/second_limited_item"
-        app:limitedIcon="@drawable/icon_express_bus"
-        app:limitedItemName="@string/bus_express" />
-
-    <com.example.tickets.utils.Counter
-        android:id="@+id/five_limited_item"
-        android:layout_width="140dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="44dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.52"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/third_limited_item"
         app:limitedIcon="@drawable/icon_metro"
         app:limitedItemName="@string/metro" />
-
 
     <TextView
         android:id="@+id/limited_text_final_price"
@@ -127,7 +180,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.53"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/five_limited_item" />
+        app:layout_constraintTop_toBottomOf="@+id/third_limited_item" />
+
 
     <TextView
         android:id="@+id/limited_count_of_rubles_unlimited_price"

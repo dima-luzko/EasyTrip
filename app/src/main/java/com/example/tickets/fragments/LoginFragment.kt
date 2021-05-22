@@ -41,10 +41,10 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        equalsCardNumber(view)
+        equalsCardNumber()
     }
 
-    private fun equalsCardNumber(view: View) {
+    private fun equalsCardNumber() {
         val bundle = Bundle()
         binding.buttonOk.setOnClickListener {
             val getInputCardNumber = binding.inputCardNumber.text.toString()
