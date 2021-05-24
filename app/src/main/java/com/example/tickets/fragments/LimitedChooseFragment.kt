@@ -10,7 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.tickets.R
 import com.example.tickets.databinding.FragmentLimitedChooseBinding
 import com.example.tickets.utils.goneBottomNavigation
-import com.example.tickets.utils.numberOfTripsList
+//import com.example.tickets.utils.numberOfTripsList
 
 class LimitedChooseFragment : Fragment() {
 
@@ -38,37 +38,37 @@ class LimitedChooseFragment : Fragment() {
                 findNavController().navigate(R.id.action_limitedChooseFragment_to_priceFragment)
             }
             buttonUpInFirstLimitedItem.setOnClickListener {
-                incrementIndex()
+               // incrementIndex()
             }
             buttonDownInFirstLimitedItem.setOnClickListener {
-                decrementIndex()
+               // decrementIndex()
             }
         }
     }
 
-    private fun incrementIndex() {
-        if (currentIndex < numberOfTripsList.size - 1) {
-            currentIndex++
-            binding.textListInFirstLimitedItem.text =
-                numberOfTripsList[currentIndex].number.toString()
-            if (currentIndex == 1) {
-                binding.buttonDownInFirstLimitedItem.visibility = ConstraintLayout.VISIBLE
-            } else if (currentIndex == numberOfTripsList.lastIndex) {
-                binding.buttonUpInFirstLimitedItem.visibility = ConstraintLayout.INVISIBLE
-            }
-        }
-    }
-
-    private fun decrementIndex() {
-        if (currentIndex <= numberOfTripsList.size - 1) {
-            currentIndex--
-            binding.textListInFirstLimitedItem.text =
-                numberOfTripsList[currentIndex].number.toString()
-            if (currentIndex == 0) {
-                binding.buttonDownInFirstLimitedItem.visibility = ConstraintLayout.INVISIBLE
-            } else if (currentIndex == numberOfTripsList.lastIndex - 1) {
-                binding.buttonUpInFirstLimitedItem.visibility = ConstraintLayout.VISIBLE
-            }
-        }
-    }
+//    private fun incrementIndex() {
+//        if (currentIndex < numberOfTripsList.size - 1) {
+//            currentIndex++
+//            binding.textListInFirstLimitedItem.text =
+//                numberOfTripsList[currentIndex].number.toString()
+//            if (currentIndex == 1) {
+//                binding.buttonDownInFirstLimitedItem.visibility = ConstraintLayout.VISIBLE
+//            } else if (currentIndex == numberOfTripsList.lastIndex) {
+//                binding.buttonUpInFirstLimitedItem.visibility = ConstraintLayout.INVISIBLE
+//            }
+//        }
+//    }
+//
+//    private fun decrementIndex() {
+//        if (currentIndex <= numberOfTripsList.size - 1) {
+//            currentIndex--
+//            binding.textListInFirstLimitedItem.text =
+//                numberOfTripsList[currentIndex].number.toString()
+//            if (currentIndex == 0) {
+//                binding.buttonDownInFirstLimitedItem.visibility = ConstraintLayout.INVISIBLE
+//            } else if (currentIndex == numberOfTripsList.lastIndex - 1) {
+//                binding.buttonUpInFirstLimitedItem.visibility = ConstraintLayout.VISIBLE
+//            }
+//        }
+//    }
 }

@@ -1,42 +1,23 @@
 package com.example.tickets.utils
 
 import com.example.tickets.data.NumberOfTrips
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
-val numberOfTripsList = listOf(
-    NumberOfTrips(
-        number = 0
-    ),
-    NumberOfTrips(
-        number = 1
-    ),
-    NumberOfTrips(
-        number = 3
-    ),
-    NumberOfTrips(
-        number = 7
-    ),
-    NumberOfTrips(
-        number = 10
-    ),
-    NumberOfTrips(
-        number = 20
-    ),
-    NumberOfTrips(
-        number = 25
-    ),
-    NumberOfTrips(
-        number = 30
-    ),
-    NumberOfTrips(
-        number = 40
-    ),
-    NumberOfTrips(
-        number = 50
-    ),
-    NumberOfTrips(
-        number = 60
-    ),
-    NumberOfTrips(
-        number = 100
-    )
-)
+val numberOfTripsList = mutableListOf<NumberOfTrips>()
+val ref = FirebaseDatabase.getInstance().getReference("number_of_trips")
+    .addValueEventListener(object : ValueEventListener {
+        override fun onDataChange(snapshot: DataSnapshot) {
+            for (numberSnapshot in snapshot.children) {
+                val numbers = numberSnapshot.getValue(NumberOfTrips::class.java)
+                numberOfTripsList.add(numbers!!)
+            }
+        }
+
+        override fun onCancelled(error: DatabaseError) {
+            TODO("Not yet implemented")
+        }
+    })
+

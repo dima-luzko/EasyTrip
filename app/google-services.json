@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "393943092083",
+    "firebase_url": "https://easytrip-ec45e-default-rtdb.firebaseio.com",
+    "project_id": "easytrip-ec45e",
+    "storage_bucket": "easytrip-ec45e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:393943092083:android:cd61b3e993835c43101306",
+        "android_client_info": {
+          "package_name": "com.example.tickets"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "393943092083-cpgnrnpp75hfc8isnd4a1k9n8v0375s0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlILucBtXIfbYW3MiSxS4yFwHSMnvrUZo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "393943092083-cpgnrnpp75hfc8isnd4a1k9n8v0375s0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
