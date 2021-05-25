@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/background"
+    android:paddingStart="10dp"
+    android:paddingEnd="10dp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/color_form_transport_info_item"
+        style="@style/CardViewStyle"
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        app:cardBackgroundColor="@color/red"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/form_transport_info"
+        style="@style/CardViewStyle"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_margin="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/color_form_transport_info_item"
+        app:layout_constraintEnd_toEndOf="@+id/color_form_transport_info_item"
+        app:layout_constraintStart_toStartOf="@+id/color_form_transport_info_item"
+        app:layout_constraintTop_toTopOf="@+id/color_form_transport_info_item">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/validity_until"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/validity_until"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/finish_data_transport_info_item"
+                style="@style/TextToTransportInfoItem"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="10.04.2021"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.304"
+                app:layout_constraintStart_toEndOf="@+id/validity_until"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/left_trips_text"
+                style="@style/TextToTransportInfoItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
+                android:visibility="visible"
+                android:text="@string/left_trips"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/validity_until" />
+
+            <TextView
+                android:id="@+id/count_left_trips"
+                style="@style/TextToTransportInfoItem"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="100"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.304"
+                app:layout_constraintStart_toEndOf="@+id/left_trips_text"
+                app:layout_constraintTop_toBottomOf="@+id/finish_data_transport_info_item" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/transport_info_icon_list"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/left_trips_text" />
+
+<!--            <ImageView-->
+<!--                android:id="@+id/transport_item_icon_1"-->
+<!--                android:layout_width="45dp"-->
+<!--                android:layout_height="45dp"-->
+<!--                android:layout_marginStart="25dp"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                android:src="@drawable/icon_bus"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                tools:ignore="ContentDescription" />-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/transport_item_icon_2"-->
+<!--                android:layout_width="45dp"-->
+<!--                android:layout_height="45dp"-->
+<!--                android:layout_marginStart="10dp"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                android:src="@drawable/icon_trolleybus"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/transport_item_icon_1"-->
+<!--                tools:ignore="ContentDescription" />-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/transport_item_icon_3"-->
+<!--                android:layout_width="45dp"-->
+<!--                android:layout_height="45dp"-->
+<!--                android:layout_marginStart="10dp"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                android:src="@drawable/icon_tram"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/transport_item_icon_2"-->
+<!--                tools:ignore="ContentDescription" />-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/transport_item_icon_4"-->
+<!--                android:layout_width="45dp"-->
+<!--                android:layout_height="45dp"-->
+<!--                android:layout_marginStart="10dp"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                android:src="@drawable/icon_express_bus"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/transport_item_icon_3"-->
+<!--                tools:ignore="ContentDescription" />-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/transport_item_icon_5"-->
+<!--                android:layout_width="45dp"-->
+<!--                android:layout_height="45dp"-->
+<!--                android:layout_marginStart="10dp"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                android:src="@drawable/icon_metro"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/transport_item_icon_4"-->
+<!--                tools:ignore="ContentDescription" />-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/transport_item_icon_6"-->
+<!--                android:layout_width="45dp"-->
+<!--                android:layout_height="45dp"-->
+<!--                android:layout_marginStart="10dp"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                android:src="@drawable/icon_train_city_lines"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/transport_item_icon_5"-->
+<!--                tools:ignore="ContentDescription" />-->
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

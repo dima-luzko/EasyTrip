@@ -23,6 +23,8 @@
     <string name="day">сутки</string>
     <string name="left">Осталось</string>
     <string name="validity">Срок действия</string>
+    <string name="validity_until">Срок действия до:</string>
+    <string name="left_trips">Поездок осталось:</string>
     <string name="number_of_days">выберите тип проездного</string>
     <string name="back">Назад</string>
     <string name="unlimited_trips">Безлимит поездок</string>
