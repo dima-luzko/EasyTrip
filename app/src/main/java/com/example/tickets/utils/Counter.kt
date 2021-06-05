@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.tickets.R
-import com.example.tickets.data.NumberOfTrips
+import com.example.tickets.app.data.model.NumberOfTrips
 import com.example.tickets.databinding.CounterViewBinding
 
 class Counter @JvmOverloads constructor(
@@ -36,17 +36,17 @@ class Counter @JvmOverloads constructor(
             limitedItemIcon.setImageDrawable(attributes.getDrawable(R.styleable.Counter_limitedIcon))
             if (limitedItemName.text == "Метро") {
                 buttonUp.setOnClickListener {
-                    incrementIndex(newNumberOfTripsList)
+                    //incrementIndex(newNumberOfTripsList)
                 }
                 buttonDown.setOnClickListener {
-                    decrementIndex(numberOfTripsList)
+                    //decrementIndex(numberOfTripsList)
                 }
             } else {
                 buttonUp.setOnClickListener {
-                    incrementIndex(numberOfTripsList.toList())
+                    //incrementIndex(numberOfTripsList.toList())
                 }
                 buttonDown.setOnClickListener {
-                    decrementIndex(numberOfTripsList.toList())
+                    //decrementIndex(numberOfTripsList.toList())
                 }
             }
         }
@@ -75,31 +75,31 @@ class Counter @JvmOverloads constructor(
 //        }
 //    }
 
-    private fun incrementIndex(tripList: List<NumberOfTrips>) {
-        if (currentIndex < tripList.size - 1) {
-            currentIndex++
-            counterBinding.textList.text = tripList[currentIndex].value
-            if (currentIndex == 1) {
-                counterBinding.buttonDown.visibility = VISIBLE
-            } else if (currentIndex == tripList.lastIndex) {
-                counterBinding.buttonUp.visibility = INVISIBLE
-            }
-        }
-        Toast.makeText(context, numberOfTripsList.size.toString(), Toast.LENGTH_SHORT).show()
-    }
-
-    private fun decrementIndex(tripList: List<NumberOfTrips>) {
-        if (currentIndex <= tripList.size - 1) {
-            currentIndex--
-            counterBinding.textList.text = tripList[currentIndex].value
-            if (currentIndex == 0) {
-                counterBinding.buttonDown.visibility = INVISIBLE
-            } else if (currentIndex == tripList.lastIndex - 1) {
-                counterBinding.buttonUp.visibility = VISIBLE
-            }
-        }
-        Toast.makeText(context, newNumberOfTripsList.size.toString(), Toast.LENGTH_SHORT).show()
-    }
+//    private fun incrementIndex(tripList: List<NumberOfTrips>) {
+//        if (currentIndex < tripList.size - 1) {
+//            currentIndex++
+//            counterBinding.textList.text = tripList[currentIndex].value
+//            if (currentIndex == 1) {
+//                counterBinding.buttonDown.visibility = VISIBLE
+//            } else if (currentIndex == tripList.lastIndex) {
+//                counterBinding.buttonUp.visibility = INVISIBLE
+//            }
+//        }
+//        Toast.makeText(context, numberOfTripsList.size.toString(), Toast.LENGTH_SHORT).show()
+//    }
+//
+//    private fun decrementIndex(tripList: List<NumberOfTrips>) {
+//        if (currentIndex <= tripList.size - 1) {
+//            currentIndex--
+//            counterBinding.textList.text = tripList[currentIndex].value
+//            if (currentIndex == 0) {
+//                counterBinding.buttonDown.visibility = INVISIBLE
+//            } else if (currentIndex == tripList.lastIndex - 1) {
+//                counterBinding.buttonUp.visibility = VISIBLE
+//            }
+//        }
+//        Toast.makeText(context, newNumberOfTripsList.size.toString(), Toast.LENGTH_SHORT).show()
+//    }
 
 
 }

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.tickets.fragments.LoginFragment"
+        android:name="com.example.tickets.app.presentation.fragments.LoginFragment"
         android:label="LoginFragment"
         tools:layout="@layout/fragment_login">
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.tickets.fragments.ProfileFragment"
+        android:name="com.example.tickets.app.presentation.fragments.ProfileFragment"
         android:label="ProfileFragment"
         tools:layout="@layout/fragment_profile">
         <action
@@ -24,15 +24,17 @@
             app:destination="@id/priceFragment" />
         <argument
             android:name="cardNumber"
-            app:argType="string"
-            android:defaultValue="0000111122223333" />
+            app:argType="string"/>
         <action
             android:id="@+id/action_profileFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <argument
+            android:name="cardId"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/priceFragment"
-        android:name="com.example.tickets.fragments.PriceFragment"
+        android:name="com.example.tickets.app.presentation.fragments.PriceFragment"
         android:label="PriceFragment"
         tools:layout="@layout/fragment_price">
         <action
@@ -47,7 +49,7 @@
     </fragment>
     <fragment
         android:id="@+id/unlimitedChooseFragment"
-        android:name="com.example.tickets.fragments.UnlimitedChooseFragment"
+        android:name="com.example.tickets.app.presentation.fragments.UnlimitedChooseFragment"
         android:label="UnlimitedChooseFragment"
         tools:layout="@layout/fragment_unlimited_choose">
         <action
@@ -59,7 +61,7 @@
     </fragment>
     <fragment
         android:id="@+id/limitedChooseFragment"
-        android:name="com.example.tickets.fragments.LimitedChooseFragment"
+        android:name="com.example.tickets.app.presentation.fragments.LimitedChooseFragment"
         android:label="LimitedChooseFragment"
         tools:layout="@layout/fragment_limited_choose">
         <action

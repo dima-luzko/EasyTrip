@@ -1,4 +1,4 @@
-package com.example.tickets.adapter
+package com.example.tickets.app.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tickets.R
-import com.example.tickets.data.UnlimitedTransportInfo
+import com.example.tickets.app.data.model.UnlimitedTransportInfo
 
 class UnlimitedTransportInfoAdapter(private val transportList: List<UnlimitedTransportInfo>) :
     RecyclerView.Adapter<UnlimitedTransportInfoAdapter.ViewHolder>() {

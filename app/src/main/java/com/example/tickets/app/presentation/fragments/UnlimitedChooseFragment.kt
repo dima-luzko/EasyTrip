@@ -1,4 +1,4 @@
-package com.example.tickets.fragments
+package com.example.tickets.app.presentation.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,8 +10,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tickets.R
-import com.example.tickets.adapter.UnlimitedTransportInfoAdapter
-import com.example.tickets.data.UnlimitedTransportInfo
+import com.example.tickets.app.data.model.UnlimitedTransportInfo
+import com.example.tickets.app.presentation.adapter.UnlimitedTransportInfoAdapter
 import com.example.tickets.databinding.FragmentUnlimitedChooseBinding
 import com.example.tickets.utils.goneBottomNavigation
 
@@ -56,7 +56,7 @@ class UnlimitedChooseFragment : Fragment() {
             layoutManager = GridLayoutManager(
                 context,
                 2,
-                androidx.recyclerview.widget.LinearLayoutManager.VERTICAL,
+                LinearLayoutManager.VERTICAL,
                 false
             )
             adapter = UnlimitedTransportInfoAdapter(unlimitedTransportInfoList())

@@ -1,8 +1,9 @@
-package com.example.tickets
+package com.example.tickets.app.presentation
 
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.example.tickets.R
 import com.example.tickets.databinding.ActivityMainBinding
 import com.simform.custombottomnavigation.SSCustomBottomNavigation
 

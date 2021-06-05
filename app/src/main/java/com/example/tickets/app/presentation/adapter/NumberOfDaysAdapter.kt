@@ -1,4 +1,4 @@
-package com.example.tickets.adapter
+package com.example.tickets.app.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,11 +6,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tickets.R
-import com.example.tickets.data.NumberOfDays
+import com.example.tickets.app.data.model.NumberOfDaysOrTrips
 
 class NumberOfDaysAdapter(
-    private val numberOfDaysList: List<NumberOfDays>,
-    private val chooseNumber: (NumberOfDays) -> Unit
+    private val numberOfDaysList: List<NumberOfDaysOrTrips>,
+    private val chooseNumber: (NumberOfDaysOrTrips) -> Unit
 ) :
     RecyclerView.Adapter<NumberOfDaysAdapter.ViewHolder>() {
 
@@ -30,12 +30,12 @@ class NumberOfDaysAdapter(
     override fun getItemCount() = numberOfDaysList.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val numberOfDays: NumberOfDays = numberOfDaysList[position]
-        with(holder){
-            number.text = numberOfDays.numberOfDays.toString()
-            number.setOnClickListener {
-                chooseNumber(numberOfDays)
-            }
-        }
+        val numberOfDays: NumberOfDaysOrTrips = numberOfDaysList[position]
+//        with(holder){
+//            number.text = numberOfDays.numberOfDays.toString()
+//            number.setOnClickListener {
+//                chooseNumber(numberOfDays)
+//            }
+//        }
     }
 }

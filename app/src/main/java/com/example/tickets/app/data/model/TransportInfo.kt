@@ -1,4 +1,4 @@
-package com.example.tickets.data
+package com.example.tickets.app.data.model
 
 import androidx.annotation.DrawableRes
 

@@ -1,18 +1,21 @@
-package com.example.tickets.fragments
+package com.example.tickets.app.presentation.fragments
 
 import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.tickets.R
-import com.example.tickets.data.CardNumber
+import com.example.tickets.app.presentation.CardViewModel
 import com.example.tickets.databinding.ErrorPopupWindowBinding
 import com.example.tickets.databinding.FragmentLoginBinding
 import com.example.tickets.utils.goneBottomNavigation
@@ -20,11 +23,14 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.util.logging.Level.INFO
 
 class LoginFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginBinding
     private lateinit var errorDialogBinding: ErrorPopupWindowBinding
+    private val viewModel by viewModel<CardViewModel>()
 
     override fun onStart() {
         super.onStart()
@@ -35,7 +41,7 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentLoginBinding.inflate(inflater,container,false)
+        binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -46,29 +52,39 @@ class LoginFragment : Fragment() {
 
     private fun equalsCardNumber() {
         val bundle = Bundle()
+
         binding.buttonOk.setOnClickListener {
             val getInputCardNumber = binding.inputCardNumber.text.toString()
-            when {
-                getInputCardNumber.isEmpty() -> {
-                    showErrorDialog(
-                        getString(R.string.card_number_cannot_be_empty),
-                        getString(R.string.button_ok)
-                    )
-                }
-                getInputCardNumber in cardList.map { it.cardNumber }.toString() -> {
-                    hideSystemUI()
-                    bundle.putString("cardNumber", getInputCardNumber)
-                    findNavController().navigate(
-                        R.id.action_loginFragment_to_profileFragment,
-                        bundle
-                    )
-                }
-                else -> {
-                    showErrorDialog(
-                        getString(R.string.no_card_number),
-                        getString(R.string.button_try_again)
-                    )
-                }
+
+            if (getInputCardNumber.isEmpty()) {
+                showErrorDialog(
+                    getString(R.string.card_number_cannot_be_empty),
+                    getString(R.string.button_ok)
+                )
+            } else {
+                viewModel.getCard(getInputCardNumber)
+                viewModel.card.observe(viewLifecycleOwner, Observer {
+                    if (it.isNotEmpty()) {
+                        hideSystemUI()
+                        bundle.putInt(
+                            "cardId",
+                            it.first().id
+                        )
+                        bundle.putString(
+                            "cardNumber",
+                            it.first().cardNumber
+                        )
+                        findNavController().navigate(
+                            R.id.action_loginFragment_to_profileFragment, bundle
+                        )
+                        Log.i("ha",viewModel.getCard(getInputCardNumber).toString())
+                    } else {
+                        showErrorDialog(
+                            getString(R.string.no_card_number),
+                            getString(R.string.button_try_again)
+                        )
+                    }
+                })
             }
         }
     }
@@ -94,19 +110,6 @@ class LoginFragment : Fragment() {
         dialog?.setCancelable(false)
         dialog?.show()
     }
-
-    private val cardList = listOf(
-        CardNumber(
-            cardNumber = 1111222233334444
-        ),
-        CardNumber(
-            cardNumber = 2222333344445555
-        ),
-        CardNumber(
-            cardNumber = 3333444455556666
-        )
-    )
-
 
     @Suppress("DEPRECATION")
     private fun hideSystemUI() {

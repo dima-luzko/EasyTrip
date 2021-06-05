@@ -1,6 +1,6 @@
 package com.example.tickets.utils
 
-import com.example.tickets.data.NumberOfTrips
+import com.example.tickets.app.data.model.NumberOfTrips
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
