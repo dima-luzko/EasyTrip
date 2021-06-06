@@ -12,17 +12,13 @@ import com.example.tickets.databinding.FragmentPriceBinding
 import com.example.tickets.databinding.UnlimitedTripsPopupWindowBinding
 import com.example.tickets.utils.visibleBottomNavigation
 import com.simform.custombottomnavigation.SSCustomBottomNavigation
+import kotlinx.coroutines.*
 
 
 class PriceFragment : Fragment() {
 
     private lateinit var binding: FragmentPriceBinding
     private lateinit var unlimitedTripsDialogBinding: UnlimitedTripsPopupWindowBinding
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        activity?.let { visibleBottomNavigation(it) }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,6 +31,7 @@ class PriceFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activity?.let { visibleBottomNavigation(it) }
         requireActivity().findViewById<SSCustomBottomNavigation>(R.id.bottom_navigation)
             .setOnClickMenuListener { menuItem ->
                 if (menuItem.id == 1) {
@@ -44,12 +41,16 @@ class PriceFragment : Fragment() {
                 }
             }
 
-        binding.limitedTripsButton.setOnClickListener(
-            Navigation.createNavigateOnClickListener(
-                R.id.action_priceFragment_to_limitedChooseFragment,
-                null
-            )
-        )
+
+        binding.limitedTripsButton.setOnClickListener{
+            CoroutineScope(Dispatchers.Main).launch {
+                delay(1000)
+                findNavController().navigate(R.id.action_priceFragment_to_limitedChooseFragment)
+            }
+            binding.limitedTripsButton.playAnimation()
+        }
+
+
 
         binding.unlimitedTripsButton.setOnClickListener {
             //showPopupDialog()

@@ -5,10 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.tickets.R
 import com.example.tickets.databinding.FragmentLimitedChooseBinding
 import com.example.tickets.utils.goneBottomNavigation
+
 //import com.example.tickets.utils.numberOfTripsList
 
 class LimitedChooseFragment : Fragment() {
@@ -33,14 +35,15 @@ class LimitedChooseFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         with(binding) {
+
             backButtonInLimitedChooseScreen.setOnClickListener {
-                findNavController().navigate(R.id.action_limitedChooseFragment_to_priceFragment)
+                findNavController().popBackStack()
             }
             buttonUpInFirstLimitedItem.setOnClickListener {
-               // incrementIndex()
+                // incrementIndex()
             }
             buttonDownInFirstLimitedItem.setOnClickListener {
-               // decrementIndex()
+                // decrementIndex()
             }
         }
     }
