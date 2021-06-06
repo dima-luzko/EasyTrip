@@ -15,7 +15,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.tickets.R
-import com.example.tickets.app.presentation.CardViewModel
+import com.example.tickets.app.presentation.viewModel.CardViewModel
 import com.example.tickets.databinding.ErrorPopupWindowBinding
 import com.example.tickets.databinding.FragmentLoginBinding
 import com.example.tickets.utils.goneBottomNavigation
@@ -24,7 +24,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.util.logging.Level.INFO
+import java.text.SimpleDateFormat
+import java.util.*
 
 class LoginFragment : Fragment() {
 
@@ -36,6 +37,8 @@ class LoginFragment : Fragment() {
         super.onStart()
         activity?.let { goneBottomNavigation(it) }
     }
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

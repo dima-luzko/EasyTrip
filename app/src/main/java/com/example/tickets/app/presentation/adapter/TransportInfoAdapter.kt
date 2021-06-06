@@ -1,46 +1,26 @@
 package com.example.tickets.app.presentation.adapter
 
+import android.graphics.Color
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.view.animation.AlphaAnimation
+import android.view.animation.Animation
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tickets.R
-import com.example.tickets.app.data.model.NumberOfDaysOrTrips
 import com.example.tickets.app.data.model.Transactions
-import com.example.tickets.databinding.TransportInfoItem1Binding
+import com.example.tickets.databinding.TransportInfoItemBinding
+import java.text.SimpleDateFormat
+import java.util.*
+
 
 class TransportInfoAdapter(private val transportInfoList: List<Transactions>) :
     RecyclerView.Adapter<TransportInfoAdapter.ViewHolder>() {
 
-//    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-//        val finishDate: TextView = view.findViewById(R.id.finish_data_transport_info_item)
-//        val countLeftTrips: TextView = view.findViewById(R.id.count_left_trips)
-//    }
-//
-//    override fun onCreateViewHolder(
-//        parent: ViewGroup,
-//        viewType: Int
-//    ): ViewHolder {
-//        val view = LayoutInflater.from(parent.context)
-//            .inflate(R.layout.transport_info_item_1, parent, false)
-//        return ViewHolder(view)
-//    }
-//
-//    override fun getItemCount() = transportInfoList.size
-//
-//    override fun onBindViewHolder(holder: TransportInfoAdapter.ViewHolder, position: Int) {
-//        val transportInfo: Transactions = transportInfoList[position]
-//        with(holder){
-//            finishDate.text = transportInfo.finishData.toString()
-//            countLeftTrips.text = transportInfo.numberOfTripLeft?.toString()
-//        }
-//    }
-
-    class ViewHolder(val binding: TransportInfoItem1Binding) : RecyclerView.ViewHolder(binding.root)
+    class ViewHolder(val binding: TransportInfoItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = TransportInfoItem1Binding.inflate(
+        val binding = TransportInfoItemBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
@@ -54,9 +34,80 @@ class TransportInfoAdapter(private val transportInfoList: List<Transactions>) :
         val transportInfo: Transactions = transportInfoList[position]
         with(holder) {
             with(binding) {
-                finishDataTransportInfoItem.text = transportInfo.finishData.toString()
-                countLeftTrips.text = transportInfo.numberOfTripLeft.toString()
+                finishDataTransportInfoItem.text = transportInfo.finishData.replace("-", ".")
+                countLeftTrips.text = changeNullToText(position)
+                colorFormTransportInfoItem.setCardBackgroundColor(getNumberOfDaysBetweenThoDates(position))
+                if (colorFormTransportInfoItem.cardBackgroundColor.defaultColor == Color.rgb(255, 152, 0)){
+                    colorFormTransportInfoItem.startAnimation(blink())
+                }
+                with(transportInfoIconList) {
+                    layoutManager = LinearLayoutManager(
+                        context,
+                        LinearLayoutManager.HORIZONTAL,
+                        false
+                    )
+                    adapter = TransportIconAdapter(addTransportsIcon(position))
+                    hasFixedSize()
+                }
             }
         }
     }
+
+    private fun blink(): Animation{
+        val animation: Animation = AlphaAnimation(0.0f, 1.0f)
+        with(animation) {
+            duration = 200
+            startOffset = 50
+            repeatCount = Animation.INFINITE
+        }
+        return animation
+    }
+
+    private fun getNumberOfDaysBetweenThoDates(position: Int): Int {
+        val transportInfo: Transactions = transportInfoList[position]
+
+        val date = android.text.format.DateFormat.format(
+            "yyyy-MM-dd",
+            Calendar.getInstance()
+        )
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd")
+        val currentDate = dateFormat.parse(date.toString())
+        val finishDate = dateFormat.parse(transportInfo.finishData)
+        val milliseconds = finishDate!!.time - currentDate!!.time
+        val numberOfDays = (milliseconds / (24 * 60 * 60 * 1000)).toInt()
+        var color = Color.rgb(255, 255, 255)
+
+        if (transportInfo.numberOfTripLeft in 1..5 || numberOfDays in 1..2) {
+            color = Color.rgb(255, 152, 0)
+        } else if (transportInfo.numberOfTripLeft == 0 || numberOfDays < 0) {
+            color = Color.rgb(244, 67, 54)
+        } else if (transportInfo.numberOfTripLeft in 6..100 || numberOfDays > 2) {
+            color = Color.rgb(0, 100, 0)
+        }
+        return color
+    }
+
+    private fun changeNullToText(position: Int): String {
+        var numberOfTripLeft = transportInfoList[position].numberOfTripLeft?.toString()
+        if (numberOfTripLeft == null) {
+            numberOfTripLeft = "безлимит"
+        }
+        return numberOfTripLeft
+    }
+
+    private fun addTransportsIcon(position: Int): MutableList<Int> {
+        val list = mutableListOf<Int>()
+        for (icon in transportInfoList[position].tarif.transports) {
+            when (icon.id) {
+                1 -> list.add(R.drawable.icon_bus)
+                2 -> list.add(R.drawable.icon_trolleybus)
+                3 -> list.add(R.drawable.icon_tram)
+                4 -> list.add(R.drawable.icon_express_bus)
+                5 -> list.add(R.drawable.icon_metro)
+                6 -> list.add(R.drawable.icon_train_city_lines)
+            }
+        }
+        return list
+    }
+
 }

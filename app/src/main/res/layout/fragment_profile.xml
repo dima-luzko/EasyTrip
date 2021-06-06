@@ -74,6 +74,20 @@
         app:layout_constraintTop_toBottomOf="@+id/horizontal_line"
         app:layout_constraintVertical_bias="1.0" />
 
+
+    <TextView
+        android:id="@+id/no_card_transactions"
+        style="@style/ProfileStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_card_transactions"
+        android:layout_marginTop="20dp"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/horizontal_line"
+        android:visibility="gone" />
+
     <ImageButton
         android:id="@+id/button_exit"
         android:layout_width="25dp"

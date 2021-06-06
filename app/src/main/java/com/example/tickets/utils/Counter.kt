@@ -3,10 +3,8 @@ package com.example.tickets.utils
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.tickets.R
-import com.example.tickets.app.data.model.NumberOfTrips
 import com.example.tickets.databinding.CounterViewBinding
 
 class Counter @JvmOverloads constructor(
@@ -55,9 +53,9 @@ class Counter @JvmOverloads constructor(
 
 
 
-    private val newNumberOfTripsList = numberOfTripsList.filterIndexed { index, _ ->
-        index != 1 && index != 2 && index != 3 && index != 6 && index != 11
-    }
+//    private val newNumberOfTripsList = numberOfTripsList.filterIndexed { index, _ ->
+//        index != 1 && index != 2 && index != 3 && index != 6 && index != 11
+//    }
 
 //    private val newNumberOfTripsList= numberOfTripsList.filterIndexed { index, _ ->
 //        index != 1 && index != 2 && index != 3 && index != 6 && index != 11

@@ -4,38 +4,24 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tickets.R
-import com.example.tickets.app.data.model.TransportInfo
-import com.example.tickets.app.presentation.CardViewModel
 import com.example.tickets.app.presentation.adapter.TransportInfoAdapter
+import com.example.tickets.app.presentation.viewModel.CardViewModel
 import com.example.tickets.databinding.FragmentProfileBinding
 import com.example.tickets.utils.visibleBottomNavigation
 import com.simform.custombottomnavigation.SSCustomBottomNavigation
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.util.*
 
 
 class ProfileFragment : Fragment() {
 
     private lateinit var binding: FragmentProfileBinding
-
     private val viewModel by viewModel<CardViewModel>()
-
-//    override fun onSaveInstanceState(outState: Bundle) {
-//        super.onSaveInstanceState(outState)
-//        val arg  = arguments?.getString("cardNumber")
-//        outState.putString("thisNumber",arg)
-//    }
-
-    //    override fun onViewStateRestored(savedInstanceState: Bundle?) {
-//        super.onViewStateRestored(savedInstanceState)
-//        binding.personalCardNumber.text = savedInstanceState?.getString("thisNumber").toString()
-//    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,14 +58,18 @@ class ProfileFragment : Fragment() {
         val cardId = arguments?.getInt("cardId")
         viewModel.getTransactionByCard(cardId!!)
         viewModel.transactionsByCard.observe(viewLifecycleOwner, Observer {
-            with(binding.typeOfTransportsList){
-                layoutManager = LinearLayoutManager(
-                    context,
-                    LinearLayoutManager.VERTICAL,
-                    false
-                )
-                adapter = TransportInfoAdapter(it)
-                hasFixedSize()
+            if (it.isEmpty()) {
+                binding.noCardTransactions.visibility = View.VISIBLE
+            } else {
+                with(binding.typeOfTransportsList) {
+                    layoutManager = LinearLayoutManager(
+                        context,
+                        LinearLayoutManager.VERTICAL,
+                        false
+                    )
+                    adapter = TransportInfoAdapter(it)
+                    hasFixedSize()
+                }
             }
         })
     }
