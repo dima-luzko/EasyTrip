@@ -40,16 +40,20 @@ class TransportInfoAdapter(private val transportInfoList: List<Transactions>) :
                 if (colorFormTransportInfoItem.cardBackgroundColor.defaultColor == Color.rgb(255, 152, 0)){
                     colorFormTransportInfoItem.startAnimation(blink())
                 }
-                with(transportInfoIconList) {
-                    layoutManager = LinearLayoutManager(
-                        context,
-                        LinearLayoutManager.HORIZONTAL,
-                        false
-                    )
-                    adapter = TransportIconAdapter(addTransportsIcon(position))
-                    hasFixedSize()
-                }
+                transportsIconRecyclerView(position,transportInfoIconList)
             }
+        }
+    }
+
+    private fun transportsIconRecyclerView(position: Int,recyclerView: RecyclerView){
+        with(recyclerView) {
+            layoutManager = LinearLayoutManager(
+                context,
+                androidx.recyclerview.widget.LinearLayoutManager.HORIZONTAL,
+                false
+            )
+            adapter = TransportIconAdapter(addTransportsIcon(position))
+            hasFixedSize()
         }
     }
 

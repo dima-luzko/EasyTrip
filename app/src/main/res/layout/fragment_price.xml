@@ -37,10 +37,10 @@
         android:layout_height="40dp"
         android:layout_marginTop="44dp"
         android:text="@string/unlimited_trips"
+        android:background="@drawable/universal_form"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        android:background="@drawable/universal_form"
         app:layout_constraintTop_toBottomOf="@+id/number_of_days_text" />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -48,11 +48,11 @@
         android:layout_width="250dp"
         android:layout_height="40dp"
         android:layout_marginTop="44dp"
+        android:background="@drawable/universal_form"
         android:text="@string/number_of_trips"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        android:background="@drawable/universal_form"
         app:layout_constraintTop_toBottomOf="@+id/unlimited_trips_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
