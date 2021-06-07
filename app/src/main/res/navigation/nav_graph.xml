@@ -58,6 +58,9 @@
         <argument
             android:name="numberOfDays"
             app:argType="string" />
+        <argument
+            android:name="numberOfDaysId"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/limitedChooseFragment"

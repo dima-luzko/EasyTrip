@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -24,8 +23,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.text.SimpleDateFormat
-import java.util.*
 
 class LoginFragment : Fragment() {
 
@@ -37,7 +34,6 @@ class LoginFragment : Fragment() {
         super.onStart()
         activity?.let { goneBottomNavigation(it) }
     }
-
 
 
     override fun onCreateView(
@@ -69,18 +65,20 @@ class LoginFragment : Fragment() {
                 viewModel.card.observe(viewLifecycleOwner, Observer {
                     if (it.isNotEmpty()) {
                         hideSystemUI()
-                        bundle.putInt(
-                            "cardId",
-                            it.first().id
-                        )
-                        bundle.putString(
-                            "cardNumber",
-                            it.first().cardNumber
-                        )
+                        with(bundle) {
+                            putInt(
+                                "cardId",
+                                it.first().id
+                            )
+                            putString(
+                                "cardNumber",
+                                it.first().cardNumber
+                            )
+                        }
                         findNavController().navigate(
                             R.id.action_loginFragment_to_profileFragment, bundle
                         )
-                        Log.i("ha",viewModel.getCard(getInputCardNumber).toString())
+                        Log.i("ha", viewModel.getCard(getInputCardNumber).toString())
                     } else {
                         showErrorDialog(
                             getString(R.string.no_card_number),

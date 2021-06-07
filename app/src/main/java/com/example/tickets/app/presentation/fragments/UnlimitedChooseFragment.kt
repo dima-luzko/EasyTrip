@@ -6,18 +6,21 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tickets.R
-import com.example.tickets.app.data.model.UnlimitedTransportInfo
 import com.example.tickets.app.presentation.adapter.UnlimitedTransportInfoAdapter
+import com.example.tickets.app.presentation.viewModel.TransportViewModel
 import com.example.tickets.databinding.FragmentUnlimitedChooseBinding
 import com.example.tickets.utils.goneBottomNavigation
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class UnlimitedChooseFragment : Fragment() {
 
     private lateinit var binding: FragmentUnlimitedChooseBinding
+    private val viewModel by viewModel<TransportViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +40,7 @@ class UnlimitedChooseFragment : Fragment() {
         with(binding) {
             numberOfDaysInUnlimitedChooseScreen.text = arguments?.getString("numberOfDays")
             backButtonInUnlimitedChooseScreen.setOnClickListener {
-                findNavController().navigate(R.id.action_unlimitedChooseFragment_to_priceFragment)
+                findNavController().popBackStack()
             }
         }
         equalsNumberOfDays(view)
@@ -52,43 +55,20 @@ class UnlimitedChooseFragment : Fragment() {
     }
 
     private fun addToUnlimitedTransportInfoRecyclerView(view: View) {
-        with(binding.unlimitedTransportList) {
-            layoutManager = GridLayoutManager(
-                context,
-                2,
-                LinearLayoutManager.VERTICAL,
-                false
-            )
-            adapter = UnlimitedTransportInfoAdapter(unlimitedTransportInfoList())
-            hasFixedSize()
-        }
+        viewModel.getTransport()
+        viewModel.transport.observe(viewLifecycleOwner, Observer {
+            with(binding.unlimitedTransportList) {
+                layoutManager = GridLayoutManager(
+                    context,
+                    2,
+                    LinearLayoutManager.VERTICAL,
+                    false
+                )
+                adapter = UnlimitedTransportInfoAdapter(it) {
+
+                }
+                hasFixedSize()
+            }
+        })
     }
-
-    private fun unlimitedTransportInfoList() = listOf(
-        UnlimitedTransportInfo(
-            transportName = getString(R.string.bus),
-            icon = R.drawable.icon_bus,
-        ),
-        UnlimitedTransportInfo(
-            transportName = getString(R.string.trolleybus),
-            icon = R.drawable.icon_trolleybus,
-        ),
-        UnlimitedTransportInfo(
-            transportName = getString(R.string.tram),
-            icon = R.drawable.icon_tram,
-        ),
-        UnlimitedTransportInfo(
-            transportName = getString(R.string.bus_express),
-            icon = R.drawable.icon_express_bus,
-        ),
-        UnlimitedTransportInfo(
-            transportName = getString(R.string.metro),
-            icon = R.drawable.icon_metro,
-        ),
-        UnlimitedTransportInfo(
-            transportName = getString(R.string.train_city_lines),
-            icon = R.drawable.icon_train_city_lines,
-        )
-    )
-
 }

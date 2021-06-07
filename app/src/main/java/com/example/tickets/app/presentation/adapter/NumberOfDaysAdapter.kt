@@ -1,41 +1,38 @@
 package com.example.tickets.app.presentation.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.tickets.R
 import com.example.tickets.app.data.model.NumberOfDaysOrTrips
+import com.example.tickets.databinding.NumberDaysItemBinding
 
 class NumberOfDaysAdapter(
     private val numberOfDaysList: List<NumberOfDaysOrTrips>,
     private val chooseNumber: (NumberOfDaysOrTrips) -> Unit
-) :
-    RecyclerView.Adapter<NumberOfDaysAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<NumberOfDaysAdapter.ViewHolder>() {
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val number: TextView = view.findViewById(R.id.number_of_days_item)
-    }
+    class ViewHolder(val binding: NumberDaysItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ):ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.number_days_item, parent, false)
-        return ViewHolder(view)
+    ): ViewHolder {
+        val binding =
+            NumberDaysItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(binding)
     }
 
     override fun getItemCount() = numberOfDaysList.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val numberOfDays: NumberOfDaysOrTrips = numberOfDaysList[position]
-//        with(holder){
-//            number.text = numberOfDays.numberOfDays.toString()
-//            number.setOnClickListener {
-//                chooseNumber(numberOfDays)
-//            }
-//        }
+        with(holder){
+            with(binding){
+                numberOfDaysItem.text = numberOfDays.value.toString()
+                numberOfDaysItem.setOnClickListener {
+                    chooseNumber(numberOfDays)
+                }
+            }
+        }
     }
 }

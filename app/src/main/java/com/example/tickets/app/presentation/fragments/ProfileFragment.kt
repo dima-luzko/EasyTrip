@@ -15,7 +15,6 @@ import com.example.tickets.databinding.FragmentProfileBinding
 import com.example.tickets.utils.visibleBottomNavigation
 import com.simform.custombottomnavigation.SSCustomBottomNavigation
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.util.*
 
 
 class ProfileFragment : Fragment() {

@@ -13,10 +13,10 @@ class TransportViewModel constructor(private val transportRepository: TransportR
     ViewModel() {
 
     private val _transport = MutableLiveData<List<Transports>>()
-    private val transport: LiveData<List<Transports>> = _transport
+    val transport: LiveData<List<Transports>> = _transport
 
     private val _transportById = MutableLiveData<Transports>()
-    private val transportById: LiveData<Transports> = _transportById
+    val transportById: LiveData<Transports> = _transportById
 
     fun getTransport() {
         viewModelScope.launch(Dispatchers.IO) {
