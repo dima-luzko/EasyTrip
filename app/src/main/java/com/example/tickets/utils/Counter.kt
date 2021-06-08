@@ -5,7 +5,9 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.tickets.R
+import com.example.tickets.app.presentation.viewModel.NumberOfDaysViewModel
 import com.example.tickets.databinding.CounterViewBinding
+import org.koin.androidx.viewmodel.compat.ViewModelCompat.viewModel
 
 
 class Counter @JvmOverloads constructor(

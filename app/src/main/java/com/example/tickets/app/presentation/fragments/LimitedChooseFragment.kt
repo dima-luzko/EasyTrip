@@ -5,15 +5,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import com.example.tickets.app.data.model.BodyForGetPriceByNumberOfTrips
 import com.example.tickets.app.presentation.viewModel.NumberOfTripsViewModel
 import com.example.tickets.app.presentation.viewModel.TransportViewModel
 import com.example.tickets.databinding.FragmentLimitedChooseBinding
 import com.example.tickets.utils.goneBottomNavigation
+import com.google.android.material.button.MaterialButton
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -79,35 +80,47 @@ class LimitedChooseFragment : Fragment() {
 //                )
 
 
-
-
                 with(binding) {
                     backButtonInLimitedChooseScreen.setOnClickListener {
                         findNavController().popBackStack()
                     }
                     buttonUpInFirstLimitedItem.setOnClickListener {
-                        if (currentIndexFirstItem < numberOfTripsList.size - 1) {
-                            currentIndexFirstItem++
-                            textListInFirstLimitedItem.text =
-                                numberOfTripsList[currentIndexFirstItem].toString()
-                            if (currentIndexFirstItem == 1) {
-                                buttonDownInFirstLimitedItem.visibility = ConstraintLayout.VISIBLE
-                            } else if (currentIndexFirstItem == numberOfTripsList.lastIndex) {
-                                buttonUpInFirstLimitedItem.visibility = ConstraintLayout.INVISIBLE
-                            }
-                        }
+                        incrementIndex(
+                            buttonUpInFirstLimitedItem,
+                            buttonDownInFirstLimitedItem,
+                            textListInFirstLimitedItem,
+                            currentIndexFirstItem,
+                            numberOfTripsList
+                        )
+//                        if (currentIndexFirstItem < numberOfTripsList.size - 1) {
+//                            currentIndexFirstItem++
+//                            textListInFirstLimitedItem.text =
+//                                numberOfTripsList[currentIndexFirstItem].toString()
+//                            if (currentIndexFirstItem == 1) {
+//                                buttonDownInFirstLimitedItem.visibility = ConstraintLayout.VISIBLE
+//                            } else if (currentIndexFirstItem == numberOfTripsList.lastIndex) {
+//                                buttonUpInFirstLimitedItem.visibility = ConstraintLayout.INVISIBLE
+//                            }
+//                        }
                     }
                     buttonDownInFirstLimitedItem.setOnClickListener {
-                        if (currentIndexFirstItem <= numberOfTripsList.size - 1) {
-                            currentIndexFirstItem--
-                            textListInFirstLimitedItem.text =
-                                numberOfTripsList[currentIndexFirstItem].toString()
-                            if (currentIndexFirstItem == 0) {
-                                buttonDownInFirstLimitedItem.visibility = ConstraintLayout.INVISIBLE
-                            } else if (currentIndexFirstItem == numberOfTripsList.lastIndex - 1) {
-                                buttonUpInFirstLimitedItem.visibility = ConstraintLayout.VISIBLE
-                            }
-                        }
+                        decrementIndex(
+                            buttonUpInFirstLimitedItem,
+                            buttonDownInFirstLimitedItem,
+                            textListInFirstLimitedItem,
+                            currentIndexFirstItem,
+                            numberOfTripsList
+                        )
+//                        if (currentIndexFirstItem <= numberOfTripsList.size - 1) {
+//                            currentIndexFirstItem--
+//                            textListInFirstLimitedItem.text =
+//                                numberOfTripsList[currentIndexFirstItem].toString()
+//                            if (currentIndexFirstItem == 0) {
+//                                buttonDownInFirstLimitedItem.visibility = ConstraintLayout.INVISIBLE
+//                            } else if (currentIndexFirstItem == numberOfTripsList.lastIndex - 1) {
+//                                buttonUpInFirstLimitedItem.visibility = ConstraintLayout.VISIBLE
+//                            }
+//                        }
                     }
                     buttonUpInSecondLimitedItem.setOnClickListener {
                         if (currentIndexSecondItem < numberOfTripsListForMetro.size - 1) {
@@ -135,28 +148,42 @@ class LimitedChooseFragment : Fragment() {
                         }
                     }
                     buttonUpInThirdLimitedItem.setOnClickListener {
-                        if (currentIndexThirdItem < numberOfTripsList.size - 1) {
-                            currentIndexThirdItem++
-                            textListInThirdLimitedItem.text =
-                                numberOfTripsList[currentIndexThirdItem].toString()
-                            if (currentIndexThirdItem == 1) {
-                                buttonDownInThirdLimitedItem.visibility = ConstraintLayout.VISIBLE
-                            } else if (currentIndexThirdItem == numberOfTripsList.lastIndex) {
-                                buttonUpInThirdLimitedItem.visibility = ConstraintLayout.INVISIBLE
-                            }
-                        }
+                         incrementIndex(
+                            buttonUpInThirdLimitedItem,
+                            buttonDownInThirdLimitedItem,
+                            textListInThirdLimitedItem,
+                            currentIndexThirdItem,
+                            numberOfTripsList
+                        )
+//                        if (currentIndexThirdItem < numberOfTripsList.size - 1) {
+//                            currentIndexThirdItem++
+//                            textListInThirdLimitedItem.text =
+//                                numberOfTripsList[currentIndexThirdItem].toString()
+//                            if (currentIndexThirdItem == 1) {
+//                                buttonDownInThirdLimitedItem.visibility = ConstraintLayout.VISIBLE
+//                            } else if (currentIndexThirdItem == numberOfTripsList.lastIndex) {
+//                                buttonUpInThirdLimitedItem.visibility = ConstraintLayout.INVISIBLE
+//                            }
+//                        }
                     }
                     buttonDownInThirdLimitedItem.setOnClickListener {
-                        if (currentIndexThirdItem <= numberOfTripsList.size - 1) {
-                            currentIndexThirdItem--
-                            textListInThirdLimitedItem.text =
-                                numberOfTripsList[currentIndexThirdItem].toString()
-                            if (currentIndexThirdItem == 0) {
-                                buttonDownInThirdLimitedItem.visibility = ConstraintLayout.INVISIBLE
-                            } else if (currentIndexThirdItem == numberOfTripsList.lastIndex - 1) {
-                                buttonUpInThirdLimitedItem.visibility = ConstraintLayout.VISIBLE
-                            }
-                        }
+                         decrementIndex(
+                            buttonUpInThirdLimitedItem,
+                            buttonDownInThirdLimitedItem,
+                            textListInThirdLimitedItem,
+                            currentIndexThirdItem,
+                            numberOfTripsList
+                        )
+//                        if (currentIndexThirdItem <= numberOfTripsList.size - 1) {
+//                            currentIndexThirdItem--
+//                            textListInThirdLimitedItem.text =
+//                                numberOfTripsList[currentIndexThirdItem].toString()
+//                            if (currentIndexThirdItem == 0) {
+//                                buttonDownInThirdLimitedItem.visibility = ConstraintLayout.INVISIBLE
+//                            } else if (currentIndexThirdItem == numberOfTripsList.lastIndex - 1) {
+//                                buttonUpInThirdLimitedItem.visibility = ConstraintLayout.VISIBLE
+//                            }
+//                        }
                     }
                 }
             })
@@ -164,43 +191,40 @@ class LimitedChooseFragment : Fragment() {
     }
 
 
-//    private fun incrementIndex(
-//        buttonUp: MaterialButton,
-//        buttonDown: MaterialButton,
-//        textList: TextView,
-//        currentIndex: Int = 0,
-//        list: List<Int>
-//    ) {
-//        currentIndex = 0
-//        if (currentIndex < list.size - 1) {
-//                currentIndex ++
-//            textList.text = list[currentIndex].toString()
-//            if (currentIndex == 1) {
-//                buttonDown.visibility = ConstraintLayout.VISIBLE
-//            } else if (currentIndex == list.lastIndex) {
-//                buttonUp.visibility = ConstraintLayout.INVISIBLE
-//            }
-////            return currentIndex + 1
-//        }
-//    }
-//
-//    private fun decrementIndex(
-//        buttonUp: MaterialButton,
-//        buttonDown: MaterialButton,
-//        textList: TextView,
-//        currentIndex: Int,
-//        list: List<Int>
-//    ): Int {
-//        if (currentIndex <= list.size - 1) {
-//                currentIndex- 1
-//            textList.text = list[currentIndex].toString()
-//            if (currentIndex == 0) {
-//                buttonDown.visibility = ConstraintLayout.INVISIBLE
-//            } else if (currentIndex == list.lastIndex - 1) {
-//                buttonUp.visibility = ConstraintLayout.VISIBLE
-//            }
-////            return currentIndex - 1
-//        }
-//        return currentIndex
-//    }
+    private fun incrementIndex(
+        buttonUp: MaterialButton,
+        buttonDown: MaterialButton,
+        textList: TextView,
+        currentIndex: Int,
+        list: List<Int>
+    ){
+
+        if (currentIndex < list.size - 1) {
+            //currentIndex++
+            textList.text = list[currentIndex].toString()
+            if (currentIndex == 1) {
+                buttonDown.visibility = ConstraintLayout.VISIBLE
+            } else if (currentIndex == list.lastIndex) {
+                buttonUp.visibility = ConstraintLayout.INVISIBLE
+            }
+        }
+    }
+
+    private fun decrementIndex(
+        buttonUp: MaterialButton,
+        buttonDown: MaterialButton,
+        textList: TextView,
+        currentIndex: Int,
+        list: List<Int>
+    ){
+        if (currentIndex <= list.size - 1) {
+            //currentIndex--
+            textList.text = list[currentIndex].toString()
+            if (currentIndex == 0) {
+                buttonDown.visibility = ConstraintLayout.INVISIBLE
+            } else if (currentIndex == list.lastIndex - 1) {
+                buttonUp.visibility = ConstraintLayout.VISIBLE
+            }
+        }
+    }
 }
