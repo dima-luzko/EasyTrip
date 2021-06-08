@@ -37,14 +37,6 @@ class UnlimitedTransportInfoAdapter(
             with(binding) {
                 unlimitedTransportName.text = transportInfo.transportName
                 unlimitedTransportIcon.setImageResource(addTransportsIcon(position))
-                formTransport.setOnClickListener {
-                   if (it.isClickable){
-                       formTransport.setCardBackgroundColor(Color.GREEN)
-                   } else {
-                       formTransport.setCardBackgroundColor(Color.WHITE)
-                   }
-                    chooseTransport(transportInfo)
-                }
             }
         }
     }
