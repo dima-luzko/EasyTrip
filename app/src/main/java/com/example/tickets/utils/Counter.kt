@@ -7,6 +7,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.tickets.R
 import com.example.tickets.databinding.CounterViewBinding
 
+
 class Counter @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
@@ -14,6 +15,7 @@ class Counter @JvmOverloads constructor(
 
     private lateinit var counterBinding: CounterViewBinding
     private var currentIndex = 0
+
 
     init {
         initialize(attrs)

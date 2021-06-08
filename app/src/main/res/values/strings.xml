@@ -46,4 +46,5 @@
     <string name="card_number_cannot_be_empty">Номер карты не может быть пустым!</string>
     <string name="no_card_number">Карты с таким номером не существует!</string>
     <string name="no_card_transactions">Для данного номера карты ничего не приобретено!</string>
+    <string name="get_price">Узнать цену</string>
 </resources>

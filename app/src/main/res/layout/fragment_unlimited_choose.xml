@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
@@ -77,17 +78,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/choose_your_transport" />
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_get_price"
+        android:layout_width="180dp"
+        android:layout_height="40dp"
+        android:background="@drawable/button_get_price_ripple"
+        android:textAlignment="center"
+        android:text="@string/get_price"
+        android:textColor="@color/black"
+        android:layout_marginTop="28dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/unlimited_transport_list" />
+
     <TextView
         android:id="@+id/unlimited_text_final_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="32dp"
         android:text="@string/final_price"
         android:textColor="@color/grey"
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/unlimited_transport_list" />
+        app:layout_constraintTop_toBottomOf="@+id/button_get_price" />
 
     <TextView
         android:id="@+id/unlimited_count_of_rubles_unlimited_price"

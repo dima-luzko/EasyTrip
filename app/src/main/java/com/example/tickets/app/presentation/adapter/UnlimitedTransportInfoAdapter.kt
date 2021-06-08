@@ -10,8 +10,7 @@ import com.example.tickets.app.data.model.Transports
 import com.example.tickets.databinding.UnlimitedChooseTransportItemBinding
 
 class UnlimitedTransportInfoAdapter(
-    private val transportList: List<Transports>,
-    private val chooseTransport: (Transports) -> Unit
+    private val transportList: List<Transports>
 ) : RecyclerView.Adapter<UnlimitedTransportInfoAdapter.ViewHolder>() {
 
     class ViewHolder(val binding: UnlimitedChooseTransportItemBinding) :
@@ -37,13 +36,20 @@ class UnlimitedTransportInfoAdapter(
             with(binding) {
                 unlimitedTransportName.text = transportInfo.transportName
                 unlimitedTransportIcon.setImageResource(addTransportsIcon(position))
+                formTransport.setCardBackgroundColor(
+                    if (transportInfo.isPressed) Color.rgb(210, 180, 140) else Color.WHITE
+                )
+                formTransport.setOnClickListener {
+                    transportInfo.isPressed = !transportInfo.isPressed
+                    formTransport.setCardBackgroundColor(
+                        if (transportInfo.isPressed) Color.rgb(210, 180, 140) else Color.WHITE
+                    )
+                }
             }
         }
     }
 
-    private fun changeColor() {
-
-    }
+    fun getChangeTransport() = transportList.filter { !it.isPressed }
 
     private fun addTransportsIcon(position: Int): Int {
         return when (transportList[position].id) {

@@ -17,22 +17,22 @@ interface EasyTripService {
 
     //Transports
     @GET("transports")
-    suspend fun getTransportsList() : List<Transports>
+    suspend fun getTransportsList(): List<Transports>
 
     @GET("transports/{transport_id}")
     suspend fun getTransportsById(@Path("transport_id") transportId: Int): Transports
 
     //NumberOfDays
     @GET("number_of_days")
-    suspend fun getNumberOfDaysList() : List<NumberOfDaysOrTrips>
+    suspend fun getNumberOfDaysList(): List<NumberOfDaysOrTrips>
 
     @POST("number_of_days_tarif/number_of_day_id/transports")
-    suspend fun getPriceByNumberOfDaysAndTransports(@Body getPrice: BodyForGetPriceByNumberOfDays)
+    suspend fun getPriceByNumberOfDaysAndTransports(@Body getPrice: BodyForGetPriceByNumberOfDays): Price
 
     //NumberOfTrips
     @GET("number_of_trips")
-    suspend fun getNumberOfTripsList() : List<NumberOfDaysOrTrips>
+    suspend fun getNumberOfTripsList(): List<NumberOfDaysOrTrips>
 
     @POST("number_of_days_tarif/number_of_trip_id/transports")
-    suspend fun getPriceByNumberOfTripsAndTransports(@Body getPrice: BodyForGetPriceByNumberOfTrips)
+    suspend fun getPriceByNumberOfTripsAndTransports(@Body getPrice: BodyForGetPriceByNumberOfTrips): Price
 }

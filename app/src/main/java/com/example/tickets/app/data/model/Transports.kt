@@ -6,5 +6,6 @@ data class Transports(
     @SerializedName("id")
     val id : Int,
     @SerializedName("name")
-    val transportName: String
+    val transportName: String,
+    var isPressed: Boolean = false
 )
