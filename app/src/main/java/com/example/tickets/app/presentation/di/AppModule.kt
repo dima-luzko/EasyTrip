@@ -17,7 +17,7 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val dataSourceModules = module {
-    single { RemoteDataSource() }
+    single { RemoteDataSource }
 }
 
 val cardModules = module {

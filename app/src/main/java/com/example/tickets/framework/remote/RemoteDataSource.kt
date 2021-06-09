@@ -11,7 +11,7 @@ private val gson: Gson = GsonBuilder()
     .setLenient()
     .create()
 
-class RemoteDataSource {
+object RemoteDataSource {
     val instance: EasyTripService = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .addConverterFactory(GsonConverterFactory.create(gson))
