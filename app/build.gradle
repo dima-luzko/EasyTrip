@@ -64,6 +64,10 @@ dependencies {
     implementation 'org.koin:koin-android:2.2.2'
     implementation "org.koin:koin-androidx-viewmodel:2.2.2"
 
+    implementation 'com.github.sephiroth74:NumberSlidingPicker:1.0.3'
+    implementation 'com.github.polok:clicknumberpicker:0.1.2'
+    implementation 'com.alex-zaitsev:meternumberpicker:1.0.5'
+
 
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"

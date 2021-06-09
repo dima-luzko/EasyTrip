@@ -89,7 +89,7 @@
     <ImageView
         android:id="@+id/second_icon"
         style="@style/ImageLimitedItemStyle"
-        android:layout_marginStart="28dp"
+        android:layout_marginStart="25dp"
         android:src="@drawable/icon_tram"
         app:layout_constraintStart_toEndOf="@+id/first_icon"
         app:layout_constraintTop_toBottomOf="@+id/name_in_first_limited_item"
@@ -98,7 +98,7 @@
     <ImageView
         android:id="@+id/third_icon"
         style="@style/ImageLimitedItemStyle"
-        android:layout_marginStart="28dp"
+        android:layout_marginStart="20dp"
         android:src="@drawable/icon_trolleybus"
         app:layout_constraintStart_toEndOf="@+id/second_icon"
         app:layout_constraintTop_toBottomOf="@+id/name_in_first_limited_item"
@@ -163,128 +163,169 @@
         app:layout_constraintTop_toBottomOf="@+id/name_in_third_limited_item"
         tools:ignore="ContentDescription" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_up_in_second_limited_item"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/form_for_text_in_custom_view"
-        app:icon="@drawable/icon_arrow_up"
-        app:iconGravity="textStart"
-        app:iconPadding="0dp"
-        app:layout_constraintEnd_toEndOf="@+id/second_limited_item"
-        app:layout_constraintTop_toTopOf="@+id/second_limited_item" />
-
-    <TextView
-        android:id="@+id/text_list_in_second_limited_item"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="38dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/form_for_text_in_custom_view"
-        android:gravity="center"
-        android:text="@string/zero"
-        android:textColor="@color/black"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@+id/second_limited_item"
-        app:layout_constraintTop_toTopOf="@+id/second_limited_item" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_down_in_second_limited_item"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/form_for_text_in_custom_view"
-        android:visibility="invisible"
-        app:icon="@drawable/icon_arrow_down"
-        app:iconGravity="textStart"
-        app:iconPadding="0dp"
-        app:layout_constraintEnd_toEndOf="@+id/second_limited_item"
-        app:layout_constraintTop_toBottomOf="@+id/text_list_in_second_limited_item" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_up_in_third_limited_item"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/form_for_text_in_custom_view"
-        app:icon="@drawable/icon_arrow_up"
-        app:iconGravity="textStart"
-        app:iconPadding="0dp"
-        app:layout_constraintEnd_toEndOf="@+id/third_limited_item"
-        app:layout_constraintTop_toTopOf="@+id/third_limited_item" />
-
-    <TextView
-        android:id="@+id/text_list_in_third_limited_item"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="38dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/form_for_text_in_custom_view"
-        android:gravity="center"
-        android:text="@string/zero"
-        android:textColor="@color/black"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@+id/third_limited_item"
-        app:layout_constraintTop_toTopOf="@+id/third_limited_item" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_down_in_third_limited_item"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/form_for_text_in_custom_view"
-        android:visibility="invisible"
-        app:icon="@drawable/icon_arrow_down"
-        app:iconGravity="textStart"
-        app:iconPadding="0dp"
-        app:layout_constraintEnd_toEndOf="@+id/third_limited_item"
-        app:layout_constraintTop_toBottomOf="@+id/text_list_in_third_limited_item" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_up_in_first_limited_item"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/form_for_text_in_custom_view"
-        app:icon="@drawable/icon_arrow_up"
-        app:iconGravity="textStart"
-        app:iconPadding="0dp"
+    <com.alexzaitsev.meternumberpicker.MeterNumberPicker
+        android:id="@+id/numberPicker_in_first_item"
+        android:layout_width="45dp"
+        style="@style/NumberPicker.Outlined"
+        android:layout_height="40dp"
+        app:mnp_textSize="22sp"
+        app:mnp_min="0"
+        android:layout_marginTop="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/first_limited_item"
         app:layout_constraintEnd_toEndOf="@+id/first_limited_item"
-        app:layout_constraintTop_toTopOf="@+id/first_limited_item" />
+        app:layout_constraintStart_toEndOf="@+id/third_icon"
+        app:layout_constraintTop_toTopOf="@+id/first_limited_item"/>
 
-    <TextView
-        android:id="@+id/text_list_in_first_limited_item"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="38dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/form_for_text_in_custom_view"
-        android:gravity="center"
-        android:text="@string/zero"
-        android:textColor="@color/black"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@+id/first_limited_item"
-        app:layout_constraintTop_toTopOf="@+id/first_limited_item" />
+<!--    <NumberPicker-->
+<!--        android:id="@+id/numberPicker_in_first_item"-->
+<!--        android:layout_width="85dp"-->
+<!--        style="@style/NumberPicker.Outlined"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:layout_marginTop="15dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/first_limited_item"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/first_limited_item"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/third_icon"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/first_limited_item"-->
+<!--        />-->
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_down_in_first_limited_item"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/form_for_text_in_custom_view"
-        android:visibility="invisible"
-        app:icon="@drawable/icon_arrow_down"
-        app:iconGravity="textStart"
-        app:iconPadding="0dp"
-        app:layout_constraintEnd_toEndOf="@+id/first_limited_item"
-        app:layout_constraintTop_toBottomOf="@+id/text_list_in_first_limited_item" />
+<!--    <it.sephiroth.android.library.numberpicker.NumberPicker-->
+<!--        android:id="@+id/numberPicker_in_first_item"-->
+<!--        android:layout_width="85dp"-->
+<!--        android:layout_height="42dp"-->
+<!--        android:layout_marginTop="15dp"-->
+<!--        style="@style/NumberPicker.Outlined"-->
+<!--        app:picker_orientation="vertical"-->
+<!--        android:progress="0"-->
+<!--        app:picker_stepSize="1"-->
+<!--        app:picker_min="0"-->
+<!--        app:picker_tracker="exponential"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/first_limited_item"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/first_limited_item"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/third_icon"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/first_limited_item" />-->
+
+<!--    <com.google.android.material.button.MaterialButton-->
+<!--        android:id="@+id/button_up_in_second_limited_item"-->
+<!--        android:layout_width="25dp"-->
+<!--        android:layout_height="25dp"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:layout_marginEnd="8dp"-->
+<!--        android:background="@drawable/form_for_text_in_custom_view"-->
+<!--        app:icon="@drawable/icon_arrow_up"-->
+<!--        app:iconGravity="textStart"-->
+<!--        app:iconPadding="0dp"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/second_limited_item"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/second_limited_item" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/text_list_in_second_limited_item"-->
+<!--        android:layout_width="25dp"-->
+<!--        android:layout_height="25dp"-->
+<!--        android:layout_marginTop="38dp"-->
+<!--        android:layout_marginEnd="8dp"-->
+<!--        android:background="@drawable/form_for_text_in_custom_view"-->
+<!--        android:gravity="center"-->
+<!--        android:text="@string/zero"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:textSize="12sp"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/second_limited_item"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/second_limited_item" />-->
+
+<!--    <com.google.android.material.button.MaterialButton-->
+<!--        android:id="@+id/button_down_in_second_limited_item"-->
+<!--        android:layout_width="25dp"-->
+<!--        android:layout_height="25dp"-->
+<!--        android:layout_marginTop="5dp"-->
+<!--        android:layout_marginEnd="8dp"-->
+<!--        android:background="@drawable/form_for_text_in_custom_view"-->
+<!--        android:visibility="invisible"-->
+<!--        app:icon="@drawable/icon_arrow_down"-->
+<!--        app:iconGravity="textStart"-->
+<!--        app:iconPadding="0dp"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/second_limited_item"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/text_list_in_second_limited_item" />-->
+
+<!--    <com.google.android.material.button.MaterialButton-->
+<!--        android:id="@+id/button_up_in_third_limited_item"-->
+<!--        android:layout_width="25dp"-->
+<!--        android:layout_height="25dp"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:layout_marginEnd="8dp"-->
+<!--        android:background="@drawable/form_for_text_in_custom_view"-->
+<!--        app:icon="@drawable/icon_arrow_up"-->
+<!--        app:iconGravity="textStart"-->
+<!--        app:iconPadding="0dp"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/third_limited_item"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/third_limited_item" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/text_list_in_third_limited_item"-->
+<!--        android:layout_width="25dp"-->
+<!--        android:layout_height="25dp"-->
+<!--        android:layout_marginTop="38dp"-->
+<!--        android:layout_marginEnd="8dp"-->
+<!--        android:background="@drawable/form_for_text_in_custom_view"-->
+<!--        android:gravity="center"-->
+<!--        android:text="@string/zero"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:textSize="12sp"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/third_limited_item"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/third_limited_item" />-->
+
+<!--    <com.google.android.material.button.MaterialButton-->
+<!--        android:id="@+id/button_down_in_third_limited_item"-->
+<!--        android:layout_width="25dp"-->
+<!--        android:layout_height="25dp"-->
+<!--        android:layout_marginTop="5dp"-->
+<!--        android:layout_marginEnd="8dp"-->
+<!--        android:background="@drawable/form_for_text_in_custom_view"-->
+<!--        android:visibility="invisible"-->
+<!--        app:icon="@drawable/icon_arrow_down"-->
+<!--        app:iconGravity="textStart"-->
+<!--        app:iconPadding="0dp"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/third_limited_item"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/text_list_in_third_limited_item" />-->
+
+<!--    <com.google.android.material.button.MaterialButton-->
+<!--        android:id="@+id/button_up_in_first_limited_item"-->
+<!--        android:layout_width="25dp"-->
+<!--        android:layout_height="25dp"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:layout_marginEnd="8dp"-->
+<!--        android:background="@drawable/form_for_text_in_custom_view"-->
+<!--        app:icon="@drawable/icon_arrow_up"-->
+<!--        app:iconGravity="textStart"-->
+<!--        app:iconPadding="0dp"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/first_limited_item"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/first_limited_item" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/text_list_in_first_limited_item"-->
+<!--        android:layout_width="25dp"-->
+<!--        android:layout_height="25dp"-->
+<!--        android:layout_marginTop="38dp"-->
+<!--        android:layout_marginEnd="8dp"-->
+<!--        android:background="@drawable/form_for_text_in_custom_view"-->
+<!--        android:gravity="center"-->
+<!--        android:text="@string/zero"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:textSize="12sp"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/first_limited_item"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/first_limited_item" />-->
+
+<!--    <com.google.android.material.button.MaterialButton-->
+<!--        android:id="@+id/button_down_in_first_limited_item"-->
+<!--        android:layout_width="25dp"-->
+<!--        android:layout_height="25dp"-->
+<!--        android:layout_marginTop="5dp"-->
+<!--        android:layout_marginEnd="8dp"-->
+<!--        android:background="@drawable/form_for_text_in_custom_view"-->
+<!--        android:visibility="invisible"-->
+<!--        app:icon="@drawable/icon_arrow_down"-->
+<!--        app:iconGravity="textStart"-->
+<!--        app:iconPadding="0dp"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/first_limited_item"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/text_list_in_first_limited_item" />-->
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_get_price_limited_screen"

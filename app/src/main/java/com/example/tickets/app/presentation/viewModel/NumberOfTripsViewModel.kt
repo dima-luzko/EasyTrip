@@ -32,5 +32,4 @@ class NumberOfTripsViewModel constructor(private val numberOfTripsRepository: Nu
             _price.postValue(price)
         }
     }
-
 }
