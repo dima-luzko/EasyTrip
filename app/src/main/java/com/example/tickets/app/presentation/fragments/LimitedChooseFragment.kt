@@ -184,6 +184,8 @@ class LimitedChooseFragment : Fragment() {
                             secondPrice = countPrice.price
                         })
                     }
+
+
                     buttonUpInThirdLimitedItem.setOnClickListener {
 
 //                         incrementIndex(
