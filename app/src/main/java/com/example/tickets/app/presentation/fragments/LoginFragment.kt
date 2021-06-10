@@ -78,7 +78,6 @@ class LoginFragment : Fragment() {
                         findNavController().navigate(
                             R.id.action_loginFragment_to_profileFragment, bundle
                         )
-                        Log.i("ha", viewModel.getCard(getInputCardNumber).toString())
                     } else {
                         showErrorDialog(
                             getString(R.string.no_card_number),
