@@ -40,7 +40,6 @@ class LimitedChooseFragment : Fragment() {
     private var firstPrice: Double = 0.0
     private var secondPrice: Double = 0.0
     private var thirdPrice: Double = 0.0
-    private var fprice: Double = 0.0
 
 
     override fun onCreateView(
@@ -98,13 +97,6 @@ class LimitedChooseFragment : Fragment() {
                         findNavController().popBackStack()
                     }
                     buttonUpInFirstLimitedItem.setOnClickListener {
-//                        incrementIndex(
-//                            buttonUpInFirstLimitedItem,
-//                            buttonDownInFirstLimitedItem,
-//                            textListInFirstLimitedItem,
-//                            currentIndexFirstItem,
-//                            numberOfTripsList
-//                        )
                         if (currentIndexFirstItem < numberOfTripsList.size - 1) {
                             currentIndexFirstItem++
                             textListInFirstLimitedItem.text =
@@ -123,13 +115,6 @@ class LimitedChooseFragment : Fragment() {
                         })
                     }
                     buttonDownInFirstLimitedItem.setOnClickListener {
-//                        decrementIndex(
-//                            buttonUpInFirstLimitedItem,
-//                            buttonDownInFirstLimitedItem,
-//                            textListInFirstLimitedItem,
-//                            currentIndexFirstItem,
-//                            numberOfTripsList
-//                        )
                         if (currentIndexFirstItem <= numberOfTripsList.size - 1) {
                             currentIndexFirstItem--
                             textListInFirstLimitedItem.text =
@@ -141,9 +126,7 @@ class LimitedChooseFragment : Fragment() {
                                 buttonUpInFirstLimitedItem.visibility = ConstraintLayout.VISIBLE
                             }
                         }
-
                         getPrice(currentIndexFirstItem, firstTransportList)
-
                         price.observe(viewLifecycleOwner, Observer { countPrice ->
                             firstPrice = countPrice.price
                         })
@@ -187,14 +170,6 @@ class LimitedChooseFragment : Fragment() {
 
 
                     buttonUpInThirdLimitedItem.setOnClickListener {
-
-//                         incrementIndex(
-//                            buttonUpInThirdLimitedItem,
-//                            buttonDownInThirdLimitedItem,
-//                            textListInThirdLimitedItem,
-//                            currentIndexThirdItem,
-//                            numberOfTripsList
-//                        )
                         if (currentIndexThirdItem < numberOfTripsList.size - 1) {
                             currentIndexThirdItem++
                             textListInThirdLimitedItem.text =
@@ -213,13 +188,6 @@ class LimitedChooseFragment : Fragment() {
                         })
                     }
                     buttonDownInThirdLimitedItem.setOnClickListener {
-//                         decrementIndex(
-//                            buttonUpInThirdLimitedItem,
-//                            buttonDownInThirdLimitedItem,
-//                            textListInThirdLimitedItem,
-//                            currentIndexThirdItem,
-//                            numberOfTripsList
-//                        )
                         if (currentIndexThirdItem <= numberOfTripsList.size - 1) {
                             currentIndexThirdItem--
                             textListInThirdLimitedItem.text =
@@ -239,33 +207,13 @@ class LimitedChooseFragment : Fragment() {
                     }
 
                     val finalPrice = firstPrice + thirdPrice
+
                     buttonGetPriceLimitedScreen.setOnClickListener {
                         Toast.makeText(context, finalPrice.toString(), Toast.LENGTH_SHORT).show()
                     }
-//                        val parse: List<String> = finalPrice.toString().split(".")
-//                        for (i in parse) {
-//                            limitedCountOfRubles.text = i[0].toString()
-//                            limitedCountOfPenny.text = i[1].toString()
-//                        }
                 }
             })
         }
-    }
-
-    private fun getFinalPrice(index: Int, transportsList: ArrayList<Int>) : Double {
-        CoroutineScope(Dispatchers.IO).launch {
-            val response = RemoteDataSource.instance.getPriceByNumberOfTripsAndTransports(
-                body(
-                    id = index + 1,
-                    transports = transportsList,
-                    count = transportsList.size
-                )
-            )
-            withContext(Dispatchers.Main) {
-               fprice = response.price
-            }
-        }
-        return fprice
     }
 
     private fun getPrice(index: Int, transportsList: ArrayList<Int>) {
