@@ -16,6 +16,7 @@ import com.example.tickets.app.presentation.viewModel.NumberOfTripsViewModel
 import com.example.tickets.app.presentation.viewModel.TransportViewModel
 import com.example.tickets.databinding.FragmentLimitedChooseBinding
 import com.example.tickets.utils.goneBottomNavigation
+import com.google.android.material.button.MaterialButton
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -30,6 +31,9 @@ class LimitedChooseFragment : Fragment() {
     private var firstPrice: Double = 0.0
     private var secondPrice: Double = 0.0
     private var thirdPrice: Double = 0.0
+    private val firstTransportList = arrayListOf(1, 2, 3)
+    private val secondTransportList = arrayListOf(5)
+    private val thirdTransportList = arrayListOf(4)
 
 
     override fun onCreateView(
@@ -78,9 +82,6 @@ class LimitedChooseFragment : Fragment() {
                     numberOfTrips.map { it.value }.filterIndexed { index, _ ->
                         index != 1 && index != 2 && index != 3 && index != 6 && index != 11
                     }
-                val firstTransportList = arrayListOf(1, 2, 3)
-                val secondTransportList = arrayListOf(5)
-                val thirdTransportList = arrayListOf(4)
 
                 with(binding) {
                     backButtonInLimitedChooseScreen.setOnClickListener {
@@ -88,94 +89,76 @@ class LimitedChooseFragment : Fragment() {
                     }
                     buttonUpInFirstLimitedItem.setOnClickListener {
                         currentIndexFirstItem = incrementIndex(
+                            buttonUpInFirstLimitedItem,
+                            buttonDownInFirstLimitedItem,
                             textListInFirstLimitedItem,
                             currentIndexFirstItem,
                             numberOfTripsList
                         )
-                        if (currentIndexFirstItem == -1){
-                            buttonUpInFirstLimitedItem.visibility = ConstraintLayout.INVISIBLE
-                        }
                     }
                     buttonDownInFirstLimitedItem.setOnClickListener {
                         currentIndexFirstItem = decrementIndex(
+                            buttonUpInFirstLimitedItem,
+                            buttonDownInFirstLimitedItem,
                             textListInFirstLimitedItem,
                             currentIndexFirstItem,
                             numberOfTripsList
                         )
                     }
                     buttonUpInSecondLimitedItem.setOnClickListener {
-                        if (currentIndexSecondItem < numberOfTripsListForMetro.size - 1) {
-                            currentIndexSecondItem++
-                            textListInSecondLimitedItem.text =
-                                numberOfTripsListForMetro[currentIndexSecondItem].toString()
-                            if (currentIndexSecondItem == 1) {
-                                buttonDownInSecondLimitedItem.visibility =
-                                    ConstraintLayout.VISIBLE
-                            } else if (currentIndexSecondItem == numberOfTripsListForMetro.lastIndex) {
-                                buttonUpInSecondLimitedItem.visibility =
-                                    ConstraintLayout.INVISIBLE
-                            }
-                        }
-                        getPrice(currentIndexSecondItem, secondTransportList)
-                        price.observe(viewLifecycleOwner, Observer { countPrice ->
-                            secondPrice = countPrice.price
-                        })
+                        currentIndexSecondItem = incrementIndex(
+                            buttonUpInSecondLimitedItem,
+                            buttonDownInSecondLimitedItem,
+                            textListInSecondLimitedItem,
+                            currentIndexSecondItem,
+                            numberOfTripsListForMetro
+                        )
+//                        getPrice(currentIndexSecondItem, secondTransportList)
+//                        price.observe(viewLifecycleOwner, Observer { countPrice ->
+//                            secondPrice = countPrice.price
+//                        })
                     }
                     buttonDownInSecondLimitedItem.setOnClickListener {
-                        if (currentIndexSecondItem <= numberOfTripsListForMetro.size - 1) {
-                            currentIndexSecondItem--
-                            textListInSecondLimitedItem.text =
-                                numberOfTripsListForMetro[currentIndexSecondItem].toString()
-                            if (currentIndexSecondItem == 0) {
-                                buttonDownInSecondLimitedItem.visibility =
-                                    ConstraintLayout.INVISIBLE
-                            } else if (currentIndexSecondItem == numberOfTripsListForMetro.lastIndex - 1) {
-                                buttonUpInSecondLimitedItem.visibility =
-                                    ConstraintLayout.VISIBLE
-                            }
-                        }
-                        getPrice(currentIndexSecondItem, secondTransportList)
-                        price.observe(viewLifecycleOwner, Observer { countPrice ->
-                            secondPrice = countPrice.price
-                        })
+                        currentIndexSecondItem = decrementIndex(
+                            buttonUpInSecondLimitedItem,
+                            buttonDownInSecondLimitedItem,
+                            textListInSecondLimitedItem,
+                            currentIndexSecondItem,
+                            numberOfTripsListForMetro
+                        )
+//                        getPrice(currentIndexSecondItem, secondTransportList)
+//                        price.observe(viewLifecycleOwner, Observer { countPrice ->
+//                            secondPrice = countPrice.price
+//                        })
                     }
 
 
                     buttonUpInThirdLimitedItem.setOnClickListener {
-                        if (currentIndexThirdItem < numberOfTripsList.size - 1) {
-                            currentIndexThirdItem++
-                            textListInThirdLimitedItem.text =
-                                numberOfTripsList[currentIndexThirdItem].toString()
-                            if (currentIndexThirdItem == 1) {
-                                buttonDownInThirdLimitedItem.visibility =
-                                    ConstraintLayout.VISIBLE
-                            } else if (currentIndexThirdItem == numberOfTripsList.lastIndex) {
-                                buttonUpInThirdLimitedItem.visibility =
-                                    ConstraintLayout.INVISIBLE
-                            }
-                        }
-                        getPrice(currentIndexThirdItem, thirdTransportList)
-                        price.observe(viewLifecycleOwner, Observer { countPrice ->
-                            thirdPrice = countPrice.price
-                        })
+                       currentIndexThirdItem = incrementIndex(
+                           buttonUpInThirdLimitedItem,
+                           buttonDownInThirdLimitedItem,
+                           textListInThirdLimitedItem,
+                           currentIndexThirdItem,
+                           numberOfTripsList
+                       )
+//                        getPrice(currentIndexThirdItem, thirdTransportList)
+//                        price.observe(viewLifecycleOwner, Observer { countPrice ->
+//                            thirdPrice = countPrice.price
+//                        })
                     }
                     buttonDownInThirdLimitedItem.setOnClickListener {
-                        if (currentIndexThirdItem <= numberOfTripsList.size - 1) {
-                            currentIndexThirdItem--
-                            textListInThirdLimitedItem.text =
-                                numberOfTripsList[currentIndexThirdItem].toString()
-                            if (currentIndexThirdItem == 0) {
-                                buttonDownInThirdLimitedItem.visibility =
-                                    ConstraintLayout.INVISIBLE
-                            } else if (currentIndexThirdItem == numberOfTripsList.lastIndex - 1) {
-                                buttonUpInThirdLimitedItem.visibility = ConstraintLayout.VISIBLE
-                            }
-                        }
-                        getPrice(currentIndexThirdItem, thirdTransportList)
-                        price.observe(viewLifecycleOwner, Observer { countPrice ->
-                            thirdPrice = countPrice.price
-
-                        })
+                        currentIndexThirdItem = decrementIndex(
+                            buttonUpInThirdLimitedItem,
+                            buttonDownInThirdLimitedItem,
+                            textListInThirdLimitedItem,
+                            currentIndexThirdItem,
+                            numberOfTripsList
+                        )
+//                        getPrice(currentIndexThirdItem, thirdTransportList)
+//                        price.observe(viewLifecycleOwner, Observer { countPrice ->
+//                            thirdPrice = countPrice.price
+//
+//                        })
                     }
 
                     val finalPrice = firstPrice + thirdPrice
@@ -214,6 +197,8 @@ class LimitedChooseFragment : Fragment() {
 
 
     private fun incrementIndex(
+        buttonUp: MaterialButton,
+        buttonDown: MaterialButton,
         textList: TextView,
         currentIndex: Int,
         list: List<Int>
@@ -222,6 +207,12 @@ class LimitedChooseFragment : Fragment() {
         ++index
         if (index < list.size) {
             textList.text = list[index].toString()
+            if (index == 1) {
+                buttonDown.visibility = ConstraintLayout.VISIBLE
+            } else if (index == list.lastIndex) {
+                buttonUp.visibility =
+                    ConstraintLayout.INVISIBLE
+            }
             return index
         }
         return -1
@@ -229,14 +220,23 @@ class LimitedChooseFragment : Fragment() {
 
 
     private fun decrementIndex(
+        buttonUp: MaterialButton,
+        buttonDown: MaterialButton,
         textList: TextView,
         currentIndex: Int,
         list: List<Int>
     ): Int {
         var index = currentIndex
         --index
-        if (index < 0) {
+        if (index <= list.size) {
             textList.text = list[index].toString()
+            if (index == 0) {
+                buttonDown.visibility =
+                    ConstraintLayout.INVISIBLE
+            } else if (index == list.lastIndex - 1) {
+                buttonUp.visibility =
+                    ConstraintLayout.VISIBLE
+            }
             return index
         }
         return -1
