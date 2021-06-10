@@ -34,52 +34,52 @@ class UnlimitedChooseFragment : Fragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        activity?.let { goneBottomNavigation(it) }
-        transportViewModel.getTransport()
-        transportViewModel.transport.observe(viewLifecycleOwner, Observer { transport ->
-            with(binding.unlimitedTransportList) {
-                layoutManager = GridLayoutManager(
-                    context,
-                    2,
-                    LinearLayoutManager.VERTICAL,
-                    false
-                )
-                adapter = UnlimitedTransportInfoAdapter(transport)
-                hasFixedSize()
-            }
-            val transportsList = arrayListOf(UnlimitedTransportInfoAdapter(transport).getChangeTransport())
-            val body = BodyForGetPriceByNumberOfDays(
-                numberOfDaysId = arguments?.getInt("numberOfDaysId")!!.toInt(),
-                transports = transportList,
-                count = transportList.size
-            )
+//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+//        super.onViewCreated(view, savedInstanceState)
+//        activity?.let { goneBottomNavigation(it) }
+//        transportViewModel.getTransport()
+//        transportViewModel.transport.observe(viewLifecycleOwner, Observer { transport ->
+//            with(binding.unlimitedTransportList) {
+//                layoutManager = GridLayoutManager(
+//                    context,
+//                    2,
+//                    LinearLayoutManager.VERTICAL,
+//                    false
+//                )
+//                adapter = UnlimitedTransportInfoAdapter(transport)
+//                hasFixedSize()
+//            }
+//            val transportsList = arrayListOf(UnlimitedTransportInfoAdapter(transport).getChangeTransport())
+//            val body = BodyForGetPriceByNumberOfDays(
+//                numberOfDaysId = arguments?.getInt("numberOfDaysId")!!.toInt(),
+//                transports = transportList,
+//                count = transportList.size
+//            )
+//
+//
+//            with(binding) {
+//                numberOfDaysInUnlimitedChooseScreen.text = arguments?.getString("numberOfDays")
+//                backButtonInUnlimitedChooseScreen.setOnClickListener {
+//                    findNavController().popBackStack()
+//                }
+//                buttonGetPrice.setOnClickListener {
+//                    priceViewModel.getPrice(body)
+//                    priceViewModel.price.observe(viewLifecycleOwner, Observer {
+////                        Toast.makeText(context,it.price.toString(),Toast.LENGTH_LONG).show()
+//                        Toast.makeText(context,transportsList.size.toString(),Toast.LENGTH_LONG).show()
+//                    })
+//                }
+//            }
+//
+//        })
 
-
-            with(binding) {
-                numberOfDaysInUnlimitedChooseScreen.text = arguments?.getString("numberOfDays")
-                backButtonInUnlimitedChooseScreen.setOnClickListener {
-                    findNavController().popBackStack()
-                }
-                buttonGetPrice.setOnClickListener {
-                    priceViewModel.getPrice(body)
-                    priceViewModel.price.observe(viewLifecycleOwner, Observer {
-//                        Toast.makeText(context,it.price.toString(),Toast.LENGTH_LONG).show()
-                        Toast.makeText(context,transportsList.size.toString(),Toast.LENGTH_LONG).show()
-                    })
-                }
-            }
-
-        })
-
-
-
-        equalsNumberOfDays(view)
-        //addToUnlimitedTransportInfoRecyclerView()
-        //getPrice()
-
-    }
+//
+//
+//        equalsNumberOfDays(view)
+//        //addToUnlimitedTransportInfoRecyclerView()
+//        //getPrice()
+//
+//    }
 
     private fun equalsNumberOfDays(view: View) {
         val days = view.findViewById<TextView>(R.id.text_days)
@@ -88,23 +88,23 @@ class UnlimitedChooseFragment : Fragment() {
         }
     }
 
-    private fun addToUnlimitedTransportInfoRecyclerView() {
-        transportViewModel.getTransport()
-        transportViewModel.transport.observe(viewLifecycleOwner, Observer {
-            with(binding.unlimitedTransportList) {
-                layoutManager = GridLayoutManager(
-                    context,
-                    2,
-                    LinearLayoutManager.VERTICAL,
-                    false
-                )
-                adapter = UnlimitedTransportInfoAdapter(it)
-                hasFixedSize()
-            }
-            val transportsList = arrayListOf(UnlimitedTransportInfoAdapter(it).getChangeTransport())
-        })
-
-    }
+//    private fun addToUnlimitedTransportInfoRecyclerView() {
+//        transportViewModel.getTransport()
+//        transportViewModel.transport.observe(viewLifecycleOwner, Observer {
+//            with(binding.unlimitedTransportList) {
+//                layoutManager = GridLayoutManager(
+//                    context,
+//                    2,
+//                    LinearLayoutManager.VERTICAL,
+//                    false
+//                )
+//                adapter = UnlimitedTransportInfoAdapter(it)
+//                hasFixedSize()
+//            }
+//            val transportsList = arrayListOf(UnlimitedTransportInfoAdapter(it).getChangeTransport())
+//        })
+//
+//    }
 
 //    private fun getPrice() {
 //        priceViewModel.getPrice(body)

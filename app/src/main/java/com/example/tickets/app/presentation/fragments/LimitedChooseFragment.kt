@@ -17,6 +17,7 @@ import com.example.tickets.app.presentation.viewModel.TransportViewModel
 import com.example.tickets.databinding.FragmentLimitedChooseBinding
 import com.example.tickets.utils.goneBottomNavigation
 import com.google.android.material.button.MaterialButton
+import org.koin.android.ext.android.bind
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -28,9 +29,6 @@ class LimitedChooseFragment : Fragment() {
     private var currentIndexThirdItem = 0
     private val numberOfTripsViewModel by viewModel<NumberOfTripsViewModel>()
     private val transportViewModel by viewModel<TransportViewModel>()
-    private var firstPrice: Double = 0.0
-    private var secondPrice: Double = 0.0
-    private var thirdPrice: Double = 0.0
     private val firstTransportList = arrayListOf(1, 2, 3)
     private val secondTransportList = arrayListOf(5)
     private val thirdTransportList = arrayListOf(4)
@@ -41,146 +39,124 @@ class LimitedChooseFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentLimitedChooseBinding.inflate(inflater, container, false)
+        with(numberOfTripsViewModel) {
+            getNumberOfTrips()
+            with(binding) {
+                numberOfTrips.observe(viewLifecycleOwner, Observer { numberOfTrips ->
+                    textListInFirstLimitedItem.text = numberOfTrips.toString()
+                    textListInThirdLimitedItem.text = numberOfTrips.toString()
+                })
+
+                price.observe(viewLifecycleOwner, Observer { countPrice ->
+                    limitedCountOfRubles.text = countPrice.toString()
+                })
+            }
+        }
+        with(transportViewModel) {
+            getCombineTransport()
+            transportName.observe(viewLifecycleOwner, Observer {
+                binding.nameInFirstLimitedItem.text = it
+//                        nameInSecondLimitedItem.text = it
+//                        nameInThirdLimitedItem.text = it
+            })
+        }
         return binding.root
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         activity?.let { goneBottomNavigation(it) }
         handleClick()
-        setTransportName()
+        //setTransportName()
     }
 
-    @SuppressLint("SetTextI18n")
-    private fun setTransportName() {
-        with(transportViewModel) {
-            getTransport()
-            transport.observe(viewLifecycleOwner, Observer
-            { transport ->
-                val firstTransport = transport.map { it.transportName }[0]
-                val secondTransport = transport.map { it.transportName }[1]
-                val thirdTransport = transport.map { it.transportName }[2]
-                val fourTransport = transport.map { it.transportName }[3].substring(0, 12)
-                val fiveTransport = transport.map { it.transportName }[4]
-                with(binding) {
-                    nameInFirstLimitedItem.text =
-                        "$firstTransport - $secondTransport - $thirdTransport"
-                    nameInSecondLimitedItem.text = fiveTransport
-                    nameInThirdLimitedItem.text = "$fourTransport.\""
-                }
-            })
-        }
-    }
+//    @SuppressLint("SetTextI18n")
+//    private fun setTransportName() {
+//        with(transportViewModel) {
+//            getTransport()
+//            transport.observe(viewLifecycleOwner, Observer
+//            { transport ->
+//                val firstTransport = transport.map { it.transportName }[0]
+//                val secondTransport = transport.map { it.transportName }[1]
+//                val thirdTransport = transport.map { it.transportName }[2]
+//                val fourTransport = transport.map { it.transportName }[3].substring(0, 12)
+//                val fiveTransport = transport.map { it.transportName }[4]
+//                with(binding) {
+//                    nameInFirstLimitedItem.text =
+//                        "$firstTransport - $secondTransport - $thirdTransport"
+//                    nameInSecondLimitedItem.text = fiveTransport
+//                    nameInThirdLimitedItem.text = "$fourTransport.\""
+//                }
+//            })
+//        }
+//    }
 
     private fun handleClick() {
-        with(numberOfTripsViewModel) {
-            getNumberOfTrips()
-            numberOfTrips.observe(viewLifecycleOwner, Observer { numberOfTrips ->
-
-                val numberOfTripsList = numberOfTrips.map { it.value }
-                val numberOfTripsListForMetro =
-                    numberOfTrips.map { it.value }.filterIndexed { index, _ ->
-                        index != 1 && index != 2 && index != 3 && index != 6 && index != 11
-                    }
-
-                with(binding) {
-                    backButtonInLimitedChooseScreen.setOnClickListener {
-                        findNavController().popBackStack()
-                    }
-                    buttonUpInFirstLimitedItem.setOnClickListener {
-                        currentIndexFirstItem = incrementIndex(
-                            buttonUpInFirstLimitedItem,
-                            buttonDownInFirstLimitedItem,
-                            textListInFirstLimitedItem,
-                            currentIndexFirstItem,
-                            numberOfTripsList
-                        )
-                    }
-                    buttonDownInFirstLimitedItem.setOnClickListener {
-                        currentIndexFirstItem = decrementIndex(
-                            buttonUpInFirstLimitedItem,
-                            buttonDownInFirstLimitedItem,
-                            textListInFirstLimitedItem,
-                            currentIndexFirstItem,
-                            numberOfTripsList
-                        )
-                    }
-                    buttonUpInSecondLimitedItem.setOnClickListener {
-                        currentIndexSecondItem = incrementIndex(
-                            buttonUpInSecondLimitedItem,
-                            buttonDownInSecondLimitedItem,
-                            textListInSecondLimitedItem,
-                            currentIndexSecondItem,
-                            numberOfTripsListForMetro
-                        )
-//                        getPrice(currentIndexSecondItem, secondTransportList)
-//                        price.observe(viewLifecycleOwner, Observer { countPrice ->
-//                            secondPrice = countPrice.price
-//                        })
-                    }
-                    buttonDownInSecondLimitedItem.setOnClickListener {
-                        currentIndexSecondItem = decrementIndex(
-                            buttonUpInSecondLimitedItem,
-                            buttonDownInSecondLimitedItem,
-                            textListInSecondLimitedItem,
-                            currentIndexSecondItem,
-                            numberOfTripsListForMetro
-                        )
-//                        getPrice(currentIndexSecondItem, secondTransportList)
-//                        price.observe(viewLifecycleOwner, Observer { countPrice ->
-//                            secondPrice = countPrice.price
-//                        })
-                    }
 
 
-                    buttonUpInThirdLimitedItem.setOnClickListener {
-                       currentIndexThirdItem = incrementIndex(
-                           buttonUpInThirdLimitedItem,
-                           buttonDownInThirdLimitedItem,
-                           textListInThirdLimitedItem,
-                           currentIndexThirdItem,
-                           numberOfTripsList
-                       )
-//                        getPrice(currentIndexThirdItem, thirdTransportList)
-//                        price.observe(viewLifecycleOwner, Observer { countPrice ->
-//                            thirdPrice = countPrice.price
-//                        })
-                    }
-                    buttonDownInThirdLimitedItem.setOnClickListener {
-                        currentIndexThirdItem = decrementIndex(
-                            buttonUpInThirdLimitedItem,
-                            buttonDownInThirdLimitedItem,
-                            textListInThirdLimitedItem,
-                            currentIndexThirdItem,
-                            numberOfTripsList
-                        )
-//                        getPrice(currentIndexThirdItem, thirdTransportList)
-//                        price.observe(viewLifecycleOwner, Observer { countPrice ->
-//                            thirdPrice = countPrice.price
-//
-//                        })
-                    }
+        with(binding) {
+            backButtonInLimitedChooseScreen.setOnClickListener {
+                findNavController().popBackStack()
+            }
+            buttonUpInFirstLimitedItem.setOnClickListener {
+                currentIndexFirstItem = incrementIndex(
+                    buttonUpInFirstLimitedItem,
+                    buttonDownInFirstLimitedItem,
+                    textListInFirstLimitedItem,
+                    currentIndexFirstItem,
+                    numberOfTripsViewModel.numberOfTripsList
+                )
+            }
+            buttonDownInFirstLimitedItem.setOnClickListener {
 
-                    val finalPrice = firstPrice + thirdPrice
+                currentIndexFirstItem = decrementIndex(
+                    buttonUpInFirstLimitedItem,
+                    buttonDownInFirstLimitedItem,
+                    textListInFirstLimitedItem,
+                    currentIndexFirstItem,
+                    numberOfTripsViewModel.numberOfTripsList
+                )
+            }
 
-                    buttonGetPriceLimitedScreen.setOnClickListener {
-                        Toast.makeText(context, finalPrice.toString(), Toast.LENGTH_SHORT).show()
-                    }
-                }
-            })
+            buttonUpInThirdLimitedItem.setOnClickListener {
+                currentIndexThirdItem = incrementIndex(
+                    buttonUpInThirdLimitedItem,
+                    buttonDownInThirdLimitedItem,
+                    textListInThirdLimitedItem,
+                    currentIndexThirdItem,
+                    numberOfTripsViewModel.numberOfTripsList
+                )
+            }
+            buttonDownInThirdLimitedItem.setOnClickListener {
+                currentIndexThirdItem = decrementIndex(
+                    buttonUpInThirdLimitedItem,
+                    buttonDownInThirdLimitedItem,
+                    textListInThirdLimitedItem,
+                    currentIndexThirdItem,
+                    numberOfTripsViewModel.numberOfTripsList
+                )
+            }
+
+            buttonGetPriceLimitedScreen.setOnClickListener {
+                getFinalPrice()
+            }
         }
     }
 
-    private fun getPrice(index: Int, transportsList: ArrayList<Int>) {
-        with(numberOfTripsViewModel) {
-            getPrice(
-                body(
-                    id = index + 1,
-                    transports = transportsList,
-                    count = transportsList.size
-                )
+    private fun getFinalPrice() {
+        numberOfTripsViewModel.getPrice(
+            body(
+                currentIndexFirstItem,
+                firstTransportList,
+                firstTransportList.size
+            ),
+            body(
+                currentIndexThirdItem,
+                thirdTransportList,
+                thirdTransportList.size
             )
-        }
+        )
     }
 
     private fun body(
@@ -189,7 +165,7 @@ class LimitedChooseFragment : Fragment() {
         count: Int
     ): BodyForGetPriceByNumberOfTrips {
         return BodyForGetPriceByNumberOfTrips(
-            numberOfTripsId = id,
+            numberOfTripsId = id + 1,
             transports = transports,
             count = count
         )

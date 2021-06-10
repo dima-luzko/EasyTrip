@@ -8,29 +8,54 @@ import com.example.tickets.app.data.model.BodyForGetPriceByNumberOfTrips
 import com.example.tickets.app.data.model.NumberOfDaysOrTrips
 import com.example.tickets.app.data.model.Price
 import com.example.tickets.app.domain.repository.NumberOfTripsRepository
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-class NumberOfTripsViewModel constructor(private val numberOfTripsRepository: NumberOfTripsRepository): ViewModel() {
+class NumberOfTripsViewModel constructor(private val numberOfTripsRepository: NumberOfTripsRepository) :
+    ViewModel() {
 
-    private val _numberOfTrips = MutableLiveData<List<NumberOfDaysOrTrips>>()
-    val numberOfTrips: LiveData<List<NumberOfDaysOrTrips>> = _numberOfTrips
+    private val _numberOfTrips = MutableLiveData<Int>()
+    val numberOfTrips: LiveData<Int> = _numberOfTrips
 
-    private val _price = MutableLiveData<Price>()
-    val price: LiveData<Price> = _price
+    private val _price = MutableLiveData<Double>()
+    val price: LiveData<Double> = _price
+
+    var numberOfTripsList: List<Int> = listOf()
 
     fun getNumberOfTrips() {
         viewModelScope.launch(Dispatchers.IO) {
             val numberOfTrips = numberOfTripsRepository.getNumberOfTrips()
-            _numberOfTrips.postValue(numberOfTrips)
+
+            numberOfTripsList = numberOfTrips.map { it.value }
+
+//            val numberOfTripsListForMetro =
+//                numberOfTrips.map { it.value }.filterIndexed { index, _ ->
+//                    index != 1 && index != 2 && index != 3 && index != 6 && index != 11
+//                }
+
+            _numberOfTrips.postValue(0)
         }
     }
 
-    fun getPrice(body: BodyForGetPriceByNumberOfTrips){
-        viewModelScope.launch(Dispatchers.IO) {
-            val price = numberOfTripsRepository.getPrice(body)
-            _price.postValue(price)
-        }
+    fun getPrice(body: BodyForGetPriceByNumberOfTrips, body2: BodyForGetPriceByNumberOfTrips) {
+        val result1 = getPriceForItem(body)
+        val result2 = getPriceForItem(body2)
+        val sum = result1 + result2
+        _price.postValue(sum)
     }
+
+    private fun getPriceForItem(body: BodyForGetPriceByNumberOfTrips): Double {
+        var price: Price?
+        var result = 0.0
+        viewModelScope.launch(Dispatchers.IO) {
+            price = numberOfTripsRepository.getPrice(body)
+            result = price!!.price
+        }
+
+        return result
+    }
+
 
 }
