@@ -17,26 +17,20 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val dataSourceModules = module {
-    single { RemoteDataSource }
+    single { RemoteDataSource() }
 }
 
-val cardModules = module {
-    single<CardRepository> { CardRepositoryImpl(get()) }
+val viewModelModules = module {
     viewModel { CardViewModel(get()) }
-}
-
-val transportModules = module {
-    single<TransportRepository> { TransportRepositoryImpl(get()) }
     viewModel { TransportViewModel(get()) }
-}
-
-val numberOfDaysModule = module {
-    single<NumberOfDaysRepository> { NumberOfDaysRepositoryImpl(get() ) }
     viewModel { NumberOfDaysViewModel(get()) }
+    viewModel { NumberOfTripsViewModel(get()) }
 }
 
-val numberOfTripsModule = module {
+val repositoryModules = module {
+    single<CardRepository> { CardRepositoryImpl(get()) }
+    single<TransportRepository> { TransportRepositoryImpl(get()) }
+    single<NumberOfDaysRepository> { NumberOfDaysRepositoryImpl(get() ) }
     single<NumberOfTripsRepository> { NumberOfTripsRepositoryImpl(get()) }
-    viewModel { NumberOfTripsViewModel(get()) }
 }
 

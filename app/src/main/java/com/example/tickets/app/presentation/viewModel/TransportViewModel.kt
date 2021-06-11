@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.tickets.app.data.model.Transports
 import com.example.tickets.app.domain.repository.TransportRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -12,57 +11,32 @@ import kotlinx.coroutines.launch
 class TransportViewModel constructor(private val transportRepository: TransportRepository) :
     ViewModel() {
 
-    private val _transportName = MutableLiveData<String>()
-    val transportName: LiveData<String> = _transportName
+    private val _transportName = MutableLiveData<TransportsStorage>()
+    val transportName: LiveData<TransportsStorage> = _transportName
 
-    private var transports: List<Transports> = listOf()
+    data class TransportsStorage(
+        val bus: String,
+        val trolleybus: String,
+        val tram: String,
+        val busExpress: String,
+        val metro: String
+    )
 
-
-    private suspend fun getBus(): String {
-        transports = transportRepository.getTransports()
-        return transports.map { it.transportName }[0]
-    }
-
-    private suspend fun getTrolleybus(): String {
-        transports = transportRepository.getTransports()
-        return transports.map { it.transportName }[1]
-    }
-
-    private suspend fun getTram(): String {
-        transports = transportRepository.getTransports()
-        return transports.map { it.transportName }[2]
-    }
-
-    fun getCombineTransport() {
+    fun getTransport() {
         viewModelScope.launch(Dispatchers.IO) {
-            val firstTransport = getBus()
-            val secondTransport = getTrolleybus()
-            val thirdTransport = getTram()
-            val combineTransports = "$firstTransport - $secondTransport - $thirdTransport"
-            _transportName.postValue(combineTransports)
+            val result = setTransportStorage()
+            _transportName.postValue(result)
         }
     }
 
-    fun getBusExpress(): String {
-        var transports: List<Transports>?
-        var busExpress = ""
-        viewModelScope.launch(Dispatchers.IO) {
-            transports = transportRepository.getTransports()
-            busExpress = transports!!.map { it.transportName }[3].substring(0, 12)
-            _transportName.postValue(busExpress)
-        }
-        return busExpress
+    private suspend fun setTransportStorage() : TransportsStorage {
+       val transportsList = transportRepository.getTransports()
+       return TransportsStorage(
+            bus = transportsList.map { it.transportName }[0],
+            trolleybus = transportsList.map { it.transportName }[1],
+            tram = transportsList.map { it.transportName }[2],
+            busExpress = transportsList.map { it.transportName }[3].substring(0, 12),
+            metro = transportsList.map { it.transportName }[4]
+        )
     }
-
-    fun getMetro(): String {
-        var transports: List<Transports>?
-        var metro = ""
-        viewModelScope.launch(Dispatchers.IO) {
-            transports = transportRepository.getTransports()
-            metro = transports!!.map { it.transportName }[4]
-            _transportName.postValue(metro)
-        }
-        return metro
-    }
-
 }

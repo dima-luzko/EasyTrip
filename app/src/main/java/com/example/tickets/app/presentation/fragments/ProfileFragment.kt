@@ -20,7 +20,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class ProfileFragment : Fragment() {
 
     private lateinit var binding: FragmentProfileBinding
-    private val viewModel by viewModel<CardViewModel>()
+    private val cardViewModel by viewModel<CardViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,8 +38,14 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.personalCardNumber.text = arguments?.getString("cardNumber")
+        with(binding){
+            personalCardNumber.text = arguments?.getString("cardNumber")
+            buttonExit.setOnClickListener {
+                findNavController().navigate(R.id.action_profileFragment_to_loginFragment)
+            }
+        }
         getTransactionsByCard()
+
         requireActivity().findViewById<SSCustomBottomNavigation>(R.id.bottom_navigation)
             .setOnClickMenuListener { menuItem ->
                 if (menuItem.id == 2) {
@@ -47,16 +53,12 @@ class ProfileFragment : Fragment() {
                     return@setOnClickMenuListener
                 }
             }
-
-        binding.buttonExit.setOnClickListener {
-            findNavController().navigate(R.id.action_profileFragment_to_loginFragment)
-        }
     }
 
     private fun getTransactionsByCard() {
         val cardId = arguments?.getInt("cardId")
-        viewModel.getTransactionByCard(cardId!!)
-        viewModel.transactionsByCard.observe(viewLifecycleOwner, Observer {
+        cardViewModel.getTransactionByCard(cardId!!)
+        cardViewModel.transactionsByCard.observe(viewLifecycleOwner, Observer {
             if (it.isEmpty()) {
                 binding.noCardTransactions.visibility = View.VISIBLE
             } else {

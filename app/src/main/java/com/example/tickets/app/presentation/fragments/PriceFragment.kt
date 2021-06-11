@@ -27,7 +27,7 @@ class PriceFragment : Fragment() {
 
     private lateinit var binding: FragmentPriceBinding
     private lateinit var unlimitedTripsDialogBinding: UnlimitedTripsPopupWindowBinding
-    private val viewModel by viewModel<NumberOfDaysViewModel>()
+    private val numberOfDaysViewModel by viewModel<NumberOfDaysViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -90,29 +90,31 @@ class PriceFragment : Fragment() {
             this?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         }
 
-        viewModel.getNumberOfDays()
-        viewModel.numberOfDays.observe(viewLifecycleOwner, Observer {
-            with(unlimitedTripsDialogBinding.numberOfDaysList) {
-                this.layoutManager = GridLayoutManager(
-                    context,
-                    3,
-                    LinearLayoutManager.VERTICAL,
-                    false
-                )
-                this.adapter = NumberOfDaysAdapter(it) {
-                    with(bundle){
-                        putString("numberOfDays", it.value.toString())
-                        putInt("numberOfDaysId",it.id)
-                    }
-                    findNavController().navigate(
-                        R.id.action_priceFragment_to_unlimitedChooseFragment,
-                        bundle
+        with(numberOfDaysViewModel) {
+            getNumberOfDays()
+            numberOfDays.observe(viewLifecycleOwner, Observer {
+                with(unlimitedTripsDialogBinding.numberOfDaysList) {
+                    this.layoutManager = GridLayoutManager(
+                        context,
+                        3,
+                        LinearLayoutManager.VERTICAL,
+                        false
                     )
-                    dialog?.dismiss()
+                    this.adapter = NumberOfDaysAdapter(it) {
+                        with(bundle) {
+                            putString("numberOfDays", it.value.toString())
+                            putInt("numberOfDaysId", it.id)
+                        }
+                        findNavController().navigate(
+                            R.id.action_priceFragment_to_unlimitedChooseFragment,
+                            bundle
+                        )
+                        dialog?.dismiss()
+                    }
+                    this.hasFixedSize()
                 }
-                this.hasFixedSize()
-            }
-        })
+            })
+        }
         dialog?.show()
     }
 }

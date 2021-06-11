@@ -12,7 +12,7 @@ class MainApplication: Application() {
         startKoin {
             androidLogger()
             androidContext(this@MainApplication)
-            modules(listOf(dataSourceModules, cardModules, transportModules, numberOfDaysModule, numberOfTripsModule))
+            modules(listOf(dataSourceModules, viewModelModules, repositoryModules))
         }
     }
 }

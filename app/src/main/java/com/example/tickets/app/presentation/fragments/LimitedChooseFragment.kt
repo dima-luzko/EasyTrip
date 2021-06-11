@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -17,8 +16,8 @@ import com.example.tickets.app.presentation.viewModel.TransportViewModel
 import com.example.tickets.databinding.FragmentLimitedChooseBinding
 import com.example.tickets.utils.goneBottomNavigation
 import com.google.android.material.button.MaterialButton
-import org.koin.android.ext.android.bind
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.math.BigDecimal
 
 
 class LimitedChooseFragment : Fragment() {
@@ -39,27 +38,6 @@ class LimitedChooseFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentLimitedChooseBinding.inflate(inflater, container, false)
-        with(numberOfTripsViewModel) {
-            getNumberOfTrips()
-            with(binding) {
-                numberOfTrips.observe(viewLifecycleOwner, Observer { numberOfTrips ->
-                    textListInFirstLimitedItem.text = numberOfTrips.toString()
-                    textListInThirdLimitedItem.text = numberOfTrips.toString()
-                })
-
-                price.observe(viewLifecycleOwner, Observer { countPrice ->
-                    limitedCountOfRubles.text = countPrice.toString()
-                })
-            }
-        }
-        with(transportViewModel) {
-            getCombineTransport()
-            transportName.observe(viewLifecycleOwner, Observer {
-                binding.nameInFirstLimitedItem.text = it
-//                        nameInSecondLimitedItem.text = it
-//                        nameInThirdLimitedItem.text = it
-            })
-        }
         return binding.root
     }
 
@@ -67,7 +45,57 @@ class LimitedChooseFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         activity?.let { goneBottomNavigation(it) }
+        setTransportName()
+        setNumberOfTripsList()
+        setFinalPrice()
         handleClick()
+    }
+
+    private fun setNumberOfTripsList() {
+        with(numberOfTripsViewModel) {
+            getNumberOfTrips()
+            with(binding) {
+                numberOfTrips.observe(viewLifecycleOwner, Observer { numberOfTrips ->
+                    textListInFirstLimitedItem.text = numberOfTrips.toString()
+                    textListInThirdLimitedItem.text = numberOfTrips.toString()
+                })
+            }
+        }
+    }
+
+    private fun setFinalPrice() {
+        numberOfTripsViewModel.price.observe(viewLifecycleOwner, Observer { countPrice ->
+            val price = countPrice.toBigDecimal().setScale(2, BigDecimal.ROUND_HALF_EVEN).toString()
+                .split(".")
+            val rubles = price.first()
+            val penny = price.last()
+
+            with(binding) {
+                limitedCountOfRubles.text = rubles
+                limitedCountOfPenny.text = penny
+            }
+        })
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun setTransportName() {
+        with(transportViewModel) {
+            getTransport()
+            transportName.observe(viewLifecycleOwner, Observer
+            { transportName ->
+                val bus = transportName.bus
+                val trolleybus = transportName.trolleybus
+                val tram = transportName.tram
+                val busExpress = transportName.busExpress
+                val metro = transportName.metro
+                with(binding) {
+                    nameInFirstLimitedItem.text =
+                        "$bus - $trolleybus - $tram"
+                    nameInSecondLimitedItem.text = metro
+                    nameInThirdLimitedItem.text = "$busExpress.\""
+                }
+            })
+        }
     }
 
     private fun handleClick() {
