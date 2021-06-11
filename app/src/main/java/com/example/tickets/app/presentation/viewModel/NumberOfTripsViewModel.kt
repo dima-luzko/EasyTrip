@@ -27,7 +27,6 @@ class NumberOfTripsViewModel constructor(private val numberOfTripsRepository: Nu
     fun getNumberOfTrips() {
         viewModelScope.launch(Dispatchers.IO) {
             val numberOfTrips = numberOfTripsRepository.getNumberOfTrips()
-
             numberOfTripsList = numberOfTrips.map { it.value }
 
 //            val numberOfTripsListForMetro =
@@ -40,21 +39,17 @@ class NumberOfTripsViewModel constructor(private val numberOfTripsRepository: Nu
     }
 
     fun getPrice(body: BodyForGetPriceByNumberOfTrips, body2: BodyForGetPriceByNumberOfTrips) {
-        val result1 = getPriceForItem(body)
-        val result2 = getPriceForItem(body2)
-        val sum = result1 + result2
-        _price.postValue(sum)
+        viewModelScope.launch(Dispatchers.IO) {
+            val result1 = getPriceForItem(body)
+            val result2 = getPriceForItem(body2)
+            val sum = result1 + result2
+            _price.postValue(sum)
+        }
     }
 
-    private fun getPriceForItem(body: BodyForGetPriceByNumberOfTrips): Double {
-        var price: Price?
-        var result = 0.0
-        viewModelScope.launch(Dispatchers.IO) {
-            price = numberOfTripsRepository.getPrice(body)
-            result = price!!.price
-        }
-
-        return result
+    private suspend fun getPriceForItem(body: BodyForGetPriceByNumberOfTrips): Double {
+        val price: Price = numberOfTripsRepository.getPrice(body)
+        return price.price
     }
 
 

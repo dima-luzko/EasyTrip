@@ -68,33 +68,9 @@ class LimitedChooseFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         activity?.let { goneBottomNavigation(it) }
         handleClick()
-        //setTransportName()
     }
 
-//    @SuppressLint("SetTextI18n")
-//    private fun setTransportName() {
-//        with(transportViewModel) {
-//            getTransport()
-//            transport.observe(viewLifecycleOwner, Observer
-//            { transport ->
-//                val firstTransport = transport.map { it.transportName }[0]
-//                val secondTransport = transport.map { it.transportName }[1]
-//                val thirdTransport = transport.map { it.transportName }[2]
-//                val fourTransport = transport.map { it.transportName }[3].substring(0, 12)
-//                val fiveTransport = transport.map { it.transportName }[4]
-//                with(binding) {
-//                    nameInFirstLimitedItem.text =
-//                        "$firstTransport - $secondTransport - $thirdTransport"
-//                    nameInSecondLimitedItem.text = fiveTransport
-//                    nameInThirdLimitedItem.text = "$fourTransport.\""
-//                }
-//            })
-//        }
-//    }
-
     private fun handleClick() {
-
-
         with(binding) {
             backButtonInLimitedChooseScreen.setOnClickListener {
                 findNavController().popBackStack()
