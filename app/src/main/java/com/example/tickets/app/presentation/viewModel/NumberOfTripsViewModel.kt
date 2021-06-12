@@ -24,7 +24,6 @@ class NumberOfTripsViewModel constructor(private val numberOfTripsRepository: Nu
     val price: LiveData<Double> = _price
 
     var numberOfTripsList: List<NumberOfDaysOrTrips> = listOf()
-    var numberOfTripsListForMetro: List<NumberOfDaysOrTrips> = listOf()
 
     fun getNumberOfTrips() {
         viewModelScope.launch(Dispatchers.IO) {
@@ -35,8 +34,8 @@ class NumberOfTripsViewModel constructor(private val numberOfTripsRepository: Nu
 
     fun getNumberOfTripsForMetro() {
         viewModelScope.launch(Dispatchers.IO) {
-            numberOfTripsListForMetro = numberOfTripsRepository.getNumberOfTrips()
-            _numberOfTripsForMetro.postValue(numberOfTripsListForMetro)
+            numberOfTripsList = numberOfTripsRepository.getNumberOfTrips()
+            _numberOfTripsForMetro.postValue(numberOfTripsList)
         }
     }
 

@@ -55,9 +55,9 @@ class LimitedChooseFragment : Fragment() {
             getNumberOfTrips()
             getNumberOfTripsForMetro()
             with(binding) {
-                numberOfTrips.observe(viewLifecycleOwner, Observer { numberOfTrips ->
-                    textListInFirstLimitedItem.text = numberOfTrips.first().value.toString()
-                    textListInThirdLimitedItem.text = numberOfTrips.first().value.toString()
+                numberOfTrips.observe(viewLifecycleOwner, Observer {
+                    textListInFirstLimitedItem.text = it.first().value.toString()
+                    textListInThirdLimitedItem.text = it.first().value.toString()
                 })
                 numberOfTripsForMetro.observe(viewLifecycleOwner, Observer {
                     textListInSecondLimitedItem.text = it.first().value.toString()
@@ -133,7 +133,7 @@ class LimitedChooseFragment : Fragment() {
                     buttonDownInSecondLimitedItem,
                     textListInSecondLimitedItem,
                     currentIndexSecondItem,
-                    numberOfTripsViewModel.numberOfTripsListForMetro.map { it.value }
+                    numberOfTripsViewModel.numberOfTripsList.map { it.value }
                         .filterIndexed { index, _ ->
                             index != 1 && index != 2 && index != 3 && index != 6 && index != 11
                         }
@@ -146,7 +146,7 @@ class LimitedChooseFragment : Fragment() {
                     buttonDownInSecondLimitedItem,
                     textListInSecondLimitedItem,
                     currentIndexSecondItem,
-                    numberOfTripsViewModel.numberOfTripsListForMetro.map { it.value }
+                    numberOfTripsViewModel.numberOfTripsList.map { it.value }
                         .filterIndexed { index, _ ->
                             index != 1 && index != 2 && index != 3 && index != 6 && index != 11
                         }
@@ -178,32 +178,34 @@ class LimitedChooseFragment : Fragment() {
     }
 
     private fun getFinalPrice() {
-        numberOfTripsViewModel.getPrice(
-            body(
-                getIdByNumberOfTripList(
-                    currentIndexFirstItem,
-                    numberOfTripsViewModel.numberOfTripsList.map { it.value }),
-                firstTransportList,
-                firstTransportList.size
-            ),
-            body(
-                getIdByNumberOfTripList(
-                    currentIndexSecondItem,
-                    numberOfTripsViewModel.numberOfTripsListForMetro.map { it.value }
-                        .filterIndexed { index, _ ->
-                            index != 1 && index != 2 && index != 3 && index != 6 && index != 11
-                        }),
-                secondTransportList,
-                secondTransportList.size
-            ),
-            body(
-                getIdByNumberOfTripList(
-                    currentIndexThirdItem,
-                    numberOfTripsViewModel.numberOfTripsList.map { it.value }),
-                thirdTransportList,
-                thirdTransportList.size
+        with(numberOfTripsViewModel) {
+            getPrice(
+                body(
+                    getIdByNumberOfTripList(
+                        currentIndexFirstItem,
+                        numberOfTripsList.map { it.value }),
+                    firstTransportList,
+                    firstTransportList.size
+                ),
+                body(
+                    getIdByNumberOfTripList(
+                        currentIndexSecondItem,
+                        numberOfTripsList.map { it.value }
+                            .filterIndexed { index, _ ->
+                                index != 1 && index != 2 && index != 3 && index != 6 && index != 11
+                            }),
+                    secondTransportList,
+                    secondTransportList.size
+                ),
+                body(
+                    getIdByNumberOfTripList(
+                        currentIndexThirdItem,
+                        numberOfTripsList.map { it.value }),
+                    thirdTransportList,
+                    thirdTransportList.size
+                )
             )
-        )
+        }
     }
 
     private fun getIdByNumberOfTripList(index: Int, numberOfTripsListValue: List<Int>): Int {
