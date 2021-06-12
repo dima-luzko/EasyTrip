@@ -17,10 +17,12 @@ class CardViewModel constructor(private val cardRepository: CardRepository) : Vi
     private val _transactionsByCard = MutableLiveData<List<Transactions>>()
     val transactionsByCard: LiveData<List<Transactions>> = _transactionsByCard
 
-    fun getCard(cardNumber: String) {
+    var cardList: List<Card> = listOf()
+
+    fun getCard(number: String) {
         viewModelScope.launch(Dispatchers.IO){
-            val number = cardRepository.getCard(cardNumber)
-            _card.postValue(number)
+            cardList = cardRepository.getCard(number)
+            _card.postValue(cardList)
         }
     }
 

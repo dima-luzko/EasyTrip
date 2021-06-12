@@ -4,14 +4,12 @@ import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.tickets.R
 import com.example.tickets.app.presentation.viewModel.CardViewModel
@@ -52,41 +50,46 @@ class LoginFragment : Fragment() {
     private fun equalsCardNumber() {
         val bundle = Bundle()
 
-        binding.buttonOk.setOnClickListener {
-            val getInputCardNumber = binding.inputCardNumber.text.toString()
+        with(viewModel) {
+            binding.buttonOk.setOnClickListener {
+                val getInputCardNumber = binding.inputCardNumber.text.toString()
 
-            if (getInputCardNumber.isEmpty()) {
-                showErrorDialog(
-                    getString(R.string.card_number_cannot_be_empty),
-                    getString(R.string.button_ok)
-                )
-            } else {
-                viewModel.getCard(getInputCardNumber)
-                viewModel.card.observe(viewLifecycleOwner, Observer {
-                    if (it.isNotEmpty()) {
-                        hideSystemUI()
-                        with(bundle) {
-                            putInt(
-                                "cardId",
-                                it.first().id
+                if (getInputCardNumber.isEmpty()) {
+                    showErrorDialog(
+                        getString(R.string.card_number_cannot_be_empty),
+                        getString(R.string.button_ok)
+                    )
+                } else {
+                    getCard(getInputCardNumber)
+                    CoroutineScope(Dispatchers.Main).launch {
+                        delay(300)
+                        if (cardList.isNullOrEmpty()) {
+                            showErrorDialog(
+                                getString(R.string.no_card_number),
+                                getString(R.string.button_try_again)
                             )
-                            putString(
-                                "cardNumber",
-                                it.first().cardNumber
+                        } else {
+                            hideSystemUI()
+                            with(bundle) {
+                                putInt(
+                                    "cardId",
+                                    cardList.first().id
+                                )
+                                putString(
+                                    "cardNumber",
+                                    cardList.first().cardNumber
+                                )
+                            }
+                            findNavController().navigate(
+                                R.id.action_loginFragment_to_profileFragment, bundle
                             )
                         }
-                        findNavController().navigate(
-                            R.id.action_loginFragment_to_profileFragment, bundle
-                        )
-                    } else {
-                        showErrorDialog(
-                            getString(R.string.no_card_number),
-                            getString(R.string.button_try_again)
-                        )
                     }
-                })
+
+                }
             }
         }
+
     }
 
     private fun showErrorDialog(errorMessage: String, buttonText: String) {
