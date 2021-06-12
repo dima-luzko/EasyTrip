@@ -114,6 +114,7 @@ class LimitedChooseFragment : Fragment() {
                     currentIndexFirstItem,
                     numberOfTripsViewModel.numberOfTripsList.map { it.value }
                 )
+                getFinalPrice()
             }
             buttonDownInFirstLimitedItem.setOnClickListener {
                 currentIndexFirstItem = decrementIndex(
@@ -123,6 +124,7 @@ class LimitedChooseFragment : Fragment() {
                     currentIndexFirstItem,
                     numberOfTripsViewModel.numberOfTripsList.map { it.value }
                 )
+                getFinalPrice()
             }
 
             buttonUpInSecondLimitedItem.setOnClickListener {
@@ -136,6 +138,7 @@ class LimitedChooseFragment : Fragment() {
                             index != 1 && index != 2 && index != 3 && index != 6 && index != 11
                         }
                 )
+                getFinalPrice()
             }
             buttonDownInSecondLimitedItem.setOnClickListener {
                 currentIndexSecondItem = decrementIndex(
@@ -148,6 +151,7 @@ class LimitedChooseFragment : Fragment() {
                             index != 1 && index != 2 && index != 3 && index != 6 && index != 11
                         }
                 )
+                getFinalPrice()
             }
 
             buttonUpInThirdLimitedItem.setOnClickListener {
@@ -158,6 +162,7 @@ class LimitedChooseFragment : Fragment() {
                     currentIndexThirdItem,
                     numberOfTripsViewModel.numberOfTripsList.map { it.value }
                 )
+                getFinalPrice()
             }
             buttonDownInThirdLimitedItem.setOnClickListener {
                 currentIndexThirdItem = decrementIndex(
@@ -167,9 +172,6 @@ class LimitedChooseFragment : Fragment() {
                     currentIndexThirdItem,
                     numberOfTripsViewModel.numberOfTripsList.map { it.value }
                 )
-            }
-
-            buttonGetPriceLimitedScreen.setOnClickListener {
                 getFinalPrice()
             }
         }

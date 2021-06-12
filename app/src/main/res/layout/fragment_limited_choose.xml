@@ -286,31 +286,18 @@
         app:layout_constraintEnd_toEndOf="@+id/first_limited_item"
         app:layout_constraintTop_toBottomOf="@+id/text_list_in_first_limited_item" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button_get_price_limited_screen"
-        android:layout_width="180dp"
-        android:layout_height="40dp"
-        android:background="@drawable/button_get_price_ripple"
-        android:textAlignment="center"
-        android:text="@string/get_price"
-        android:textColor="@color/black"
-        android:layout_marginTop="35dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/second_limited_item" />
-
     <TextView
         android:id="@+id/limited_text_final_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="52dp"
         android:text="@string/final_price"
         android:textColor="@color/grey"
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.53"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_get_price_limited_screen" />
+        app:layout_constraintTop_toBottomOf="@+id/second_limited_item" />
 
 
     <TextView
