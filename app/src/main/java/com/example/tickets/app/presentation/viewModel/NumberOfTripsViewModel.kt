@@ -39,6 +39,27 @@ class NumberOfTripsViewModel constructor(private val numberOfTripsRepository: Nu
         }
     }
 
+    fun getIdByNumberOfTripList(index: Int): Int {
+        numberOfTripsList.forEach {
+            if (it.value == numberOfTripsList.map { it.value }[index]) {
+                return it.id
+            }
+        }
+        return 0
+    }
+
+    fun getIdByNumberOfTripListForMetro(index: Int): Int {
+        numberOfTripsList.forEach {
+            if (it.value == numberOfTripsList.map { it.value }
+                    .filterIndexed { index, _ ->
+                        index != 1 && index != 2 && index != 3 && index != 6 && index != 11
+                    }[index]) {
+                return it.id
+            }
+        }
+        return 0
+    }
+
     fun getPrice(
         body: BodyForGetPriceByNumberOfTrips,
         body2: BodyForGetPriceByNumberOfTrips,

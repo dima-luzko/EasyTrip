@@ -181,40 +181,22 @@ class LimitedChooseFragment : Fragment() {
         with(numberOfTripsViewModel) {
             getPrice(
                 body(
-                    getIdByNumberOfTripList(
-                        currentIndexFirstItem,
-                        numberOfTripsList.map { it.value }),
+                    getIdByNumberOfTripList(currentIndexFirstItem),
                     firstTransportList,
                     firstTransportList.size
                 ),
                 body(
-                    getIdByNumberOfTripList(
-                        currentIndexSecondItem,
-                        numberOfTripsList.map { it.value }
-                            .filterIndexed { index, _ ->
-                                index != 1 && index != 2 && index != 3 && index != 6 && index != 11
-                            }),
+                    getIdByNumberOfTripListForMetro(currentIndexSecondItem),
                     secondTransportList,
                     secondTransportList.size
                 ),
                 body(
-                    getIdByNumberOfTripList(
-                        currentIndexThirdItem,
-                        numberOfTripsList.map { it.value }),
+                    getIdByNumberOfTripList(currentIndexThirdItem),
                     thirdTransportList,
                     thirdTransportList.size
                 )
             )
         }
-    }
-
-    private fun getIdByNumberOfTripList(index: Int, numberOfTripsListValue: List<Int>): Int {
-        numberOfTripsViewModel.numberOfTripsList.forEach {
-            if (it.value == numberOfTripsListValue[index]) {
-                return it.id
-            }
-        }
-        return 0
     }
 
     private fun body(
