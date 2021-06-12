@@ -32,12 +32,6 @@ class LimitedChooseFragment : Fragment() {
     private val secondTransportList = arrayListOf(5)
     private val thirdTransportList = arrayListOf(4)
 
-    private val numberOfTripsList = numberOfTripsViewModel.numberOfTripsList.map { it.value }
-    private val numberOfTripListForMetro =
-        numberOfTripsViewModel.numberOfTripsListForMetro.map { it.value }
-            .filterIndexed { index, _ ->
-                index != 1 && index != 2 && index != 3 && index != 6 && index != 11
-            }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,7 +40,7 @@ class LimitedChooseFragment : Fragment() {
         binding = FragmentLimitedChooseBinding.inflate(inflater, container, false)
         return binding.root
     }
-    
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         activity?.let { goneBottomNavigation(it) }
@@ -118,7 +112,7 @@ class LimitedChooseFragment : Fragment() {
                     buttonDownInFirstLimitedItem,
                     textListInFirstLimitedItem,
                     currentIndexFirstItem,
-                    numberOfTripsList
+                    numberOfTripsViewModel.numberOfTripsList.map { it.value }
                 )
             }
             buttonDownInFirstLimitedItem.setOnClickListener {
@@ -127,7 +121,7 @@ class LimitedChooseFragment : Fragment() {
                     buttonDownInFirstLimitedItem,
                     textListInFirstLimitedItem,
                     currentIndexFirstItem,
-                    numberOfTripsList
+                    numberOfTripsViewModel.numberOfTripsList.map { it.value }
                 )
             }
 
@@ -137,7 +131,10 @@ class LimitedChooseFragment : Fragment() {
                     buttonDownInSecondLimitedItem,
                     textListInSecondLimitedItem,
                     currentIndexSecondItem,
-                    numberOfTripListForMetro
+                    numberOfTripsViewModel.numberOfTripsListForMetro.map { it.value }
+                        .filterIndexed { index, _ ->
+                            index != 1 && index != 2 && index != 3 && index != 6 && index != 11
+                        }
                 )
             }
             buttonDownInSecondLimitedItem.setOnClickListener {
@@ -146,7 +143,10 @@ class LimitedChooseFragment : Fragment() {
                     buttonDownInSecondLimitedItem,
                     textListInSecondLimitedItem,
                     currentIndexSecondItem,
-                    numberOfTripListForMetro
+                    numberOfTripsViewModel.numberOfTripsListForMetro.map { it.value }
+                        .filterIndexed { index, _ ->
+                            index != 1 && index != 2 && index != 3 && index != 6 && index != 11
+                        }
                 )
             }
 
@@ -156,7 +156,7 @@ class LimitedChooseFragment : Fragment() {
                     buttonDownInThirdLimitedItem,
                     textListInThirdLimitedItem,
                     currentIndexThirdItem,
-                    numberOfTripsList
+                    numberOfTripsViewModel.numberOfTripsList.map { it.value }
                 )
             }
             buttonDownInThirdLimitedItem.setOnClickListener {
@@ -165,7 +165,7 @@ class LimitedChooseFragment : Fragment() {
                     buttonDownInThirdLimitedItem,
                     textListInThirdLimitedItem,
                     currentIndexThirdItem,
-                    numberOfTripsList
+                    numberOfTripsViewModel.numberOfTripsList.map { it.value }
                 )
             }
 
@@ -178,17 +178,26 @@ class LimitedChooseFragment : Fragment() {
     private fun getFinalPrice() {
         numberOfTripsViewModel.getPrice(
             body(
-                getIdByNumberOfTripList(currentIndexFirstItem, numberOfTripsList),
+                getIdByNumberOfTripList(
+                    currentIndexFirstItem,
+                    numberOfTripsViewModel.numberOfTripsList.map { it.value }),
                 firstTransportList,
                 firstTransportList.size
             ),
             body(
-                getIdByNumberOfTripList(currentIndexSecondItem, numberOfTripListForMetro),
+                getIdByNumberOfTripList(
+                    currentIndexSecondItem,
+                    numberOfTripsViewModel.numberOfTripsListForMetro.map { it.value }
+                        .filterIndexed { index, _ ->
+                            index != 1 && index != 2 && index != 3 && index != 6 && index != 11
+                        }),
                 secondTransportList,
                 secondTransportList.size
             ),
             body(
-                getIdByNumberOfTripList(currentIndexThirdItem, numberOfTripsList),
+                getIdByNumberOfTripList(
+                    currentIndexThirdItem,
+                    numberOfTripsViewModel.numberOfTripsList.map { it.value }),
                 thirdTransportList,
                 thirdTransportList.size
             )
