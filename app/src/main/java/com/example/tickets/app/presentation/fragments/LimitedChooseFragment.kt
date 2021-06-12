@@ -32,6 +32,12 @@ class LimitedChooseFragment : Fragment() {
     private val secondTransportList = arrayListOf(5)
     private val thirdTransportList = arrayListOf(4)
 
+    private val numberOfTripsList = numberOfTripsViewModel.numberOfTripsList.map { it.value }
+    private val numberOfTripListForMetro =
+        numberOfTripsViewModel.numberOfTripsListForMetro.map { it.value }
+            .filterIndexed { index, _ ->
+                index != 1 && index != 2 && index != 3 && index != 6 && index != 11
+            }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,8 +46,7 @@ class LimitedChooseFragment : Fragment() {
         binding = FragmentLimitedChooseBinding.inflate(inflater, container, false)
         return binding.root
     }
-
-
+    
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         activity?.let { goneBottomNavigation(it) }
@@ -54,10 +59,14 @@ class LimitedChooseFragment : Fragment() {
     private fun setNumberOfTripsList() {
         with(numberOfTripsViewModel) {
             getNumberOfTrips()
+            getNumberOfTripsForMetro()
             with(binding) {
                 numberOfTrips.observe(viewLifecycleOwner, Observer { numberOfTrips ->
-                    textListInFirstLimitedItem.text = numberOfTrips.toString()
-                    textListInThirdLimitedItem.text = numberOfTrips.toString()
+                    textListInFirstLimitedItem.text = numberOfTrips.first().value.toString()
+                    textListInThirdLimitedItem.text = numberOfTrips.first().value.toString()
+                })
+                numberOfTripsForMetro.observe(viewLifecycleOwner, Observer {
+                    textListInSecondLimitedItem.text = it.first().value.toString()
                 })
             }
         }
@@ -109,17 +118,35 @@ class LimitedChooseFragment : Fragment() {
                     buttonDownInFirstLimitedItem,
                     textListInFirstLimitedItem,
                     currentIndexFirstItem,
-                    numberOfTripsViewModel.numberOfTripsList
+                    numberOfTripsList
                 )
             }
             buttonDownInFirstLimitedItem.setOnClickListener {
-
                 currentIndexFirstItem = decrementIndex(
                     buttonUpInFirstLimitedItem,
                     buttonDownInFirstLimitedItem,
                     textListInFirstLimitedItem,
                     currentIndexFirstItem,
-                    numberOfTripsViewModel.numberOfTripsList
+                    numberOfTripsList
+                )
+            }
+
+            buttonUpInSecondLimitedItem.setOnClickListener {
+                currentIndexSecondItem = incrementIndex(
+                    buttonUpInSecondLimitedItem,
+                    buttonDownInSecondLimitedItem,
+                    textListInSecondLimitedItem,
+                    currentIndexSecondItem,
+                    numberOfTripListForMetro
+                )
+            }
+            buttonDownInSecondLimitedItem.setOnClickListener {
+                currentIndexSecondItem = decrementIndex(
+                    buttonUpInSecondLimitedItem,
+                    buttonDownInSecondLimitedItem,
+                    textListInSecondLimitedItem,
+                    currentIndexSecondItem,
+                    numberOfTripListForMetro
                 )
             }
 
@@ -129,7 +156,7 @@ class LimitedChooseFragment : Fragment() {
                     buttonDownInThirdLimitedItem,
                     textListInThirdLimitedItem,
                     currentIndexThirdItem,
-                    numberOfTripsViewModel.numberOfTripsList
+                    numberOfTripsList
                 )
             }
             buttonDownInThirdLimitedItem.setOnClickListener {
@@ -138,7 +165,7 @@ class LimitedChooseFragment : Fragment() {
                     buttonDownInThirdLimitedItem,
                     textListInThirdLimitedItem,
                     currentIndexThirdItem,
-                    numberOfTripsViewModel.numberOfTripsList
+                    numberOfTripsList
                 )
             }
 
@@ -151,30 +178,43 @@ class LimitedChooseFragment : Fragment() {
     private fun getFinalPrice() {
         numberOfTripsViewModel.getPrice(
             body(
-                currentIndexFirstItem,
+                getIdByNumberOfTripList(currentIndexFirstItem, numberOfTripsList),
                 firstTransportList,
                 firstTransportList.size
             ),
             body(
-                currentIndexThirdItem,
+                getIdByNumberOfTripList(currentIndexSecondItem, numberOfTripListForMetro),
+                secondTransportList,
+                secondTransportList.size
+            ),
+            body(
+                getIdByNumberOfTripList(currentIndexThirdItem, numberOfTripsList),
                 thirdTransportList,
                 thirdTransportList.size
             )
         )
     }
 
+    private fun getIdByNumberOfTripList(index: Int, numberOfTripsListValue: List<Int>): Int {
+        numberOfTripsViewModel.numberOfTripsList.forEach {
+            if (it.value == numberOfTripsListValue[index]) {
+                return it.id
+            }
+        }
+        return 0
+    }
+
     private fun body(
-        id: Int,
+        id: Int?,
         transports: ArrayList<Int>,
         count: Int
     ): BodyForGetPriceByNumberOfTrips {
         return BodyForGetPriceByNumberOfTrips(
-            numberOfTripsId = id + 1,
+            numberOfTripsId = id,
             transports = transports,
             count = count
         )
     }
-
 
     private fun incrementIndex(
         buttonUp: MaterialButton,
@@ -197,7 +237,6 @@ class LimitedChooseFragment : Fragment() {
         }
         return -1
     }
-
 
     private fun decrementIndex(
         buttonUp: MaterialButton,

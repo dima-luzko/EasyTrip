@@ -36,7 +36,7 @@ class TransportInfoAdapter(private val transportInfoList: List<Transactions>) :
             with(binding) {
                 finishDataTransportInfoItem.text = transportInfo.finishData.replace("-", ".")
                 countLeftTrips.text = changeNullToText(position)
-                colorFormTransportInfoItem.setCardBackgroundColor(getNumberOfDaysBetweenThoDates(position))
+                colorFormTransportInfoItem.setCardBackgroundColor(getNumberOfDaysBetweenTwoDates(position))
                 if (colorFormTransportInfoItem.cardBackgroundColor.defaultColor == Color.rgb(255, 152, 0)){
                     colorFormTransportInfoItem.startAnimation(blink())
                 }
@@ -67,7 +67,7 @@ class TransportInfoAdapter(private val transportInfoList: List<Transactions>) :
         return animation
     }
 
-    private fun getNumberOfDaysBetweenThoDates(position: Int): Int {
+    private fun getNumberOfDaysBetweenTwoDates(position: Int): Int {
         val transportInfo: Transactions = transportInfoList[position]
 
         val date = android.text.format.DateFormat.format(

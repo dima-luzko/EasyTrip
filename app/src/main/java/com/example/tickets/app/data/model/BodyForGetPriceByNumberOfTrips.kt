@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class BodyForGetPriceByNumberOfTrips(
     @SerializedName("number_of_trip_id")
-    val numberOfTripsId : Int,
+    val numberOfTripsId : Int?,
     @SerializedName("transports")
     val transports: ArrayList<Int>,
     @SerializedName("count")
