@@ -112,7 +112,7 @@ class LimitedChooseFragment : Fragment() {
                     buttonDownInFirstLimitedItem,
                     textListInFirstLimitedItem,
                     currentIndexFirstItem,
-                    numberOfTripsViewModel.numberOfTripsList.map { it.value }
+                    numberOfTripsViewModel.getNumberOfTripsListValue()
                 )
                 getFinalPrice()
             }
@@ -122,7 +122,7 @@ class LimitedChooseFragment : Fragment() {
                     buttonDownInFirstLimitedItem,
                     textListInFirstLimitedItem,
                     currentIndexFirstItem,
-                    numberOfTripsViewModel.numberOfTripsList.map { it.value }
+                    numberOfTripsViewModel.getNumberOfTripsListValue()
                 )
                 getFinalPrice()
             }
@@ -133,10 +133,7 @@ class LimitedChooseFragment : Fragment() {
                     buttonDownInSecondLimitedItem,
                     textListInSecondLimitedItem,
                     currentIndexSecondItem,
-                    numberOfTripsViewModel.numberOfTripsList.map { it.value }
-                        .filterIndexed { index, _ ->
-                            index != 1 && index != 2 && index != 3 && index != 6 && index != 11
-                        }
+                    numberOfTripsViewModel.getNumberOfTripsListValueForMetro()
                 )
                 getFinalPrice()
             }
@@ -146,10 +143,7 @@ class LimitedChooseFragment : Fragment() {
                     buttonDownInSecondLimitedItem,
                     textListInSecondLimitedItem,
                     currentIndexSecondItem,
-                    numberOfTripsViewModel.numberOfTripsList.map { it.value }
-                        .filterIndexed { index, _ ->
-                            index != 1 && index != 2 && index != 3 && index != 6 && index != 11
-                        }
+                    numberOfTripsViewModel.getNumberOfTripsListValueForMetro()
                 )
                 getFinalPrice()
             }
@@ -160,7 +154,7 @@ class LimitedChooseFragment : Fragment() {
                     buttonDownInThirdLimitedItem,
                     textListInThirdLimitedItem,
                     currentIndexThirdItem,
-                    numberOfTripsViewModel.numberOfTripsList.map { it.value }
+                    numberOfTripsViewModel.getNumberOfTripsListValue()
                 )
                 getFinalPrice()
             }
@@ -170,7 +164,7 @@ class LimitedChooseFragment : Fragment() {
                     buttonDownInThirdLimitedItem,
                     textListInThirdLimitedItem,
                     currentIndexThirdItem,
-                    numberOfTripsViewModel.numberOfTripsList.map { it.value }
+                    numberOfTripsViewModel.getNumberOfTripsListValue()
                 )
                 getFinalPrice()
             }
