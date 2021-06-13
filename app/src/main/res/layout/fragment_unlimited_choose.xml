@@ -59,92 +59,284 @@
 
     <TextView
         android:id="@+id/choose_your_transport"
+        style="@style/TextToUnlimitedOrLimitedPriceStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
         android:text="@string/choose_your_transport"
-        style="@style/TextToUnlimitedOrLimitedPriceStyle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/unlimited_transport_list"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
+    <View
+        android:id="@+id/bus_button"
+        android:layout_width="140dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/universal_form"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/choose_your_transport" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button_get_price"
-        android:layout_width="180dp"
-        android:layout_height="40dp"
-        android:background="@drawable/button_get_price_ripple"
-        android:textAlignment="center"
-        android:text="@string/get_price"
-        android:textColor="@color/black"
-        android:layout_marginTop="28dp"
+    <View
+        android:id="@+id/trolleybus_button"
+        android:layout_width="140dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/universal_form"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/bus_button"
+        app:layout_constraintTop_toBottomOf="@+id/choose_your_transport" />
+
+    <View
+        android:id="@+id/tram_button"
+        android:layout_width="140dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/universal_form"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/unlimited_transport_list" />
+        app:layout_constraintTop_toBottomOf="@+id/bus_button" />
+
+    <View
+        android:id="@+id/bus_express_button"
+        android:layout_width="140dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/universal_form"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tram_button"
+        app:layout_constraintTop_toBottomOf="@+id/trolleybus_button" />
+
+    <View
+        android:id="@+id/metro_button"
+        android:layout_width="140dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/universal_form"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tram_button" />
+
+    <View
+        android:id="@+id/train_city_lines_button"
+        android:layout_width="140dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/universal_form"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/metro_button"
+        app:layout_constraintTop_toBottomOf="@+id/bus_express_button" />
 
     <TextView
-        android:id="@+id/unlimited_text_final_price"
+        android:id="@+id/bus_button_name"
+        style="@style/TextUnlimitedAndLimitedItemNameStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/final_price"
-        android:textColor="@color/grey"
-        android:textSize="22sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_get_price" />
+        app:layout_constraintEnd_toEndOf="@+id/bus_button"
+        app:layout_constraintStart_toStartOf="@+id/bus_button"
+        app:layout_constraintTop_toTopOf="@+id/bus_button" />
 
     <TextView
-        android:id="@+id/unlimited_count_of_rubles_unlimited_price"
-        style="@style/TextToUnlimitedOrLimitedPriceStyle"
+        android:id="@+id/trolleybus_button_name"
+        style="@style/TextUnlimitedAndLimitedItemNameStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/trolleybus_button"
+        app:layout_constraintStart_toStartOf="@+id/trolleybus_button"
+        app:layout_constraintTop_toTopOf="@+id/trolleybus_button" />
+
+    <TextView
+        android:id="@+id/tram_button_name"
+        style="@style/TextUnlimitedAndLimitedItemNameStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/tram_button"
+        app:layout_constraintStart_toStartOf="@+id/tram_button"
+        app:layout_constraintTop_toTopOf="@+id/tram_button" />
+
+    <TextView
+        android:id="@+id/bus_express_button_name"
+        style="@style/TextUnlimitedAndLimitedItemNameStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/bus_express_button"
+        app:layout_constraintStart_toStartOf="@+id/bus_express_button"
+        app:layout_constraintTop_toTopOf="@+id/bus_express_button" />
+
+    <TextView
+        android:id="@+id/metro_button_name"
+        style="@style/TextUnlimitedAndLimitedItemNameStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/metro_button"
+        app:layout_constraintStart_toStartOf="@+id/metro_button"
+        app:layout_constraintTop_toTopOf="@+id/metro_button" />
+
+    <TextView
+        android:id="@+id/train_city_lines_button_name"
+        style="@style/TextUnlimitedAndLimitedItemNameStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/train_city_lines_button"
+        app:layout_constraintStart_toStartOf="@+id/train_city_lines_button"
+        app:layout_constraintTop_toTopOf="@+id/train_city_lines_button" />
+
+    <ImageView
+        android:id="@+id/bus_button_icon"
         android:layout_width="40dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="95dp"
-        android:layout_marginTop="28dp"
-        android:text="@string/zero"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/unlimited_text_final_price" />
+        android:layout_height="40dp"
+        android:layout_marginTop="13dp"
+        android:src="@drawable/icon_bus"
+        app:layout_constraintBottom_toBottomOf="@+id/bus_button"
+        app:layout_constraintEnd_toEndOf="@+id/bus_button"
+        app:layout_constraintStart_toStartOf="@+id/bus_button"
+        app:layout_constraintTop_toBottomOf="@+id/bus_button_name"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="ContentDescription" />
 
-    <TextView
-        android:id="@+id/unlimited_text_rubles"
-        style="@style/TextToUnlimitedOrLimitedPriceStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="28dp"
-        android:text="@string/rubles"
-        app:layout_constraintStart_toEndOf="@+id/unlimited_count_of_rubles_unlimited_price"
-        app:layout_constraintTop_toBottomOf="@+id/unlimited_text_final_price" />
+    <ImageView
+        android:id="@+id/trolleybus_button_icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="13dp"
+        android:src="@drawable/icon_trolleybus"
+        tools:ignore="ContentDescription"
+        app:layout_constraintBottom_toBottomOf="@+id/trolleybus_button"
+        app:layout_constraintEnd_toEndOf="@+id/trolleybus_button"
+        app:layout_constraintStart_toStartOf="@+id/trolleybus_button"
+        app:layout_constraintTop_toBottomOf="@+id/trolleybus_button_name"
+        app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/unlimited_count_of_penny_unlimited_price"
-        style="@style/TextToUnlimitedOrLimitedPriceStyle"
-        android:layout_width="30dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="28dp"
-        android:text="@string/double_zero"
-        app:layout_constraintStart_toEndOf="@+id/unlimited_text_rubles"
-        app:layout_constraintTop_toBottomOf="@+id/unlimited_text_final_price" />
+    <ImageView
+        android:id="@+id/tram_button_icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="13dp"
+        android:src="@drawable/icon_tram"
+        app:layout_constraintBottom_toBottomOf="@+id/tram_button"
+        app:layout_constraintEnd_toEndOf="@+id/tram_button"
+        app:layout_constraintStart_toStartOf="@+id/tram_button"
+        app:layout_constraintTop_toBottomOf="@+id/tram_button_name"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="ContentDescription" />
 
-    <TextView
-        android:id="@+id/unlimited_text_penny"
-        style="@style/TextToUnlimitedOrLimitedPriceStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="28dp"
-        android:text="@string/penny"
-        app:layout_constraintStart_toEndOf="@+id/unlimited_count_of_penny_unlimited_price"
-        app:layout_constraintTop_toBottomOf="@+id/unlimited_text_final_price" />
+    <ImageView
+        android:id="@+id/bus_express_button_icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="13dp"
+        android:src="@drawable/icon_express_bus"
+        app:layout_constraintBottom_toBottomOf="@+id/bus_express_button"
+        app:layout_constraintEnd_toEndOf="@+id/bus_express_button"
+        app:layout_constraintStart_toStartOf="@+id/bus_express_button"
+        app:layout_constraintTop_toBottomOf="@+id/bus_express_button_name"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:id="@+id/metro_button_icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="13dp"
+        android:src="@drawable/icon_metro"
+        app:layout_constraintBottom_toBottomOf="@+id/metro_button"
+        app:layout_constraintEnd_toEndOf="@+id/metro_button"
+        app:layout_constraintStart_toStartOf="@+id/metro_button"
+        app:layout_constraintTop_toBottomOf="@+id/metro_button_name"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:id="@+id/train_city_lines_button_icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="13dp"
+        android:src="@drawable/icon_train_city_lines"
+        app:layout_constraintBottom_toBottomOf="@+id/train_city_lines_button"
+        app:layout_constraintEnd_toEndOf="@+id/train_city_lines_button"
+        app:layout_constraintStart_toStartOf="@+id/train_city_lines_button"
+        app:layout_constraintTop_toBottomOf="@+id/train_city_lines_button_name"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="ContentDescription" />
+
+    <!--    <androidx.recyclerview.widget.RecyclerView-->
+    <!--        android:id="@+id/unlimited_transport_list"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="0dp"-->
+    <!--        android:layout_marginTop="32dp"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/choose_your_transport" />-->
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_get_price"
+            android:layout_width="180dp"
+            android:layout_height="40dp"
+            android:background="@drawable/button_get_price_ripple"
+            android:textAlignment="center"
+            android:text="@string/get_price"
+            android:textColor="@color/black"
+            android:layout_marginTop="28dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/metro_button" />
+
+        <TextView
+            android:id="@+id/unlimited_text_final_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/final_price"
+            android:textColor="@color/grey"
+            android:textSize="22sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_get_price" />
+
+        <TextView
+            android:id="@+id/unlimited_count_of_rubles"
+            style="@style/TextToUnlimitedOrLimitedPriceStyle"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="95dp"
+            android:layout_marginTop="28dp"
+            android:text="@string/zero"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/unlimited_text_final_price" />
+
+        <TextView
+            android:id="@+id/unlimited_text_rubles"
+            style="@style/TextToUnlimitedOrLimitedPriceStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="28dp"
+            android:text="@string/rubles"
+            app:layout_constraintStart_toEndOf="@+id/unlimited_count_of_rubles"
+            app:layout_constraintTop_toBottomOf="@+id/unlimited_text_final_price" />
+
+        <TextView
+            android:id="@+id/unlimited_count_of_penny"
+            style="@style/TextToUnlimitedOrLimitedPriceStyle"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="28dp"
+            android:text="@string/double_zero"
+            app:layout_constraintStart_toEndOf="@+id/unlimited_text_rubles"
+            app:layout_constraintTop_toBottomOf="@+id/unlimited_text_final_price" />
+
+        <TextView
+            android:id="@+id/unlimited_text_penny"
+            style="@style/TextToUnlimitedOrLimitedPriceStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="28dp"
+            android:text="@string/penny"
+            app:layout_constraintStart_toEndOf="@+id/unlimited_count_of_penny"
+            app:layout_constraintTop_toBottomOf="@+id/unlimited_text_final_price" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

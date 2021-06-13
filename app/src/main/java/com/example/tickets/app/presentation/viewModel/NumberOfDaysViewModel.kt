@@ -17,8 +17,9 @@ class NumberOfDaysViewModel constructor(private val numberOfDaysRepository: Numb
     private val _numberOfDays = MutableLiveData<List<NumberOfDaysOrTrips>>()
     val numberOfDays: LiveData<List<NumberOfDaysOrTrips>> = _numberOfDays
 
-    private val _price = MutableLiveData<Price>()
-    val price: LiveData<Price> = _price
+    private val _price = MutableLiveData<Double>()
+    val price: LiveData<Double> = _price
+
 
     fun getNumberOfDays() {
         viewModelScope.launch(Dispatchers.IO) {
@@ -29,7 +30,7 @@ class NumberOfDaysViewModel constructor(private val numberOfDaysRepository: Numb
 
     fun getPrice(body: BodyForGetPriceByNumberOfDays){
         viewModelScope.launch(Dispatchers.IO) {
-            val price = numberOfDaysRepository.getPrice(body)
+            val price = numberOfDaysRepository.getPrice(body).price
             _price.postValue(price)
         }
     }

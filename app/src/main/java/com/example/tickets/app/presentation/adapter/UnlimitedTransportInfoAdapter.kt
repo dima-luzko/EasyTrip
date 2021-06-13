@@ -49,7 +49,7 @@ class UnlimitedTransportInfoAdapter(
         }
     }
 
-    fun getChangeTransport() = transportList.filter { !it.isPressed }
+    fun getChangeTransport() = transportList.filter { it.isPressed }
 
     private fun addTransportsIcon(position: Int): Int {
         return when (transportList[position].id) {

@@ -92,7 +92,7 @@ class PriceFragment : Fragment() {
 
         with(numberOfDaysViewModel) {
             getNumberOfDays()
-            numberOfDays.observe(viewLifecycleOwner, Observer {
+            numberOfDays.observe(viewLifecycleOwner, Observer { numberOfDays ->
                 with(unlimitedTripsDialogBinding.numberOfDaysList) {
                     this.layoutManager = GridLayoutManager(
                         context,
@@ -100,7 +100,7 @@ class PriceFragment : Fragment() {
                         LinearLayoutManager.VERTICAL,
                         false
                     )
-                    this.adapter = NumberOfDaysAdapter(it) {
+                    this.adapter = NumberOfDaysAdapter(numberOfDays) {
                         with(bundle) {
                             putString("numberOfDays", it.value.toString())
                             putInt("numberOfDaysId", it.id)

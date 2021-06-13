@@ -83,13 +83,13 @@ class LimitedChooseFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     private fun setTransportName() {
         with(transportViewModel) {
-            getTransport()
+            getTransportName()
             transportName.observe(viewLifecycleOwner, Observer
             { transportName ->
                 val bus = transportName.bus
                 val trolleybus = transportName.trolleybus
                 val tram = transportName.tram
-                val busExpress = transportName.busExpress
+                val busExpress = transportName.busExpressShort
                 val metro = transportName.metro
                 with(binding) {
                     nameInFirstLimitedItem.text =

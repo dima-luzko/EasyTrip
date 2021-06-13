@@ -26,12 +26,7 @@ class LoginFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginBinding
     private lateinit var errorDialogBinding: ErrorPopupWindowBinding
-    private val viewModel by viewModel<CardViewModel>()
-
-    override fun onStart() {
-        super.onStart()
-        activity?.let { goneBottomNavigation(it) }
-    }
+    private val cardViewModel by viewModel<CardViewModel>()
 
 
     override fun onCreateView(
@@ -44,13 +39,14 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activity?.let { goneBottomNavigation(it) }
         equalsCardNumber()
     }
 
     private fun equalsCardNumber() {
         val bundle = Bundle()
 
-        with(viewModel) {
+        with(cardViewModel) {
             binding.buttonOk.setOnClickListener {
                 val getInputCardNumber = binding.inputCardNumber.text.toString()
 
