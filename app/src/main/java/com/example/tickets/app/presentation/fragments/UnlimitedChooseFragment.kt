@@ -38,7 +38,6 @@ class UnlimitedChooseFragment : Fragment() {
     private val busExpressID = 4
     private val metroID = 5
     private val trainCityLinesID = 6
-    private var transportList = mutableListOf<Int>()
     private var transportListID = arrayListOf<Int>()
     private var numberOfDaysId = 0
 
@@ -61,9 +60,9 @@ class UnlimitedChooseFragment : Fragment() {
         binding.numberOfDaysInUnlimitedChooseScreen.text = arguments?.getString("numberOfDays")
         equalsNumberOfDays()
 
-            priceViewModel.price.observe(viewLifecycleOwner, Observer {
-                binding.unlimitedCountOfRubles.text = it.toString()
-            })
+//            priceViewModel.price.observe(viewLifecycleOwner, Observer {
+//                binding.unlimitedCountOfRubles.text = it.toString()
+//            })
     }
 
     private fun handleClick() {
@@ -74,46 +73,62 @@ class UnlimitedChooseFragment : Fragment() {
                 findNavController().popBackStack()
             }
             busButton.setOnClickListener {
-                onActiveButton(busButtonIsPressed, busButton)
                 busButtonIsPressed = !busButtonIsPressed
-                transportList = addTransportToArrayList(busButtonIsPressed, busID)
+                onActiveButton(busButtonIsPressed, busButton)
+
+                if (busExpressButtonIsPressed) {
+                    busButtonIsPressed = true
+                    onActiveButton(busButtonIsPressed, busButton)
+                    transportListID.remove(busID)
+                }
+
+                addTransportToArrayList(busButtonIsPressed, busID)
             }
             trolleybusButton.setOnClickListener {
-                onActiveButton(trolleybusButtonIsPressed, trolleybusButton)
+
                 trolleybusButtonIsPressed = !trolleybusButtonIsPressed
-                transportList = addTransportToArrayList(trolleybusButtonIsPressed, trolleybusID)
+                onActiveButton(trolleybusButtonIsPressed, trolleybusButton)
+                addTransportToArrayList(trolleybusButtonIsPressed, trolleybusID)
             }
             tramButton.setOnClickListener {
-                onActiveButton(tramButtonIsPressed, tramButton)
                 tramButtonIsPressed = !tramButtonIsPressed
-                transportList = addTransportToArrayList(tramButtonIsPressed, tramID)
+                onActiveButton(tramButtonIsPressed, tramButton)
+
+                addTransportToArrayList(tramButtonIsPressed, tramID)
             }
             busExpressButton.setOnClickListener {
-                onActiveButton(busExpressButtonIsPressed, busExpressButton)
                 busExpressButtonIsPressed = !busExpressButtonIsPressed
-                transportList = addTransportToArrayList(busExpressButtonIsPressed, busExpressID)
+                onActiveButton(busExpressButtonIsPressed, busExpressButton)
+
+                if (busExpressButtonIsPressed) {
+                    busButtonIsPressed = true
+                    onActiveButton(busButtonIsPressed, busButton)
+                    addTransportToArrayList(busButtonIsPressed, busID)
+                }
+                addTransportToArrayList(busExpressButtonIsPressed, busExpressID)
+
             }
             metroButton.setOnClickListener {
-                onActiveButton(metroButtonIsPressed, metroButton)
                 metroButtonIsPressed = !metroButtonIsPressed
-                transportList = addTransportToArrayList(metroButtonIsPressed, metroID)
+                onActiveButton(metroButtonIsPressed, metroButton)
+                addTransportToArrayList(metroButtonIsPressed, metroID)
             }
             trainCityLinesButton.setOnClickListener {
-                onActiveButton(trainCityLinesButtonIsPressed, trainCityLinesButton)
                 trainCityLinesButtonIsPressed = !trainCityLinesButtonIsPressed
-                transportList = addTransportToArrayList(
+                onActiveButton(trainCityLinesButtonIsPressed, trainCityLinesButton)
+                addTransportToArrayList(
                     trainCityLinesButtonIsPressed,
                     trainCityLinesID
                 )
             }
 
             buttonGetPrice.setOnClickListener {
-                priceViewModel.getPrice(
-                    BodyForGetPriceByNumberOfDays(
-                    numberOfDaysId = numberOfDaysId ,
-                    transports = transportListID,
-                    count = transportListID.size
-                ))
+//                priceViewModel.getPrice(
+//                    BodyForGetPriceByNumberOfDays(
+//                    numberOfDaysId = numberOfDaysId ,
+//                    transports = transportListID,
+//                    count = transportListID.size
+//                ))
                 Toast.makeText(context, transportListID.toString(), Toast.LENGTH_SHORT).show()
             }
         }
@@ -127,23 +142,26 @@ class UnlimitedChooseFragment : Fragment() {
 //        }
 //    }
 
-    private fun addTransportToArrayList(flag: Boolean, transportId: Int): ArrayList<Int> {
-        val transportList = ArrayList<Int>()
+    private fun addTransportToArrayList(flag: Boolean, transportId: Int) {
+        var checkElement = false
         if (flag) {
-            transportList.add(transportId)
-        }
-        transportList.forEach {
-            transportListID.add(it)
-            transportListID.sort()
+            transportListID.forEach {
+                if (it == transportId) {
+                    checkElement = true
+                }
+            }
+            if (!checkElement) {
+                transportListID.add(transportId)
+                transportListID.sort()
+            }
         }
         if (!flag) {
             transportListID.remove(transportId)
         }
-        return transportList
     }
 
     private fun onActiveButton(flag: Boolean, button: View) {
-        if (!flag) {
+        if (flag) {
             button.backgroundTintList = ColorStateList.valueOf(Color.rgb(210, 180, 140))
         } else {
             button.backgroundTintList = ColorStateList.valueOf(Color.rgb(255, 255, 255))
