@@ -3,11 +3,14 @@ package com.example.tickets.app.presentation.fragments
 import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import android.graphics.Color
+import android.opengl.Visibility
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.isInvisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -31,13 +34,11 @@ class UnlimitedChooseFragment : Fragment() {
     private var tramButtonIsPressed = false
     private var busExpressButtonIsPressed = false
     private var metroButtonIsPressed = false
-    private var trainCityLinesButtonIsPressed = false
     private val busID = 1
     private val trolleybusID = 2
     private val tramID = 3
     private val busExpressID = 4
     private val metroID = 5
-    private val trainCityLinesID = 6
     private var transportListID = arrayListOf<Int>()
     private var numberOfDaysId = 0
 
@@ -52,22 +53,18 @@ class UnlimitedChooseFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         activity?.let { goneBottomNavigation(it) }
-
         numberOfDaysId = arguments?.getInt("numberOfDaysId")!!.toInt()
-
+        binding.numberOfDaysInUnlimitedChooseScreen.text = arguments?.getString("numberOfDays")
         setTransportName()
         handleClick()
-        binding.numberOfDaysInUnlimitedChooseScreen.text = arguments?.getString("numberOfDays")
         equalsNumberOfDays()
-
+        checkNumberOfDays()
 //            priceViewModel.price.observe(viewLifecycleOwner, Observer {
 //                binding.unlimitedCountOfRubles.text = it.toString()
 //            })
     }
 
     private fun handleClick() {
-
-
         with(binding) {
             backButtonInUnlimitedChooseScreen.setOnClickListener {
                 findNavController().popBackStack()
@@ -75,53 +72,46 @@ class UnlimitedChooseFragment : Fragment() {
             busButton.setOnClickListener {
                 busButtonIsPressed = !busButtonIsPressed
                 onActiveButton(busButtonIsPressed, busButton)
-
-                if (busExpressButtonIsPressed) {
-                    busButtonIsPressed = true
-                    onActiveButton(busButtonIsPressed, busButton)
-                    transportListID.remove(busID)
-                }
-
                 addTransportToArrayList(busButtonIsPressed, busID)
-            }
-            trolleybusButton.setOnClickListener {
-
-                trolleybusButtonIsPressed = !trolleybusButtonIsPressed
-                onActiveButton(trolleybusButtonIsPressed, trolleybusButton)
-                addTransportToArrayList(trolleybusButtonIsPressed, trolleybusID)
-            }
-            tramButton.setOnClickListener {
-                tramButtonIsPressed = !tramButtonIsPressed
-                onActiveButton(tramButtonIsPressed, tramButton)
-
-                addTransportToArrayList(tramButtonIsPressed, tramID)
-            }
-            busExpressButton.setOnClickListener {
-                busExpressButtonIsPressed = !busExpressButtonIsPressed
-                onActiveButton(busExpressButtonIsPressed, busExpressButton)
-
                 if (busExpressButtonIsPressed) {
                     busButtonIsPressed = true
                     onActiveButton(busButtonIsPressed, busButton)
                     addTransportToArrayList(busButtonIsPressed, busID)
                 }
+                checkCombinationOfTransports()
+                checkNumberOfDays()
+            }
+            trolleybusButton.setOnClickListener {
+                trolleybusButtonIsPressed = !trolleybusButtonIsPressed
+                onActiveButton(trolleybusButtonIsPressed, trolleybusButton)
+                addTransportToArrayList(trolleybusButtonIsPressed, trolleybusID)
+                checkCombinationOfTransports()
+                checkNumberOfDays()
+            }
+            tramButton.setOnClickListener {
+                tramButtonIsPressed = !tramButtonIsPressed
+                onActiveButton(tramButtonIsPressed, tramButton)
+                addTransportToArrayList(tramButtonIsPressed, tramID)
+                checkCombinationOfTransports()
+                checkNumberOfDays()
+            }
+            busExpressButton.setOnClickListener {
+                busExpressButtonIsPressed = !busExpressButtonIsPressed
+                onActiveButton(busExpressButtonIsPressed, busExpressButton)
                 addTransportToArrayList(busExpressButtonIsPressed, busExpressID)
-
+                if (busExpressButtonIsPressed) {
+                    busButtonIsPressed = true
+                    onActiveButton(busButtonIsPressed, busButton)
+                    addTransportToArrayList(busButtonIsPressed, busID)
+                }
+                checkCombinationOfTransports()
+                checkNumberOfDays()
             }
             metroButton.setOnClickListener {
                 metroButtonIsPressed = !metroButtonIsPressed
                 onActiveButton(metroButtonIsPressed, metroButton)
                 addTransportToArrayList(metroButtonIsPressed, metroID)
             }
-            trainCityLinesButton.setOnClickListener {
-                trainCityLinesButtonIsPressed = !trainCityLinesButtonIsPressed
-                onActiveButton(trainCityLinesButtonIsPressed, trainCityLinesButton)
-                addTransportToArrayList(
-                    trainCityLinesButtonIsPressed,
-                    trainCityLinesID
-                )
-            }
-
             buttonGetPrice.setOnClickListener {
 //                priceViewModel.getPrice(
 //                    BodyForGetPriceByNumberOfDays(
@@ -134,13 +124,40 @@ class UnlimitedChooseFragment : Fragment() {
         }
     }
 
-//    private fun checkNumberOfDays(){
-//        with(binding) {
-//            if (numberOfDaysInUnlimitedChooseScreen.text == "1" || numberOfDaysInUnlimitedChooseScreen.text == "2") {
-//
-//            }
-//        }
-//    }
+    private fun checkNumberOfDays() {
+        with(binding) {
+            if (
+                numberOfDaysInUnlimitedChooseScreen.text == "1" ||
+                numberOfDaysInUnlimitedChooseScreen.text == "2" ||
+                numberOfDaysInUnlimitedChooseScreen.text == "3" ||
+                numberOfDaysInUnlimitedChooseScreen.text == "90"
+            ) {
+                busButtonIsPressed = true
+                trolleybusButtonIsPressed = true
+                tramButtonIsPressed = true
+                busExpressButtonIsPressed = true
+                onActiveButton(busButtonIsPressed, busButton)
+                onActiveButton(trolleybusButtonIsPressed, trolleybusButton)
+                onActiveButton(tramButtonIsPressed, tramButton)
+                onActiveButton(busExpressButtonIsPressed, busExpressButton)
+                addTransportToArrayList(busButtonIsPressed, busID)
+                addTransportToArrayList(tramButtonIsPressed, trolleybusID)
+                addTransportToArrayList(tramButtonIsPressed, tramID)
+                addTransportToArrayList(busExpressButtonIsPressed, busExpressID)
+                metroButton.visibility = ConstraintLayout.GONE
+                metroButtonName.visibility = ConstraintLayout.GONE
+                metroButtonIcon.visibility = ConstraintLayout.GONE
+            }
+        }
+    }
+
+    private fun checkCombinationOfTransports() {
+        if (busButtonIsPressed && trolleybusButtonIsPressed && tramButtonIsPressed) {
+            busExpressButtonIsPressed = true
+            onActiveButton(busExpressButtonIsPressed, binding.busExpressButton)
+            addTransportToArrayList(busExpressButtonIsPressed, busExpressID)
+        }
+    }
 
     private fun addTransportToArrayList(flag: Boolean, transportId: Int) {
         var checkElement = false
@@ -168,7 +185,6 @@ class UnlimitedChooseFragment : Fragment() {
         }
     }
 
-
     @SuppressLint("SetTextI18n")
     private fun setTransportName() {
         with(transportViewModel) {
@@ -180,14 +196,12 @@ class UnlimitedChooseFragment : Fragment() {
                 val tram = transportName.tram
                 val busExpress = transportName.busExpress
                 val metro = transportName.metro
-                val trainCityLines = transportName.train_city_lines
                 with(binding) {
                     busButtonName.text = bus
                     trolleybusButtonName.text = trolleybus
                     tramButtonName.text = tram
                     busExpressButtonName.text = busExpress
                     metroButtonName.text = metro
-                    trainCityLinesButtonName.text = trainCityLines
                 }
             })
         }

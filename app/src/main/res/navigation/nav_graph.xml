@@ -46,6 +46,9 @@
         <action
             android:id="@+id/action_priceFragment_to_unlimitedChooseFragment"
             app:destination="@id/unlimitedChooseFragment" />
+        <action
+            android:id="@+id/action_priceFragment_to_unlimitedChooseWithTrainCityLinesFragment"
+            app:destination="@id/unlimitedChooseWithTrainCityLinesFragment" />
     </fragment>
     <fragment
         android:id="@+id/unlimitedChooseFragment"
@@ -70,5 +73,17 @@
         <action
             android:id="@+id/action_limitedChooseFragment_to_priceFragment"
             app:destination="@id/priceFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/unlimitedChooseWithTrainCityLinesFragment"
+        android:name="com.example.tickets.app.presentation.fragments.UnlimitedChooseWithTrainCityLinesFragment"
+        android:label="fragment_unlimited_choose_with_train_city_lines"
+        tools:layout="@layout/fragment_unlimited_choose_with_train_city_lines" >
+        <argument
+            android:name="numberOfDays"
+            app:argType="string" />
+        <argument
+            android:name="numberOfDaysId"
+            app:argType="integer" />
     </fragment>
 </navigation>

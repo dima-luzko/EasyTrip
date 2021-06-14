@@ -17,14 +17,28 @@ class NumberOfDaysViewModel constructor(private val numberOfDaysRepository: Numb
     private val _numberOfDays = MutableLiveData<List<NumberOfDaysOrTrips>>()
     val numberOfDays: LiveData<List<NumberOfDaysOrTrips>> = _numberOfDays
 
+    private val _numberOfDaysWithTrainCityLines = MutableLiveData<List<NumberOfDaysOrTrips>>()
+    val numberOfDaysWithTrainCityLines: LiveData<List<NumberOfDaysOrTrips>> = _numberOfDaysWithTrainCityLines
+
     private val _price = MutableLiveData<Double>()
     val price: LiveData<Double> = _price
 
 
     fun getNumberOfDays() {
         viewModelScope.launch(Dispatchers.IO) {
-            val numberOfDays = numberOfDaysRepository.getNumberOfDays()
+            val numberOfDays = numberOfDaysRepository.getNumberOfDays().filterIndexed { index, _ ->
+                index !=3 && index!= 6
+            }
             _numberOfDays.postValue(numberOfDays)
+        }
+    }
+
+    fun getNumberOfDaysWithCityLinesTrain() {
+        viewModelScope.launch(Dispatchers.IO) {
+            val numberOfDays = numberOfDaysRepository.getNumberOfDays().filterIndexed { index, _ ->
+                index !=0 && index!= 1 && index!=5 && index!=8
+            }
+            _numberOfDaysWithTrainCityLines.postValue(numberOfDays)
         }
     }
 

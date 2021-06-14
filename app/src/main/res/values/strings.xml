@@ -28,6 +28,7 @@
     <string name="number_of_days">выберите тип проездного</string>
     <string name="back">Назад</string>
     <string name="unlimited_trips">Безлимит поездок</string>
+    <string name="unlimited_trips_with_train_city">Безлимит поездок включая городские линии</string>
     <string name="number_of_trips">Количество поездок</string>
     <string name="choose_your_transport">Выберите нужный транспорт</string>
     <string name="final_price">Итоговая цена:</string>
@@ -47,4 +48,6 @@
     <string name="no_card_number">Карты с таким номером не существует!</string>
     <string name="no_card_transactions">Для данного номера карты ничего не приобретено!</string>
     <string name="get_price">Узнать цену</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

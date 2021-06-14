@@ -9,11 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tickets.R
+import com.example.tickets.app.data.model.NumberOfDaysOrTrips
 import com.example.tickets.app.presentation.adapter.NumberOfDaysAdapter
 import com.example.tickets.app.presentation.viewModel.NumberOfDaysViewModel
 import com.example.tickets.databinding.FragmentPriceBinding
@@ -45,7 +47,6 @@ class PriceFragment : Fragment() {
             .setOnClickMenuListener { menuItem ->
                 if (menuItem.id == 1) {
                     findNavController().popBackStack()
-                    //findNavController().navigate(R.id.action_priceFragment_to_profileFragment)
                     return@setOnClickMenuListener
                 }
             }
@@ -68,7 +69,29 @@ class PriceFragment : Fragment() {
             setOnClickListener {
                 CoroutineScope(Dispatchers.Main).launch {
                     delay(1000)
-                    showPopupDialog()
+                    showPopupDialog(
+                        R.id.action_priceFragment_to_unlimitedChooseFragment,
+                        numberOfDaysViewModel.numberOfDays,
+                        numberOfDaysViewModel.getNumberOfDays()
+                    )
+                }
+                playAnimation()
+                CoroutineScope(Dispatchers.Main).launch {
+                    delay(1000)
+                    pauseAnimation()
+                }
+            }
+        }
+
+        with(binding.unlimitedTripsButtonWithTrainCity) {
+            setOnClickListener {
+                CoroutineScope(Dispatchers.Main).launch {
+                    delay(1000)
+                    showPopupDialog(
+                        R.id.action_priceFragment_to_unlimitedChooseWithTrainCityLinesFragment,
+                        numberOfDaysViewModel.numberOfDaysWithTrainCityLines,
+                        numberOfDaysViewModel.getNumberOfDaysWithCityLinesTrain()
+                    )
                 }
                 playAnimation()
                 CoroutineScope(Dispatchers.Main).launch {
@@ -79,7 +102,11 @@ class PriceFragment : Fragment() {
         }
     }
 
-    private fun showPopupDialog() {
+    private fun showPopupDialog(
+        navigationId: Int,
+        numberOfDaysList: LiveData<List<NumberOfDaysOrTrips>>,
+        function: Unit
+    ) {
         val bundle = Bundle()
         val dialog = context?.let { Dialog(it) }
         unlimitedTripsDialogBinding = UnlimitedTripsPopupWindowBinding.inflate(layoutInflater)
@@ -90,9 +117,8 @@ class PriceFragment : Fragment() {
             this?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         }
 
-        with(numberOfDaysViewModel) {
-            getNumberOfDays()
-            numberOfDays.observe(viewLifecycleOwner, Observer { numberOfDays ->
+            function
+            numberOfDaysList.observe(viewLifecycleOwner, Observer { numberOfDays ->
                 with(unlimitedTripsDialogBinding.numberOfDaysList) {
                     this.layoutManager = GridLayoutManager(
                         context,
@@ -106,7 +132,7 @@ class PriceFragment : Fragment() {
                             putInt("numberOfDaysId", it.id)
                         }
                         findNavController().navigate(
-                            R.id.action_priceFragment_to_unlimitedChooseFragment,
+                            navigationId,
                             bundle
                         )
                         dialog?.dismiss()
@@ -114,7 +140,6 @@ class PriceFragment : Fragment() {
                     this.hasFixedSize()
                 }
             })
-        }
         dialog?.show()
     }
 }

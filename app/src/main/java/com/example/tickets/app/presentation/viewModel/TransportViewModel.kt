@@ -15,11 +15,6 @@ class TransportViewModel constructor(private val transportRepository: TransportR
     private val _transportName = MutableLiveData<TransportsStorage>()
     val transportName: LiveData<TransportsStorage> = _transportName
 
-    private val _transport = MutableLiveData<List<Transports>>()
-    val transport: LiveData<List<Transports>> = _transport
-
-    var transportsList: List<Transports> = listOf()
-
     data class TransportsStorage(
         val bus: String,
         val trolleybus: String,
@@ -27,15 +22,8 @@ class TransportViewModel constructor(private val transportRepository: TransportR
         val busExpressShort: String,
         val busExpress: String,
         val metro: String,
-        val train_city_lines: String
+        val trainCityLines: String
     )
-
-    fun getTransportList() {
-        viewModelScope.launch(Dispatchers.IO) {
-            transportsList = transportRepository.getTransports()
-            _transport.postValue(transportsList)
-        }
-    }
 
     fun getTransportName() {
         viewModelScope.launch(Dispatchers.IO) {
@@ -53,7 +41,7 @@ class TransportViewModel constructor(private val transportRepository: TransportR
             busExpressShort = transportsList.map { it.transportName }[3].substring(0, 12),
             busExpress = transportsList.map { it.transportName }[3],
             metro = transportsList.map { it.transportName }[4],
-            train_city_lines = transportsList.map { it.transportName }[5]
+            trainCityLines = transportsList.map { it.transportName }[5]
         )
     }
 }

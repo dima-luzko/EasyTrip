@@ -113,11 +113,21 @@
         android:id="@+id/metro_button"
         android:layout_width="140dp"
         android:layout_height="100dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/universal_form"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tram_button" />
+
+    <View
+        android:id="@+id/train_city_lines_button"
+        android:layout_width="140dp"
+        android:layout_height="100dp"
         android:layout_marginTop="30dp"
         android:background="@drawable/universal_form"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tram_button" />
+        app:layout_constraintStart_toEndOf="@+id/metro_button"
+        app:layout_constraintTop_toBottomOf="@+id/bus_express_button" />
 
     <TextView
         android:id="@+id/bus_button_name"
@@ -163,6 +173,15 @@
         app:layout_constraintEnd_toEndOf="@+id/metro_button"
         app:layout_constraintStart_toStartOf="@+id/metro_button"
         app:layout_constraintTop_toTopOf="@+id/metro_button" />
+
+    <TextView
+        android:id="@+id/train_city_lines_button_name"
+        style="@style/TextUnlimitedAndLimitedItemNameStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/train_city_lines_button"
+        app:layout_constraintStart_toStartOf="@+id/train_city_lines_button"
+        app:layout_constraintTop_toTopOf="@+id/train_city_lines_button" />
 
     <ImageView
         android:id="@+id/bus_button_icon"
@@ -226,6 +245,19 @@
         app:layout_constraintEnd_toEndOf="@+id/metro_button"
         app:layout_constraintStart_toStartOf="@+id/metro_button"
         app:layout_constraintTop_toBottomOf="@+id/metro_button_name"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:id="@+id/train_city_lines_button_icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="13dp"
+        android:src="@drawable/icon_train_city_lines"
+        app:layout_constraintBottom_toBottomOf="@+id/train_city_lines_button"
+        app:layout_constraintEnd_toEndOf="@+id/train_city_lines_button"
+        app:layout_constraintStart_toStartOf="@+id/train_city_lines_button"
+        app:layout_constraintTop_toBottomOf="@+id/train_city_lines_button_name"
         app:layout_constraintVertical_bias="0.0"
         tools:ignore="ContentDescription" />
 
