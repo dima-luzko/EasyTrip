@@ -261,19 +261,6 @@
         app:layout_constraintVertical_bias="0.0"
         tools:ignore="ContentDescription" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button_get_price"
-        android:layout_width="180dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="28dp"
-        android:background="@drawable/button_get_price_ripple"
-        android:text="@string/get_price"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/metro_button" />
-
     <TextView
         android:id="@+id/unlimited_text_final_price"
         android:layout_width="wrap_content"
@@ -284,7 +271,7 @@
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_get_price" />
+        app:layout_constraintTop_toBottomOf="@+id/metro_button" />
 
     <TextView
         android:id="@+id/unlimited_count_of_rubles"

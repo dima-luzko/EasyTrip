@@ -3,14 +3,11 @@ package com.example.tickets.app.presentation.fragments
 import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import android.graphics.Color
-import android.opengl.Visibility
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.isInvisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -21,8 +18,7 @@ import com.example.tickets.app.presentation.viewModel.TransportViewModel
 import com.example.tickets.databinding.FragmentUnlimitedChooseBinding
 import com.example.tickets.utils.goneBottomNavigation
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.util.*
-import kotlin.collections.ArrayList
+import java.math.BigDecimal
 
 class UnlimitedChooseFragment : Fragment() {
 
@@ -59,9 +55,21 @@ class UnlimitedChooseFragment : Fragment() {
         handleClick()
         equalsNumberOfDays()
         checkNumberOfDays()
-//            priceViewModel.price.observe(viewLifecycleOwner, Observer {
-//                binding.unlimitedCountOfRubles.text = it.toString()
-//            })
+        getFinalPrice()
+        setFinalPrice()
+    }
+
+    private fun setFinalPrice() {
+        priceViewModel.price.observe(viewLifecycleOwner, Observer { countPrice ->
+            val price = countPrice.toBigDecimal().setScale(2, BigDecimal.ROUND_HALF_EVEN).toString()
+                .split(".")
+            val rubles = price.first()
+            val penny = price.last()
+            with(binding) {
+                unlimitedCountOfRubles.text = rubles
+                unlimitedCountOfPenny.text = penny
+            }
+        })
     }
 
     private fun handleClick() {
@@ -73,13 +81,10 @@ class UnlimitedChooseFragment : Fragment() {
                 busButtonIsPressed = !busButtonIsPressed
                 onActiveButton(busButtonIsPressed, busButton)
                 addTransportToArrayList(busButtonIsPressed, busID)
-                if (busExpressButtonIsPressed) {
-                    busButtonIsPressed = true
-                    onActiveButton(busButtonIsPressed, busButton)
-                    addTransportToArrayList(busButtonIsPressed, busID)
-                }
+                onActiveBusExpressButton()
                 checkCombinationOfTransports()
                 checkNumberOfDays()
+                getFinalPrice()
             }
             trolleybusButton.setOnClickListener {
                 trolleybusButtonIsPressed = !trolleybusButtonIsPressed
@@ -87,6 +92,7 @@ class UnlimitedChooseFragment : Fragment() {
                 addTransportToArrayList(trolleybusButtonIsPressed, trolleybusID)
                 checkCombinationOfTransports()
                 checkNumberOfDays()
+                getFinalPrice()
             }
             tramButton.setOnClickListener {
                 tramButtonIsPressed = !tramButtonIsPressed
@@ -94,32 +100,22 @@ class UnlimitedChooseFragment : Fragment() {
                 addTransportToArrayList(tramButtonIsPressed, tramID)
                 checkCombinationOfTransports()
                 checkNumberOfDays()
+                getFinalPrice()
             }
             busExpressButton.setOnClickListener {
                 busExpressButtonIsPressed = !busExpressButtonIsPressed
                 onActiveButton(busExpressButtonIsPressed, busExpressButton)
                 addTransportToArrayList(busExpressButtonIsPressed, busExpressID)
-                if (busExpressButtonIsPressed) {
-                    busButtonIsPressed = true
-                    onActiveButton(busButtonIsPressed, busButton)
-                    addTransportToArrayList(busButtonIsPressed, busID)
-                }
+                onActiveBusExpressButton()
                 checkCombinationOfTransports()
                 checkNumberOfDays()
+                getFinalPrice()
             }
             metroButton.setOnClickListener {
                 metroButtonIsPressed = !metroButtonIsPressed
                 onActiveButton(metroButtonIsPressed, metroButton)
                 addTransportToArrayList(metroButtonIsPressed, metroID)
-            }
-            buttonGetPrice.setOnClickListener {
-//                priceViewModel.getPrice(
-//                    BodyForGetPriceByNumberOfDays(
-//                    numberOfDaysId = numberOfDaysId ,
-//                    transports = transportListID,
-//                    count = transportListID.size
-//                ))
-                Toast.makeText(context, transportListID.toString(), Toast.LENGTH_SHORT).show()
+                getFinalPrice()
             }
         }
     }
@@ -148,6 +144,14 @@ class UnlimitedChooseFragment : Fragment() {
                 metroButtonName.visibility = ConstraintLayout.GONE
                 metroButtonIcon.visibility = ConstraintLayout.GONE
             }
+        }
+    }
+
+    private fun onActiveBusExpressButton() {
+        if (busExpressButtonIsPressed) {
+            busButtonIsPressed = true
+            onActiveButton(busButtonIsPressed, binding.busButton)
+            addTransportToArrayList(busButtonIsPressed, busID)
         }
     }
 
@@ -207,11 +211,20 @@ class UnlimitedChooseFragment : Fragment() {
         }
     }
 
-//    private fun getFinalPrice() {
-//        priceViewModel.getPrice(body)
-//
-//    }
-
+    private fun getFinalPrice() {
+        if (transportListID.isEmpty()) {
+            binding.unlimitedCountOfRubles.text = getString(R.string.zero)
+            binding.unlimitedCountOfPenny.text = getString(R.string.double_zero)
+        } else {
+            priceViewModel.getPrice(
+                BodyForGetPriceByNumberOfDays(
+                    numberOfDaysId = numberOfDaysId,
+                    transports = transportListID,
+                    count = transportListID.size
+                )
+            )
+        }
+    }
 
     private fun equalsNumberOfDays() {
         with(binding) {
@@ -221,11 +234,6 @@ class UnlimitedChooseFragment : Fragment() {
         }
     }
 
-//    private val body = BodyForGetPriceByNumberOfDays(
-//        numberOfDaysId = numberOfDaysId ,
-//        transports = transportListID,
-//        count = transportListID.size
-//    )
 }
 
 
