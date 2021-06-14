@@ -30,7 +30,7 @@
         app:ss_countTextColor="@color/white"
         app:ss_defaultIconColor="@color/purple"
         app:ss_iconTextColor="@color/purple"
-        app:ss_iconTextSize="14sp"
+        app:ss_iconTextSize="@dimen/_10font_mdp"
         app:ss_selectedIconColor="@color/orange"
         app:ss_selectedIconTextColor="@color/orange"
         app:layout_constraintBottom_toBottomOf="parent"

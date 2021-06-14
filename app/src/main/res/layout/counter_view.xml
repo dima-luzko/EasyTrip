@@ -36,7 +36,7 @@
 
                 <ImageView
                     android:id="@+id/limited_item_icon"
-                    style="@style/ImageLimitedItemStyle"
+                    style="@style/ImageLimitedOrUnlimitedItemStyle"
                     android:src="@drawable/icon_express_bus"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/limited_item_name"

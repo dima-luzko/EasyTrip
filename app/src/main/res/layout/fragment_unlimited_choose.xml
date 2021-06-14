@@ -5,22 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    android:padding="20dp">
+    android:padding="@dimen/_15mdp">
 
     <View
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="@dimen/_30mdp"
+        android:layout_marginTop="@dimen/_8mdp"
         android:background="@drawable/universal_form"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/back_button_in_unlimited_choose_screen"
-        android:layout_width="120dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="4dp"
+        android:layout_width="@dimen/_75mdp"
+        android:layout_height="@dimen/_30mdp"
+        android:layout_marginStart="@dimen/_3mdp"
         android:backgroundTint="@color/white"
         android:padding="0dp"
         android:text="@string/back"
@@ -36,9 +36,9 @@
     <TextView
         android:id="@+id/number_of_days_in_unlimited_choose_screen"
         style="@style/TextToolbarStyle"
-        android:layout_width="30dp"
+        android:layout_width="@dimen/_23mdp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="@dimen/_23mdp"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar"
         app:layout_constraintStart_toEndOf="@+id/back_button_in_unlimited_choose_screen"
         app:layout_constraintTop_toTopOf="@+id/toolbar"
@@ -62,7 +62,7 @@
         style="@style/TextToUnlimitedOrLimitedPriceStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="@dimen/_40mdp"
         android:text="@string/choose_your_transport"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
@@ -71,19 +71,19 @@
 
     <View
         android:id="@+id/bus_button"
-        android:layout_width="140dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="@dimen/_105mdp"
+        android:layout_height="@dimen/_75mdp"
+        android:layout_marginStart="@dimen/_25mdp"
+        android:layout_marginTop="@dimen/_31mdp"
         android:background="@drawable/universal_form"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/choose_your_transport" />
 
     <View
         android:id="@+id/trolleybus_button"
-        android:layout_width="140dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="@dimen/_105mdp"
+        android:layout_height="@dimen/_75mdp"
+        android:layout_marginTop="@dimen/_31mdp"
         android:background="@drawable/universal_form"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/bus_button"
@@ -91,19 +91,19 @@
 
     <View
         android:id="@+id/tram_button"
-        android:layout_width="140dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="30dp"
+        android:layout_width="@dimen/_105mdp"
+        android:layout_height="@dimen/_75mdp"
+        android:layout_marginStart="@dimen/_25mdp"
+        android:layout_marginTop="@dimen/_23mdp"
         android:background="@drawable/universal_form"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bus_button" />
 
     <View
         android:id="@+id/bus_express_button"
-        android:layout_width="140dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="30dp"
+        android:layout_width="@dimen/_105mdp"
+        android:layout_height="@dimen/_75mdp"
+        android:layout_marginTop="@dimen/_23mdp"
         android:background="@drawable/universal_form"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tram_button"
@@ -111,9 +111,9 @@
 
     <View
         android:id="@+id/metro_button"
-        android:layout_width="140dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="30dp"
+        android:layout_width="@dimen/_105mdp"
+        android:layout_height="@dimen/_75mdp"
+        android:layout_marginTop="@dimen/_23mdp"
         android:background="@drawable/universal_form"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -166,9 +166,7 @@
 
     <ImageView
         android:id="@+id/bus_button_icon"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="13dp"
+        style="@style/ImageLimitedOrUnlimitedItemStyle"
         android:src="@drawable/icon_bus"
         app:layout_constraintBottom_toBottomOf="@+id/bus_button"
         app:layout_constraintEnd_toEndOf="@+id/bus_button"
@@ -179,9 +177,7 @@
 
     <ImageView
         android:id="@+id/trolleybus_button_icon"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="13dp"
+        style="@style/ImageLimitedOrUnlimitedItemStyle"
         android:src="@drawable/icon_trolleybus"
         app:layout_constraintBottom_toBottomOf="@+id/trolleybus_button"
         app:layout_constraintEnd_toEndOf="@+id/trolleybus_button"
@@ -192,9 +188,7 @@
 
     <ImageView
         android:id="@+id/tram_button_icon"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="13dp"
+        style="@style/ImageLimitedOrUnlimitedItemStyle"
         android:src="@drawable/icon_tram"
         app:layout_constraintBottom_toBottomOf="@+id/tram_button"
         app:layout_constraintEnd_toEndOf="@+id/tram_button"
@@ -205,9 +199,7 @@
 
     <ImageView
         android:id="@+id/bus_express_button_icon"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="13dp"
+        style="@style/ImageLimitedOrUnlimitedItemStyle"
         android:src="@drawable/icon_express_bus"
         app:layout_constraintBottom_toBottomOf="@+id/bus_express_button"
         app:layout_constraintEnd_toEndOf="@+id/bus_express_button"
@@ -218,9 +210,7 @@
 
     <ImageView
         android:id="@+id/metro_button_icon"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="13dp"
+        style="@style/ImageLimitedOrUnlimitedItemStyle"
         android:src="@drawable/icon_metro"
         app:layout_constraintBottom_toBottomOf="@+id/metro_button"
         app:layout_constraintEnd_toEndOf="@+id/metro_button"
@@ -233,10 +223,9 @@
         android:id="@+id/unlimited_text_final_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="@dimen/_25mdp"
         android:text="@string/final_price"
-        android:textColor="@color/grey"
-        android:textSize="22sp"
+        style="@style/TextToUnlimitedOrLimitedPriceStyle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/metro_button" />
@@ -244,10 +233,10 @@
     <TextView
         android:id="@+id/unlimited_count_of_rubles"
         style="@style/TextToUnlimitedOrLimitedPriceStyle"
-        android:layout_width="40dp"
+        android:layout_width="@dimen/_30mdp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="95dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="@dimen/_77mdp"
+        android:layout_marginTop="@dimen/_22mdp"
         android:text="@string/zero"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/unlimited_text_final_price" />
@@ -257,8 +246,8 @@
         style="@style/TextToUnlimitedOrLimitedPriceStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="@dimen/_4mdp"
+        android:layout_marginTop="@dimen/_22mdp"
         android:text="@string/rubles"
         app:layout_constraintStart_toEndOf="@+id/unlimited_count_of_rubles"
         app:layout_constraintTop_toBottomOf="@+id/unlimited_text_final_price" />
@@ -266,10 +255,10 @@
     <TextView
         android:id="@+id/unlimited_count_of_penny"
         style="@style/TextToUnlimitedOrLimitedPriceStyle"
-        android:layout_width="30dp"
+        android:layout_width="@dimen/_25mdp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="@dimen/_4mdp"
+        android:layout_marginTop="@dimen/_22mdp"
         android:text="@string/double_zero"
         app:layout_constraintStart_toEndOf="@+id/unlimited_text_rubles"
         app:layout_constraintTop_toBottomOf="@+id/unlimited_text_final_price" />
@@ -279,8 +268,8 @@
         style="@style/TextToUnlimitedOrLimitedPriceStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="@dimen/_4mdp"
+        android:layout_marginTop="@dimen/_22mdp"
         android:text="@string/penny"
         app:layout_constraintStart_toEndOf="@+id/unlimited_count_of_penny"
         app:layout_constraintTop_toBottomOf="@+id/unlimited_text_final_price" />

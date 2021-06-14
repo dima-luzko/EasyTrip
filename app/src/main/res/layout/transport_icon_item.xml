@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:paddingStart="3dp"
-    android:paddingEnd="3dp">
+    android:paddingStart="@dimen/_3mdp"
+    android:paddingEnd="@dimen/_3mdp">
 
     <ImageView
         android:id="@+id/transport_item_icon"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
+        android:layout_width="@dimen/_33mdp"
+        android:layout_height="@dimen/_33mdp"
         android:src="@drawable/icon_bus"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

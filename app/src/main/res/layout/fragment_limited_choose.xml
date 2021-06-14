@@ -5,22 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    android:padding="20dp">
+    android:padding="@dimen/_15mdp">
 
     <View
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="@dimen/_30mdp"
+        android:layout_marginTop="@dimen/_8mdp"
         android:background="@drawable/universal_form"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/back_button_in_limited_choose_screen"
-        android:layout_width="90dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="4dp"
+        android:layout_width="@dimen/_75mdp"
+        android:layout_height="@dimen/_30mdp"
+        android:layout_marginStart="@dimen/_3mdp"
         android:backgroundTint="@color/white"
         android:padding="0dp"
         android:text="@string/back"
@@ -36,9 +36,9 @@
     <TextView
         android:id="@+id/text"
         style="@style/TextToolbarStyle"
-        android:layout_width="260dp"
+        android:layout_width="@dimen/_190mdp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
+        android:layout_marginStart="@dimen/_4mdp"
         android:text="@string/limited_tickets"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar"
         app:layout_constraintStart_toEndOf="@+id/back_button_in_limited_choose_screen"
@@ -50,7 +50,7 @@
         style="@style/TextToUnlimitedOrLimitedPriceStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="@dimen/_40mdp"
         android:text="@string/choose_transport_and_trips"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -59,10 +59,10 @@
 
     <View
         android:id="@+id/first_limited_item"
-        android:layout_width="328dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="52dp"
+        android:layout_width="@dimen/_252mdp"
+        android:layout_height="@dimen/_80mdp"
+        android:layout_marginStart="@dimen/_15mdp"
+        android:layout_marginTop="@dimen/_40mdp"
         android:background="@drawable/universal_form"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/choose_transport_and_trip" />
@@ -79,8 +79,8 @@
 
     <ImageView
         android:id="@+id/first_icon"
-        style="@style/ImageLimitedItemStyle"
-        android:layout_marginStart="60dp"
+        style="@style/ImageLimitedOrUnlimitedItemStyle"
+        android:layout_marginStart="@dimen/_46mdp"
         android:src="@drawable/icon_bus"
         app:layout_constraintStart_toStartOf="@+id/first_limited_item"
         app:layout_constraintTop_toBottomOf="@+id/name_in_first_limited_item"
@@ -88,8 +88,8 @@
 
     <ImageView
         android:id="@+id/second_icon"
-        style="@style/ImageLimitedItemStyle"
-        android:layout_marginStart="28dp"
+        style="@style/ImageLimitedOrUnlimitedItemStyle"
+        android:layout_marginStart="@dimen/_22mdp"
         android:src="@drawable/icon_tram"
         app:layout_constraintStart_toEndOf="@+id/first_icon"
         app:layout_constraintTop_toBottomOf="@+id/name_in_first_limited_item"
@@ -97,8 +97,8 @@
 
     <ImageView
         android:id="@+id/third_icon"
-        style="@style/ImageLimitedItemStyle"
-        android:layout_marginStart="28dp"
+        style="@style/ImageLimitedOrUnlimitedItemStyle"
+        android:layout_marginStart="@dimen/_22mdp"
         android:src="@drawable/icon_trolleybus"
         app:layout_constraintStart_toEndOf="@+id/second_icon"
         app:layout_constraintTop_toBottomOf="@+id/name_in_first_limited_item"
@@ -106,24 +106,24 @@
 
     <View
         android:id="@+id/second_limited_item"
-        android:layout_width="140dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="45dp"
+        android:layout_width="@dimen/_105mdp"
+        android:layout_height="@dimen/_75mdp"
+        android:layout_marginStart="@dimen/_17mdp"
+        android:layout_marginTop="@dimen/_35mdp"
         android:background="@drawable/universal_form"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/first_limited_item" />
 
     <View
         android:id="@+id/third_limited_item"
-        android:layout_width="140dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="28dp"
+        android:layout_width="@dimen/_105mdp"
+        android:layout_height="@dimen/_75mdp"
+        android:layout_marginStart="@dimen/_26mdp"
         android:layout_marginTop="45dp"
         android:background="@drawable/universal_form"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/second_limited_item"
-        app:layout_constraintTop_toBottomOf="@+id/first_limited_item"/>
+        app:layout_constraintTop_toBottomOf="@+id/first_limited_item" />
 
     <TextView
         android:id="@+id/name_in_second_limited_item"
@@ -137,8 +137,8 @@
 
     <ImageView
         android:id="@+id/four_icon"
-        style="@style/ImageLimitedItemStyle"
-        android:layout_marginStart="43dp"
+        style="@style/ImageLimitedOrUnlimitedItemStyle"
+        android:layout_marginStart="@dimen/_33mdp"
         android:src="@drawable/icon_metro"
         app:layout_constraintStart_toStartOf="@+id/second_limited_item"
         app:layout_constraintTop_toBottomOf="@+id/name_in_second_limited_item"
@@ -156,8 +156,8 @@
 
     <ImageView
         android:id="@+id/five_icon"
-        style="@style/ImageLimitedItemStyle"
-        android:layout_marginStart="43dp"
+        style="@style/ImageLimitedOrUnlimitedItemStyle"
+        android:layout_marginStart="@dimen/_33mdp"
         android:src="@drawable/icon_express_bus"
         app:layout_constraintStart_toStartOf="@+id/third_limited_item"
         app:layout_constraintTop_toBottomOf="@+id/name_in_third_limited_item"
@@ -165,10 +165,10 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_up_in_second_limited_item"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="@dimen/_20mdp"
+        android:layout_height="@dimen/_20mdp"
+        android:layout_marginTop="@dimen/_6mdp"
+        android:layout_marginEnd="@dimen/_6mdp"
         android:background="@drawable/form_for_text_in_custom_view"
         app:icon="@drawable/icon_arrow_up"
         app:iconGravity="textStart"
@@ -178,24 +178,24 @@
 
     <TextView
         android:id="@+id/text_list_in_second_limited_item"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="38dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="@dimen/_20mdp"
+        android:layout_height="@dimen/_20mdp"
+        android:layout_marginTop="@dimen/_29mdp"
+        android:layout_marginEnd="@dimen/_6mdp"
         android:background="@drawable/form_for_text_in_custom_view"
         android:gravity="center"
         android:text="@string/zero"
         android:textColor="@color/black"
-        android:textSize="12sp"
+        android:textSize="@dimen/_9font_mdp"
         app:layout_constraintEnd_toEndOf="@+id/second_limited_item"
         app:layout_constraintTop_toTopOf="@+id/second_limited_item" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_down_in_second_limited_item"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="@dimen/_20mdp"
+        android:layout_height="@dimen/_20mdp"
+        android:layout_marginTop="@dimen/_4mdp"
+        android:layout_marginEnd="@dimen/_6mdp"
         android:background="@drawable/form_for_text_in_custom_view"
         android:visibility="invisible"
         app:icon="@drawable/icon_arrow_down"
@@ -206,10 +206,10 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_up_in_third_limited_item"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="@dimen/_20mdp"
+        android:layout_height="@dimen/_20mdp"
+        android:layout_marginTop="@dimen/_6mdp"
+        android:layout_marginEnd="@dimen/_6mdp"
         android:background="@drawable/form_for_text_in_custom_view"
         app:icon="@drawable/icon_arrow_up"
         app:iconGravity="textStart"
@@ -219,24 +219,24 @@
 
     <TextView
         android:id="@+id/text_list_in_third_limited_item"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="38dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="@dimen/_20mdp"
+        android:layout_height="@dimen/_20mdp"
+        android:layout_marginTop="@dimen/_29mdp"
+        android:layout_marginEnd="@dimen/_6mdp"
         android:background="@drawable/form_for_text_in_custom_view"
         android:gravity="center"
         android:text="@string/zero"
         android:textColor="@color/black"
-        android:textSize="12sp"
+        android:textSize="@dimen/_9font_mdp"
         app:layout_constraintEnd_toEndOf="@+id/third_limited_item"
         app:layout_constraintTop_toTopOf="@+id/third_limited_item" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_down_in_third_limited_item"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="@dimen/_20mdp"
+        android:layout_height="@dimen/_20mdp"
+        android:layout_marginTop="@dimen/_4mdp"
+        android:layout_marginEnd="@dimen/_6mdp"
         android:background="@drawable/form_for_text_in_custom_view"
         android:visibility="invisible"
         app:icon="@drawable/icon_arrow_down"
@@ -247,10 +247,10 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_up_in_first_limited_item"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="@dimen/_20mdp"
+        android:layout_height="@dimen/_20mdp"
+        android:layout_marginTop="@dimen/_6mdp"
+        android:layout_marginEnd="@dimen/_6mdp"
         android:background="@drawable/form_for_text_in_custom_view"
         app:icon="@drawable/icon_arrow_up"
         app:iconGravity="textStart"
@@ -260,40 +260,39 @@
 
     <TextView
         android:id="@+id/text_list_in_first_limited_item"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="38dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="@dimen/_20mdp"
+        android:layout_height="@dimen/_20mdp"
+        android:layout_marginTop="@dimen/_29mdp"
+        android:layout_marginEnd="@dimen/_6mdp"
         android:background="@drawable/form_for_text_in_custom_view"
         android:gravity="center"
         android:text="@string/zero"
         android:textColor="@color/black"
-        android:textSize="12sp"
+        android:textSize="@dimen/_9font_mdp"
         app:layout_constraintEnd_toEndOf="@+id/first_limited_item"
         app:layout_constraintTop_toTopOf="@+id/first_limited_item" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_down_in_first_limited_item"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="@dimen/_20mdp"
+        android:layout_height="@dimen/_20mdp"
+        android:layout_marginTop="@dimen/_4mdp"
+        android:layout_marginEnd="@dimen/_6mdp"
         android:background="@drawable/form_for_text_in_custom_view"
+        android:visibility="invisible"
         app:icon="@drawable/icon_arrow_down"
         app:iconGravity="textStart"
         app:iconPadding="0dp"
-        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="@+id/first_limited_item"
         app:layout_constraintTop_toBottomOf="@+id/text_list_in_first_limited_item" />
 
     <TextView
         android:id="@+id/limited_text_final_price"
+        style="@style/TextToUnlimitedOrLimitedPriceStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="@dimen/_40mdp"
         android:text="@string/final_price"
-        android:textColor="@color/grey"
-        android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.53"
         app:layout_constraintStart_toStartOf="parent"
@@ -303,10 +302,10 @@
     <TextView
         android:id="@+id/limited_count_of_rubles"
         style="@style/TextToUnlimitedOrLimitedPriceStyle"
-        android:layout_width="40dp"
+        android:layout_width="@dimen/_30mdp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="@dimen/_77mdp"
+        android:layout_marginTop="@dimen/_22mdp"
         android:text="@string/zero"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/limited_text_final_price" />
@@ -316,8 +315,8 @@
         style="@style/TextToUnlimitedOrLimitedPriceStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="@dimen/_4mdp"
+        android:layout_marginTop="@dimen/_22mdp"
         android:text="@string/rubles"
         app:layout_constraintStart_toEndOf="@+id/limited_count_of_rubles"
         app:layout_constraintTop_toBottomOf="@+id/limited_text_final_price" />
@@ -325,10 +324,10 @@
     <TextView
         android:id="@+id/limited_count_of_penny"
         style="@style/TextToUnlimitedOrLimitedPriceStyle"
-        android:layout_width="30dp"
+        android:layout_width="@dimen/_25mdp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="@dimen/_4mdp"
+        android:layout_marginTop="@dimen/_22mdp"
         android:text="@string/double_zero"
         app:layout_constraintStart_toEndOf="@+id/limited_text_rubles"
         app:layout_constraintTop_toBottomOf="@+id/limited_text_final_price" />
@@ -338,8 +337,8 @@
         style="@style/TextToUnlimitedOrLimitedPriceStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="@dimen/_4mdp"
+        android:layout_marginTop="@dimen/_22mdp"
         android:text="@string/penny"
         app:layout_constraintStart_toEndOf="@+id/limited_count_of_penny"
         app:layout_constraintTop_toBottomOf="@+id/limited_text_final_price" />

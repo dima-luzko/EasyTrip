@@ -4,12 +4,12 @@
     <style name="ProfileStyle">
         <item name="android:textColor">@color/white</item>
         <item name="android:fontFamily">@font/smart_gothic_bold</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">@dimen/_14font_mdp</item>
     </style>
 
     <style name="TextInTransportInfoItemStyle">
         <item name="android:textColor">@color/black</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">@dimen/_9font_mdp</item>
         <item name="android:textAlignment">center</item>
     </style>
 
@@ -17,50 +17,49 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/grey</item>
-        <item name="android:textSize">25sp</item>
+        <item name="android:textSize">@dimen/_18font_mdp</item>
     </style>
 
     <style name="CardViewStyle">
-        <item name="android:layout_marginTop">10dp</item>
-        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:layout_marginTop">@dimen/_8mdp</item>
+        <item name="android:layout_marginBottom">@dimen/_8mdp</item>
         <item name="cardBackgroundColor">@color/white</item>
-        <item name="cardCornerRadius">12dp</item>
+        <item name="cardCornerRadius">@dimen/_9mdp</item>
     </style>
 
     <style name="TextNumberOfDaysOrTripsStyle">
         <item name="android:textColor">@color/purple</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">@dimen/_14font_mdp</item>
         <item name="android:textAlignment">center</item>
         <item name="android:fontFamily">@font/courier_prime_bold</item>
-        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_width">@dimen/_28mdp</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
 
     <style name="TextToolbarStyle">
         <item name="android:textColor">@color/black</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">@dimen/_13font_mdp</item>
         <item name="android:textAlignment">center</item>
     </style>
 
     <style name="TextToUnlimitedOrLimitedPriceStyle">
         <item name="android:textColor">@color/grey</item>
-        <item name="android:textSize">22sp</item>
+        <item name="android:textSize">@dimen/_17font_mdp</item>
         <item name="android:textAlignment">center</item>
     </style>
 
     <style name="TextUnlimitedAndLimitedItemNameStyle">
         <item name="android:fontFamily">@font/pixograd_medium</item>
         <item name="android:textColor">@color/purple</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">@dimen/_9font_mdp</item>
         <item name="android:textAlignment">center</item>
-        <item name="android:layout_marginTop">15dp</item>
+        <item name="android:layout_marginTop">@dimen/_12mdp</item>
     </style>
 
-    <style name="ImageLimitedItemStyle">
-        <item name="android:layout_width">40dp</item>
-        <item name="android:layout_height">40dp</item>
-        <item name="android:layout_marginTop">13dp</item>
-        <item name="android:layout_marginStart">38dp</item>
+    <style name="ImageLimitedOrUnlimitedItemStyle">
+        <item name="android:layout_width">@dimen/_31mdp</item>
+        <item name="android:layout_height">@dimen/_31mdp</item>
+        <item name="android:layout_marginTop">@dimen/_10mdp</item>
     </style>
 
     <style name="Widget.Theme.Tickets.ButtonBar.Fullscreen" parent="">
@@ -70,8 +69,15 @@
 
     <style name="TextToTransportInfoItem">
         <item name="android:textColor">@color/black</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">@dimen/_14font_mdp</item> //20sp
         <item name="android:textAlignment">center</item>
     </style>
+
+    <style name="TextForButtonInPriceFragment">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/_11font_mdp</item> //20sp
+        <item name="android:textAlignment">center</item>
+    </style>
+
 </resources>
 
