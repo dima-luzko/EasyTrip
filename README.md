@@ -4,22 +4,28 @@
  which allows you to decide which type of travel ticket will be more profitable for you to buy.
  
 ## Used libraries and technologies: 
- * 1. [RoundedImageView](https://github.com/vinc3m1/RoundedImageView)
- * 2. [SSCustomBottomNavigation](https://github.com/SimformSolutionsPvtLtd/SSCustomBottomNavigation)
- * 3. [Jetpack Navigation](https://developer.android.com/guide/navigation/navigation-getting-started)
- * 4. [Lottie Animation](https://github.com/airbnb/lottie-android)
- * 5. [Coroutines](https://developer.android.com/kotlin/coroutines)
- * 6. [Retrofit](https://square.github.io/retrofit/)
- * 7. [Koin](https://insert-koin.io)
- * 8. [Shimmer](https://facebook.github.io/shimmer-android/)
- * 9. [Dynamic sizes for any screen](https://github.com/MrNouri/DynamicSizes)
- * 10. [MVVM + LiveData](https://habr.com/ru/post/338590/)
+ * [RoundedImageView](https://github.com/vinc3m1/RoundedImageView)
+ * [SSCustomBottomNavigation](https://github.com/SimformSolutionsPvtLtd/SSCustomBottomNavigation)
+ * [Jetpack Navigation](https://developer.android.com/guide/navigation/navigation-getting-started)
+ * [Lottie Animation](https://github.com/airbnb/lottie-android)
+ * [Coroutines](https://developer.android.com/kotlin/coroutines)
+ * [Retrofit](https://square.github.io/retrofit/)
+ * [Koin](https://insert-koin.io)
+ * [Shimmer](https://facebook.github.io/shimmer-android/)
+ * [Dynamic sizes for any screen](https://github.com/MrNouri/DynamicSizes)
+ * [MVVM + LiveData](https://habr.com/ru/post/338590/)
  
  <h4> 1. Splash screen: 
+  
+  
  <img src = "https://github.com/dima-luzko/EasyTrip/blob/master/screens/splashScreen.png"/>
  <h4> 2. Login screen:
+  
+  
  <img src = "https://github.com/dima-luzko/EasyTrip/blob/master/screens/loginScreen.png"/>
  <h4> 3. Profile screen:
+  
+  
  Transport icons show for which type of transport the ticket was purchased.
  <h5> Сolors:
  *1. Red: The validity of the pass has expired.
