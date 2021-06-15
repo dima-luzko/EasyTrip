@@ -16,12 +16,10 @@
  * [MVVM + LiveData](https://habr.com/ru/post/338590/)
  
  <h4> 1. Splash screen: 
-  
-  
+ <br/>
  <img src = "https://github.com/dima-luzko/EasyTrip/blob/master/screens/splashScreen.png"/>
  <h4> 2. Login screen:
-  
-  
+ <br/>
  <img src = "https://github.com/dima-luzko/EasyTrip/blob/master/screens/loginScreen.png"/>
  <h4> 3. Profile screen:
   
