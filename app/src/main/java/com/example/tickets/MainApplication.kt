@@ -15,4 +15,5 @@ class MainApplication : Application() {
             modules(listOf(dataSourceModules, viewModelModules, repositoryModules))
         }
     }
+
 }
