@@ -30,7 +30,7 @@ val viewModelModules = module {
 val repositoryModules = module {
     single<CardRepository> { CardRepositoryImpl(get()) }
     single<TransportRepository> { TransportRepositoryImpl(get()) }
-    single<NumberOfDaysRepository> { NumberOfDaysRepositoryImpl(get() ) }
+    single<NumberOfDaysRepository> { NumberOfDaysRepositoryImpl(get()) }
     single<NumberOfTripsRepository> { NumberOfTripsRepositoryImpl(get()) }
 }
 

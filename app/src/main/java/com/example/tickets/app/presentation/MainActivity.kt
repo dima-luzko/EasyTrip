@@ -7,7 +7,7 @@ import com.example.tickets.R
 import com.example.tickets.databinding.ActivityMainBinding
 import com.simform.custombottomnavigation.SSCustomBottomNavigation
 
-class MainActivity : AppCompatActivity(){
+class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 

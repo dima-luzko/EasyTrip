@@ -20,7 +20,7 @@ class CardViewModel constructor(private val cardRepository: CardRepository) : Vi
     var cardList: List<Card> = listOf()
 
     fun getCard(number: String) {
-        viewModelScope.launch(Dispatchers.IO){
+        viewModelScope.launch(Dispatchers.IO) {
             cardList = cardRepository.getCard(number)
             _card.postValue(cardList)
         }

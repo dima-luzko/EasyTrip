@@ -26,8 +26,8 @@ class NumberOfDaysAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val numberOfDays: NumberOfDaysOrTrips = numberOfDaysList[position]
-        with(holder){
-            with(binding){
+        with(holder) {
+            with(binding) {
                 numberOfDaysItem.text = numberOfDays.value.toString()
                 numberOfDaysItem.setOnClickListener {
                     chooseNumber(numberOfDays)

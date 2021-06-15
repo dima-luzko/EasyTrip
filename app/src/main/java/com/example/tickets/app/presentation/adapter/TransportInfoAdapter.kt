@@ -36,16 +36,25 @@ class TransportInfoAdapter(private val transportInfoList: List<Transactions>) :
             with(binding) {
                 finishDataTransportInfoItem.text = transportInfo.finishData.replace("-", ".")
                 countLeftTrips.text = changeNullToText(position)
-                colorFormTransportInfoItem.setCardBackgroundColor(getNumberOfDaysBetweenTwoDates(position))
-                if (colorFormTransportInfoItem.cardBackgroundColor.defaultColor == Color.rgb(255, 152, 0)){
+                colorFormTransportInfoItem.setCardBackgroundColor(
+                    getNumberOfDaysBetweenTwoDates(
+                        position
+                    )
+                )
+                if (colorFormTransportInfoItem.cardBackgroundColor.defaultColor == Color.rgb(
+                        255,
+                        152,
+                        0
+                    )
+                ) {
                     colorFormTransportInfoItem.startAnimation(blink())
                 }
-                transportsIconRecyclerView(position,transportInfoIconList)
+                transportsIconRecyclerView(position, transportInfoIconList)
             }
         }
     }
 
-    private fun transportsIconRecyclerView(position: Int,recyclerView: RecyclerView){
+    private fun transportsIconRecyclerView(position: Int, recyclerView: RecyclerView) {
         with(recyclerView) {
             layoutManager = LinearLayoutManager(
                 context,
@@ -57,7 +66,7 @@ class TransportInfoAdapter(private val transportInfoList: List<Transactions>) :
         }
     }
 
-    private fun blink(): Animation{
+    private fun blink(): Animation {
         val animation: Animation = AlphaAnimation(0.0f, 1.0f)
         with(animation) {
             duration = 500

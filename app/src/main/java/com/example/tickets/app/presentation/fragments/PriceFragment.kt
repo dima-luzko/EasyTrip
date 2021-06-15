@@ -14,6 +14,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.airbnb.lottie.LottieAnimationView
 import com.example.tickets.R
 import com.example.tickets.app.data.model.NumberOfDaysOrTrips
 import com.example.tickets.app.presentation.adapter.NumberOfDaysAdapter
@@ -117,29 +118,29 @@ class PriceFragment : Fragment() {
             this?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         }
 
-            function
-            numberOfDaysList.observe(viewLifecycleOwner, Observer { numberOfDays ->
-                with(unlimitedTripsDialogBinding.numberOfDaysList) {
-                    this.layoutManager = GridLayoutManager(
-                        context,
-                        3,
-                        LinearLayoutManager.VERTICAL,
-                        false
-                    )
-                    this.adapter = NumberOfDaysAdapter(numberOfDays) {
-                        with(bundle) {
-                            putString("numberOfDays", it.value.toString())
-                            putInt("numberOfDaysId", it.id)
-                        }
-                        findNavController().navigate(
-                            navigationId,
-                            bundle
-                        )
-                        dialog?.dismiss()
+        function
+        numberOfDaysList.observe(viewLifecycleOwner, Observer { numberOfDays ->
+            with(unlimitedTripsDialogBinding.numberOfDaysList) {
+                this.layoutManager = GridLayoutManager(
+                    context,
+                    3,
+                    LinearLayoutManager.VERTICAL,
+                    false
+                )
+                this.adapter = NumberOfDaysAdapter(numberOfDays) {
+                    with(bundle) {
+                        putString("numberOfDays", it.value.toString())
+                        putInt("numberOfDaysId", it.id)
                     }
-                    this.hasFixedSize()
+                    findNavController().navigate(
+                        navigationId,
+                        bundle
+                    )
+                    dialog?.dismiss()
                 }
-            })
+                this.hasFixedSize()
+            }
+        })
         dialog?.show()
     }
 }

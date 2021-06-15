@@ -38,7 +38,7 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        with(binding){
+        with(binding) {
             personalCardNumber.text = arguments?.getString("cardNumber")
             buttonExit.setOnClickListener {
                 findNavController().navigate(R.id.action_profileFragment_to_loginFragment)
