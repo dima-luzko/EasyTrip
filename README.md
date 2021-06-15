@@ -3,8 +3,8 @@
  Also in this application you can find out about the current prices for this or that transport, 
  which allows you to decide which type of travel ticket will be more profitable for you to buy.
  
- <h1> Used libraries and technologies: 
- *1. [RoundedImageView](https://github.com/vinc3m1/RoundedImageView)
+     <h1> Used libraries and technologies: 
+ *1. [RoundedImageView]https://github.com/vinc3m1/RoundedImageView
  *2. [SSCustomBottomNavigation](https://github.com/SimformSolutionsPvtLtd/SSCustomBottomNavigation)
  *3. [Jetpack Navigation](https://developer.android.com/guide/navigation/navigation-getting-started)
  *4. [Lottie Animation](https://github.com/airbnb/lottie-android)
