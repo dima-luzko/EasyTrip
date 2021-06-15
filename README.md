@@ -17,27 +17,34 @@
  
  <h4> 1. Splash screen: 
  <br/>
+ <br/>
  <img src = "https://github.com/dima-luzko/EasyTrip/blob/master/screens/splashScreen.png"/>
  <h4> 2. Login screen:
  <br/>
+ <br/>
  <img src = "https://github.com/dima-luzko/EasyTrip/blob/master/screens/loginScreen.png"/>
  <h4> 3. Profile screen:
-  
-  
+ <br/>
  Transport icons show for which type of transport the ticket was purchased.
  <h5> Сolors:
- *1. Red: The validity of the pass has expired.
- *2. Flashing yellow: The validity of the pass is coming to an end.
- *3. Green: The travel card is active.
+ <br/>
+ * Red: The validity of the pass has expired.
+ * Flashing yellow: The validity of the pass is coming to an end.
+ * Green: The travel card is active.
  <img src = "https://github.com/dima-luzko/EasyTrip/blob/master/screens/profileScreen.png"/>
  <img src = "https://github.com/dima-luzko/EasyTrip/blob/master/screens/profileScreen(1).png"/>
  <h4> 4. Price screen
+ <br/>
+ <br/>
  <img src = "https://github.com/dima-luzko/EasyTrip/blob/master/screens/priceScreen.png"/>
  <h4> 5. Unlimited trips screen
+ <br/>
  The selected type of transport is displayed in brown.
  <img src = "https://github.com/dima-luzko/EasyTrip/blob/master/screens/unlimitedTripsScreen.png"/>
  <img src = "https://github.com/dima-luzko/EasyTrip/blob/master/screens/unlimitedTripsScreenWithTrainCityLines.png"/>
  <h4> 6. Limited trips screen
+ <br/>
+ <br/>
  <img src = "https://github.com/dima-luzko/EasyTrip/blob/master/screens/limitedTripsScreen.png"/>
  
  
