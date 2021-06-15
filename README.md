@@ -27,10 +27,13 @@
  <br/>
  Transport icons show for which type of transport the ticket was purchased.
  <h5> Сolors:
- <br/>
+
+ 
  * Red: The validity of the pass has expired.
  * Flashing yellow: The validity of the pass is coming to an end.
  * Green: The travel card is active.
+ <br/>
+ <br/>
  <img src = "https://github.com/dima-luzko/EasyTrip/blob/master/screens/profileScreen.png"/>
  <img src = "https://github.com/dima-luzko/EasyTrip/blob/master/screens/profileScreen(1).png"/>
  <h4> 4. Price screen
