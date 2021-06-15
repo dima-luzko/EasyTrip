@@ -38,7 +38,7 @@
         style="@style/TextToolbarStyle"
         android:layout_width="@dimen/_23mdp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_23mdp"
+        android:layout_marginStart="@dimen/_40mdp"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar"
         app:layout_constraintStart_toEndOf="@+id/back_button_in_unlimited_choose_screen"
         app:layout_constraintTop_toTopOf="@+id/toolbar"

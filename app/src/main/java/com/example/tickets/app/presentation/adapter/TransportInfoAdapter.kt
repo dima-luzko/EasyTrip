@@ -60,7 +60,7 @@ class TransportInfoAdapter(private val transportInfoList: List<Transactions>) :
     private fun blink(): Animation{
         val animation: Animation = AlphaAnimation(0.0f, 1.0f)
         with(animation) {
-            duration = 200
+            duration = 500
             startOffset = 50
             repeatCount = Animation.INFINITE
         }
