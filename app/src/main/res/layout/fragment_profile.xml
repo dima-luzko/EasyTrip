@@ -25,9 +25,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_6mdp"
-        android:layout_marginEnd="@dimen/_90mdp"
+        android:layout_marginStart="@dimen/_76mdp"
         android:text="@string/personal_profile"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
