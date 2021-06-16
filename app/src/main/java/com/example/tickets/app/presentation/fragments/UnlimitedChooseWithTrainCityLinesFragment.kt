@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -176,9 +177,17 @@ class UnlimitedChooseWithTrainCityLinesFragment : Fragment() {
         tramFlag: Boolean
     ) {
         if (busFlag && trolleybusFlag && tramFlag && busExpressButtonIsPressed) {
-            busExpressButtonIsPressed = !busExpressButtonIsPressed
-            onActiveButton(busExpressButtonIsPressed, binding.busExpressButton)
-            addTransportToArrayList(busExpressButtonIsPressed, busExpressID)
+            with(binding) {
+                busExpressButton.visibility = ConstraintLayout.VISIBLE
+                busExpressButtonName.visibility = ConstraintLayout.VISIBLE
+                busExpressButtonIcon.visibility = ConstraintLayout.VISIBLE
+                busExpressButtonIsPressed = !busExpressButtonIsPressed
+                onActiveButton(busExpressButtonIsPressed, busExpressButton)
+                addTransportToArrayList(busExpressButtonIsPressed, busExpressID)
+                busExpressButton.visibility = ConstraintLayout.GONE
+                busExpressButtonName.visibility = ConstraintLayout.GONE
+                busExpressButtonIcon.visibility = ConstraintLayout.GONE
+            }
         }
     }
 
@@ -189,12 +198,17 @@ class UnlimitedChooseWithTrainCityLinesFragment : Fragment() {
             addTransportToArrayList(trainCityLinesButtonIsPressed, trainCityLinesID)
         }
         if (busButtonIsPressed && trolleybusButtonIsPressed && tramButtonIsPressed) {
-            trainCityLinesButtonIsPressed = true
-            busExpressButtonIsPressed = true
-            onActiveButton(trainCityLinesButtonIsPressed, binding.trainCityLinesButton)
-            onActiveButton(busExpressButtonIsPressed, binding.busExpressButton)
-            addTransportToArrayList(trainCityLinesButtonIsPressed, trainCityLinesID)
-            addTransportToArrayList(busExpressButtonIsPressed, busExpressID)
+            with(binding){
+                busExpressButton.visibility = ConstraintLayout.VISIBLE
+                busExpressButtonName.visibility = ConstraintLayout.VISIBLE
+                busExpressButtonIcon.visibility = ConstraintLayout.VISIBLE
+                trainCityLinesButtonIsPressed = true
+                busExpressButtonIsPressed = true
+                onActiveButton(trainCityLinesButtonIsPressed, trainCityLinesButton)
+                onActiveButton(busExpressButtonIsPressed, busExpressButton)
+                addTransportToArrayList(trainCityLinesButtonIsPressed, trainCityLinesID)
+                addTransportToArrayList(busExpressButtonIsPressed, busExpressID)
+            }
         }
 
     }
