@@ -1,4 +1,4 @@
-package com.example.tickets.utils
+package com.example.tickets.app.presentation
 
 import android.content.Context
 import android.util.AttributeSet
@@ -10,7 +10,7 @@ import com.example.tickets.databinding.CounterViewBinding
 import org.koin.androidx.viewmodel.compat.ViewModelCompat.viewModel
 
 
-class Counter @JvmOverloads constructor(
+class CounterView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
 ) : ConstraintLayout(context, attrs) {
